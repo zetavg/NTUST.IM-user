@@ -2,6 +2,7 @@ defaults: &defaults
   app_secret_key: <%= ENV["APP_SECRET_KEY"] %>
   app_name: <%= ENV["APP_NAME"] %>
   app_description: <%= ENV["APP_DESCRIPTION"] %>
+  app_keywords: <%= ENV["APP_KEYWORDS"] %>
   app_domain: <%= ENV["APP_DOMAIN"] %>
   facebook_app_id: <%= ENV["FACEBOOK_APP_ID"] %>
   facebook_app_secret: <%= ENV["FACEBOOK_APP_SECRET"] %>
@@ -17,7 +18,8 @@ development:
   <<: *defaults
   app_name: 'NTUST.IM'
   app_description: '台科大學生資訊平台'
-  app_domain: 'NTUST.IM-user.dev'
+  app_keywords: 'ntust'
+  app_domain: 'user.ntust.dev'
   app_secret_key: 'app_secret_key_here'
   facebook_app_id: 'facebook_app_id_here'
   facebook_app_secret: 'facebook_app_secret_here'
