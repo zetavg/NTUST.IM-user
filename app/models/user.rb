@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook]
   validates_uniqueness_of :fbid
 
+  has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner
+
   def self.from_facebook(auth)
     user = where({:fbid => auth.uid}).first_or_create! do |user|
       user.email = "#{auth.uid}@facebook.com"
