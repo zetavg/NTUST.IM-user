@@ -15,6 +15,7 @@ defaults: &defaults
   facebook_app_secret: <%= ENV["FACEBOOK_APP_SECRET"] %>
   google_analytics_id: <%= ENV["GOOGLE_ANALYTICS_ID"] %>
   email_regexp_s: <%= ENV["EMAIL_REGEXP"] %>
+  email_analysis_regexp_s: <%= ENV["EMAIL_ANALYSIS_REGEXP_S"] %>
 
 production:
   <<: *defaults
@@ -39,4 +40,5 @@ development:
   facebook_app_id: 'facebook_app_id_here'
   facebook_app_secret: 'facebook_app_secret_here'
   google_analytics_id: 'google_analytics_id_here'
-  email_regexp_s: '/\A[^@]+@[^@]+\z/'
+  email_regexp_s: '^.*@.*$'
+  email_analysis_regexp_s: '^(?''id''.*)@.*$'
