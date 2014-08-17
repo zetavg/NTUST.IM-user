@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :confirmable, :rememberable, :trackable, :validatable
   devise :omniauthable, :omniauth_providers => [:facebook]
   validates_uniqueness_of :fbid
+  scope :confirmed, -> { where("confirmed_at IS NOT NULL") }
 
   has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner
 

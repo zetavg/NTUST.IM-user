@@ -41,10 +41,28 @@ class UsersController < ApplicationController
       session["devise.new_user_time"] = Time.now
       @user = User.where(confirmed_at: nil, id: session["devise.new_user_id"]).first
       email = params['user']['email']
-      if 1 == 1 # TODO: 確認信箱位址符合 regex
+      email.downcase!
+      if email =~ Setting.email_regexp
         if @user.update_attribute(:email, email)
-          # TODO: 從 email 中抽取出資訊
-          # @usersend_confirmation_instructions # this will be done automatically
+          data = Setting.email_analysis_regexp.match(email)
+          if data
+            identities = { b: 'bachelor', m: 'master', d: 'doctor' }
+            @user.identity = identities[data[:identity_id].to_sym]
+            @user.admission_year = data[:admission_year].to_i
+            @user.admission_department_id = data[:admission_department_id].to_i
+            @user.department_id = data[:admission_department_id].to_i
+            @user.student_id = data[:student_id]
+          else
+            @user.identity = 'other'
+            @user.admission_year = nil
+            @user.admission_department_id = nil
+            @user.department_id = nil
+            @user.student_id = nil
+          end
+            @user.save
+          # @user.send_confirmation_instructions # this will be done automatically
+          @user.send_confirmation_instructions if @user.email == @user.unconfirmed_email
+          # ...but just in case of this happens ↗
           flash[:success] = "認證信已送出！"
           redirect_to users_new_path
         else
