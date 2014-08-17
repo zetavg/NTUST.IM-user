@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   private
 
   def get_app_setting
+    @app_name = Setting.app_name
     @google_analytics_id = Setting.google_analytics_id
   end
 end

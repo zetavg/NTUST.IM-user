@@ -1,10 +1,13 @@
 defaults: &defaults
   app_secret_key: <%= ENV["APP_SECRET_KEY"] %>
   app_pepper: <%= ENV["APP_PEPPER"] %>
+  site_name: <%= ENV["SITE_NAME"] %>
   app_name: <%= ENV["APP_NAME"] %>
   app_description: <%= ENV["APP_DESCRIPTION"] %>
   app_keywords: <%= ENV["APP_KEYWORDS"] %>
   app_domain: <%= ENV["APP_DOMAIN"] %>
+  administrator_email: <%= ENV["ADMINISTRATOR_EMAIL"] %>
+  administrator_url: <%= ENV["ADMINISTRATOR_URL"] %>
   mailer_sender: <%= ENV["MAILER_SENDER"] %>
   mailgun_api_key: <%= ENV["MAILGUN_API_KEY"] %>
   mailgun_domain: <%= ENV["MAILGUN_DOMAIN"] %>
@@ -23,10 +26,13 @@ development:
   <<: *defaults
   app_secret_key: 'app_secret_key_here'
   app_pepper: 'app_pepper_here'
+  site_name: 'NTUST.IM'
   app_name: 'NTUST.IM'
   app_description: '台科大學生資訊平台'
   app_keywords: 'ntust'
   app_domain: 'user.ntust.dev'
+  administrator_email: 'administrator_email_here'
+  administrator_url: 'administrator_url_here'
   mailer_sender: 'please-change-me-at-config-configuration@example.com'
   mailgun_api_key: 'mailgun_api_key_here'
   mailgun_domain: 'mailgun_domain_here'

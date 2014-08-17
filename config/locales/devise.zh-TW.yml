@@ -18,7 +18,7 @@ zh-TW:
       unconfirmed: "您的帳號需需要經過驗證後，才能繼續。"
     mailer:
       confirmation_instructions:
-        subject: "帳號驗證步驟"
+        subject: "帳號認證信"
       reset_password_instructions:
         subject: "密碼重設步驟"
       unlock_instructions:

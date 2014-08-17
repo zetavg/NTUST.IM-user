@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     controllers :applications => 'oauth/applications'
   end
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  match 'users/new', to: 'users#new', via: [:get]
+  match 'users/new', to: 'users#new_update', via: [:patch, :put]
   resources :users, :only => [:show, :edit, :update]
 
   root "users#me"

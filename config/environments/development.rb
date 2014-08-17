@@ -18,6 +18,7 @@ Rails.application.configure do
   ENV['MAILGUN_SMTP_LOGIN'] = Setting.mailgun_domain
   ENV['MAILGUN_API_KEY'] = Setting.mailgun_api_key
   config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.default_url_options = { host: Setting.app_domain }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
