@@ -4,13 +4,13 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  # config.secret_key = '7338fd0b53c06ea882b3085efadd2f3cd0ff453da4fa110c7a23083794f61a0d021e39e2e07717fd904445fe9e43780a1316d838acf1d6b12134b66b2f15cd10'
+  config.secret_key = Setting.app_secret_key
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = Setting.mailer_sender
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -97,7 +97,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = '56952a0b77ade979614c59d32954c9a4dab591d1cce12f14a16e1b74eea6857992fe6704bf3805b41a94e0bb810b25421e26b7d004c6bb3af0564e5e6c3d12af'
+  config.pepper = Setting.app_pepper
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -142,7 +142,7 @@ Devise.setup do |config|
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
   # to give user feedback and not to assert the e-mail validity.
-  # config.email_regexp = /\A[^@]+@[^@]+\z/
+  config.email_regexp = Setting.email_regexp
 
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
