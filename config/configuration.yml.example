@@ -6,10 +6,12 @@ defaults: &defaults
   app_keywords: <%= ENV["APP_KEYWORDS"] %>
   app_domain: <%= ENV["APP_DOMAIN"] %>
   mailer_sender: <%= ENV["MAILER_SENDER"] %>
-  email_regexp_s: <%= ENV["EMAIL_REGEXP"] %>
+  mailgun_api_key: <%= ENV["MAILGUN_API_KEY"] %>
+  mailgun_domain: <%= ENV["MAILGUN_DOMAIN"] %>
   facebook_app_id: <%= ENV["FACEBOOK_APP_ID"] %>
   facebook_app_secret: <%= ENV["FACEBOOK_APP_SECRET"] %>
   google_analytics_id: <%= ENV["GOOGLE_ANALYTICS_ID"] %>
+  email_regexp_s: <%= ENV["EMAIL_REGEXP"] %>
 
 production:
   <<: *defaults
@@ -26,7 +28,9 @@ development:
   app_keywords: 'ntust'
   app_domain: 'user.ntust.dev'
   mailer_sender: 'please-change-me-at-config-configuration@example.com'
-  email_regexp_s: '/\A[^@]+@[^@]+\z/'
+  mailgun_api_key: 'mailgun_api_key_here'
+  mailgun_domain: 'mailgun_domain_here'
   facebook_app_id: 'facebook_app_id_here'
   facebook_app_secret: 'facebook_app_secret_here'
   google_analytics_id: 'google_analytics_id_here'
+  email_regexp_s: '/\A[^@]+@[^@]+\z/'

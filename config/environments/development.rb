@@ -14,7 +14,10 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  ENV['MAILGUN_SMTP_LOGIN'] = Setting.mailgun_domain
+  ENV['MAILGUN_API_KEY'] = Setting.mailgun_api_key
+  config.action_mailer.delivery_method = :mailgun
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

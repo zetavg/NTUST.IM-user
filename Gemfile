@@ -53,6 +53,8 @@ gem 'devise', '3.2.4'
 gem 'omniauth-facebook', '2.0.0'
 gem 'doorkeeper', '1.4.0'
 
+gem 'mailgunner', '2.0.0'
+
 gem 'simple_form', '3.0.2'
 gem 'seo_helper', '1.0.2'
 gem 'open_graph_helper', '0.2.0'
