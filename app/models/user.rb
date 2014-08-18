@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   scope :confirmed, -> { where("confirmed_at IS NOT NULL") }
 
   has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner
+  belongs_to :department, primary_key: "code"
 
   def self.from_facebook(auth)
     user = where({:fbid => auth.uid}).first_or_create! do |user|
