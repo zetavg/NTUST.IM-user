@@ -27,9 +27,9 @@ development:
   <<: *defaults
   app_secret_key: 'app_secret_key_here'
   app_pepper: 'app_pepper_here'
-  site_name: 'NTUST.IM'
-  app_name: 'NTUST.IM'
-  app_description: '台科大學生資訊平台'
+  site_name: 'NTUST'
+  app_name: 'NTUST'
+  app_description: 'NTUST Student Information Platform'
   app_keywords: 'ntust'
   app_domain: 'user.ntust.dev'
   administrator_email: 'administrator_email_here'
