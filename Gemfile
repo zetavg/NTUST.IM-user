@@ -71,5 +71,6 @@ end
 
 # For Heroku assets
 gem 'rails_12factor', group: :production
+gem 'rb-readline', '0.5.1'
 
 ruby "2.0.0"
