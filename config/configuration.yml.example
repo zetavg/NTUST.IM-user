@@ -22,23 +22,3 @@ production:
 
 test:
   <<: *defaults
-
-development:
-  <<: *defaults
-  app_secret_key: 'app_secret_key_here'
-  app_pepper: 'app_pepper_here'
-  site_name: 'NTUST.IM'
-  app_name: 'NTUST.IM'
-  app_description: '台科大學生資訊平台'
-  app_keywords: 'ntust'
-  app_domain: 'user.ntust.dev'
-  administrator_email: 'administrator_email_here'
-  administrator_url: 'administrator_url_here'
-  mailer_sender: 'please-change-me-at-config-configuration@example.com'
-  mailgun_api_key: 'mailgun_api_key_here'
-  mailgun_domain: 'mailgun_domain_here'
-  facebook_app_id: 'facebook_app_id_here'
-  facebook_app_secret: 'facebook_app_secret_here'
-  google_analytics_id: 'google_analytics_id_here'
-  email_regexp_s: '^.*@.*$'
-  email_analysis_regexp_s: '^(?<id>.*)@.*$'
