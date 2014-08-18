@@ -9,6 +9,10 @@ Bundler.require(*Rails.groups)
 module NTUSTImUser
   class Application < Rails::Application
 
+    config.encoding = "utf-8"
+    Encoding.default_external = Encoding::UTF_8
+    Encoding.default_internal = Encoding::UTF_8
+
     if File.file?("#{Rails.root.to_s}/config/database.yml")
       self.paths['config/database'] = 'config/database.yml'
     else
