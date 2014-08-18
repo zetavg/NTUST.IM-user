@@ -59,6 +59,10 @@ gem 'simple_form', '3.0.2'
 gem 'seo_helper', '1.0.2'
 gem 'open_graph_helper', '0.2.0'
 
+gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
+gem 'ransack', github: 'activerecord-hackery/ransack'
+
 group :development do
   gem 'sqlite3'
   gem 'better_errors', '1.1.0'
