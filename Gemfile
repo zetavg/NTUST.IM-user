@@ -67,6 +67,8 @@ group :development do
   gem 'sqlite3'
   gem 'better_errors', '~> 1.1.0'
   gem 'binding_of_caller', '~> 0.7.2'
+  gem 'guard-livereload', require: false
+  gem 'growl_notify', require: false
 end
 
 # For Heroku assets
