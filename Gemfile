@@ -39,38 +39,38 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'settingslogic', '2.0.9'
+gem 'settingslogic', '~> 2.0.9'
 
 gem 'haml'
-gem 'haml-rails', '0.5.3'
-gem 'semantic-ui-sass'
+gem 'haml-rails', '~> 0.5.3'
+gem 'semantic-ui-sass', '>=  0.16.1.0'
 
 gem 'modernizr-rails'
-gem 'nprogress-rails', '0.1.3.1'
-gem 'select2-rails', '3.5.9'
+gem 'nprogress-rails', '~> 0.1.3.1'
+gem 'select2-rails', '~> 3.5.9'
 
-gem 'devise', '3.2.4'
-gem 'omniauth-facebook', '2.0.0'
-gem 'doorkeeper', '1.4.0'
+gem 'devise', '~> 3.2.4'
+gem 'omniauth-facebook', '~> 2.0.0'
+gem 'doorkeeper', '~> 1.4.0'
 
-gem 'mailgunner', '2.0.0'
+gem 'mailgunner', '~> 2.0.0'
 
-gem 'simple_form', '3.0.2'
-gem 'seo_helper', '1.0.2'
-gem 'open_graph_helper', '0.2.0'
+gem 'simple_form', '~> 3.0.2'
+gem 'seo_helper', '~> 1.0.2'
+gem 'open_graph_helper', '~> 0.2.0'
 
-gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'activeadmin', github: 'gregbell/active_admin', ref: '7317949556476c3d67b0a8a950f7ef4e33ddf709'
 gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 
 group :development do
   gem 'sqlite3'
-  gem 'better_errors', '1.1.0'
-  gem 'binding_of_caller', '0.7.2'
+  gem 'better_errors', '~> 1.1.0'
+  gem 'binding_of_caller', '~> 0.7.2'
 end
 
 # For Heroku assets
 gem 'rails_12factor', group: :production
-gem 'rb-readline', '0.5.1'
+gem 'rb-readline', '~> 0.5.1'
 
 ruby "2.0.0"
