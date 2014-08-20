@@ -1,0 +1,74 @@
+body {
+
+	> * > * {
+		overflow: hidden;
+	}
+}
+
+.header {
+	@include z-index(header);
+}
+
+.main {
+	@include z-index(main);
+}
+
+.footer {
+	@include z-index(footer);
+}
+
+.container {
+	max-width: $base-content-maxWidth;
+	margin: auto;
+	padding: 0 16px;
+}
+
+.top.menu  {
+	overflow: visible;
+	height: $top-menu-height;
+	position: relative;
+	margin-top: 0;
+	@include border-radius(0);
+	@include z-index(top_menu);
+
+	.container, .container > .item, .container > .menu, .dropdown {
+		height: $top-menu-height;
+
+		&, & > a {
+			line-height: ($top-menu-height - 10px * 2);
+		}
+
+		.button {
+			line-height: initial;
+		}
+	}
+
+	.item {
+		padding: 10px 12px;
+	}
+
+	.login.button {
+		margin-top: 7px;
+		height: 38px;
+		padding-top: 0.59em;
+
+		.label i {
+			line-height: 38px;
+		}
+	}
+
+}
+
+.ui.top.sidebar {
+	height: 100px !important;
+	margin-top: -100px !important;
+	position: absolute;
+}
+
+.ui.message {
+
+	&.alert {
+		background-color: $red;
+		color: $white;
+	}
+}

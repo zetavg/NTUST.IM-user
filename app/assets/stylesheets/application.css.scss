@@ -12,6 +12,7 @@
  *
  * require_tree .
  *= require_self
+ *= require normalize-rails
  *= require select2
  */
 
@@ -41,11 +42,32 @@
 @import "core/semantic-ui_overrides";
 
 // -------------------------------------
+//   Core
+// -------------------------------------
+
+// ----- Helpers ----- //
+
+@import "core/helpers";
+
+// ----- Typography ----- //
+
+@import "core/typography";
+
+// ----- Layout ----- //
+
+@import "core/layout";
+
+// -------------------------------------
 //   Modules
 // -------------------------------------
 
 @import "modules/example";
+@import "modules/flash_messages";
+@import "modules/new_user_form";
 
 // -------------------------------------
 //   Inbox
 // -------------------------------------
+* {
+	// display: none;
+}

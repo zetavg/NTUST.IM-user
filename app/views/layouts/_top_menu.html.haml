@@ -1,0 +1,30 @@
+.ui.top.inverted.teal.sidebar.menu
+  .container
+    %center
+      %a.item Comming Soon
+    / .header.item Top Sidebar menu
+    / %a.item One
+    / %a.item Two
+    / %a.item Three
+
+.ui.inverted.top.menu
+  .container
+    %a.title.item.top-sidebar-toggle-button
+      %i.reorder.icon
+      = Setting.site_name
+
+    .right.menu
+      - if current_user
+        .ui.pointing.dropdown.link.item
+          .ui.avatar.image= image_tag current_user.avator(100)
+          = current_user.name
+          %i.angle.down.icon
+          .menu
+            %a.item
+              %i.setting.icon
+              個人設定
+            %a.item{href: destroy_user_session_path, 'data-method' => :delete}
+              %i.sign.out.icon
+              登出
+      - else
+        = render 'partials/facebook_login_button'

@@ -1,0 +1,105 @@
+// *************************************
+//
+//   Helpers
+//   -> Extends, Functions, Mixins, Animations
+//
+// *************************************
+
+// -------------------------------------
+//   Extends
+// -------------------------------------
+
+// ----- Debug ----- //
+
+%debug {
+	background-color: rgba(pink, 0.8) !important;
+}
+
+// ----- Ellipsis ----- //
+
+%ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+// ----- Clearfix ----- //
+
+%group:after {
+	clear: both;
+	content: "";
+	display: table;
+}
+
+// ----- Image Replacement ----- //
+
+%ir {
+	background-color: transparent;
+	border: 0;
+	overflow: hidden;
+	&:before {
+		content: "";
+		display: block;
+		width: 0;
+		height: 150%;
+	}
+}
+
+// -------------------------------------
+//   Functions
+// -------------------------------------
+
+// ----- strip units ----- //
+
+@function strip-units($number) {
+	@return $number / ($number * 0 + 1);
+}
+
+// ----- em ----- //
+
+@function em($target, $context: $base-fontSize) {
+	@if $target == 0 {
+		@return 0;
+	}
+	@else {
+		@return #{$target / $context}em;
+	}
+}
+
+// ----- rem ----- //
+
+@function rem($size) {
+	@return #{$size / $base-fontSize}rem;
+}
+
+// ----- Vertical Rhythm ----- //
+
+
+@mixin rhythm-to($leader: 0, $padding-leader: 0, $padding-trailer: 0, $trailer: 0, $font-size: $base-font-size) {
+	@include adjust-font-size-to($font-size);
+	@include rhythm($leader, $padding-leader, $padding-trailer, $trailer, $font-size);
+}
+
+// -------------------------------------
+//   Mixins
+// -------------------------------------
+
+// ----- z-index ----- //
+
+@mixin z-index($element, $elements: $zIndex-elements, $base: 10) {
+	$index: index($elements, $element);
+	@if $index == false {
+		@warn "There is no item "#{$element}" in the z-index list, please choose one of: #{$elements}'";
+	} @else {
+		z-index: index($elements, $element) + $base;
+	}
+}
+
+
+// ----- Respond-to ----- //
+
+@mixin respond-to($val, $query: min-width, $media: screen) {
+	@media #{$media} and ($query: $val) {
+		@content;
+	}
+}

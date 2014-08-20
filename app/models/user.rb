@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
   has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner
   belongs_to :department, primary_key: "code"
 
+  def avator(size=100)
+    'https://graph.facebook.com/' + fbid.to_s + '/picture?width=' + size.to_s + '&height=' + size.to_s
+  end
+
   def self.from_facebook(auth)
     user = where({:fbid => auth.uid}).first_or_create! do |user|
       user.email = "#{Devise.friendly_token[0,20]}@dev.null"

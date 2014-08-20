@@ -1,0 +1,9 @@
+.ui.vertical.center.wrapper{style: "height: 100vh; position: absolute; top: 0;"}
+  .ui.vertical.center
+    .ui.fluid.form.segment.large.box.new-user-form
+      %h2 喔喔
+      = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+        = f.full_error :confirmation_token
+        .back
+          %br
+          = link_to "回", "javascript:history.back()"

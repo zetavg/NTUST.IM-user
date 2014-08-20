@@ -1,3 +1,139 @@
-= form_for @user, method: :patch, url: users_new_path do |f|
-  = f.email_field :email
-  = f.submit '驗證'
+.ui.vertical.center.wrapper{style: "height: 100vh; position: absolute; top: 0;"}
+  .ui.vertical.center
+    .ui.fluid.form.segment.large.box.new-user-form
+      %p 只差最後一步就完成了！
+      .ui.steps
+        %a.ui.step{href: history_path(2)}
+          .text FB 授權
+        .ui.active.step
+          .text 驗證 Email
+        .ui.disabled.step
+          .text 完成
+      .ui.section.divider
+      = form_for @user, method: :patch, url: users_new_path, :html => { onSubmit: 'return checkForm();' } do |f|
+        .ui.left.labeled.icon.email-c.input
+          = f.email_field :email, :class => "email", :id => "input-email", :placeholder => "xxx" + regexp_parse(Setting.email_regexp_s), :type => "text", :autocomplete => "off", :autofocus => 'autofocus'
+          %i.mail.icon
+          .ui.corner.label
+          .ui.red.pointing.above.ui.label.error-label 不合法的 email，請確認你輸入的是正確的學校 email！
+        = f.submit '寄驗證信', :class => "ui green submit button"
+        .ui.three.column.doubling.grid
+          .column
+            .small 入學年度
+            .admission_year ?
+            .after.vertical.divider.hide-on-phone
+          .column.show-on-tablet
+            .small 學院
+            .college ?
+          .column
+            .college.small.hide-on-tablet ?
+            .small.show-on-tablet 系所
+            .department ?
+            .after.vertical.divider.hide-on-phone
+          .column
+            .small 身份別
+            .identity ?
+      - if flash[:success]
+        .ui.horizontal.divider
+          %i.lock.icon
+        %form.ui.confirmation_token.form{"accept-charset" => "UTF-8", :action => "/users/confirmation", :method => "get"}
+          .field
+            %input.confirmation_token{:autocomplete => "off", :name => "confirmation_token", :type => "text", :placeholder => "驗證碼"}
+          %input.ui.purple.submit.button{:name => "commit", :type => "submit", :value => "驗證"}
+
+:javascript
+  identities = [{"code":"b","name":"大學生"}, {"code":"m","name":"碩士生"}, {"code":"d","name":"博士生"}];
+  departments = #{Department.all.select("code, name, college_id").to_json};
+  colleges = #{College.all.select("code, name, id").to_json};
+  email_regexp_s = "#{Setting.email_regexp_s.gsub('\\', '\\\\\\')}"
+  email_regexp = new RegExp(email_regexp_s)
+  email_analysis_regexp_s = "#{Setting.email_analysis_regexp_s.gsub('\\', '\\\\\\')}"
+  email_ending = "#{regexp_parse(Setting.email_regexp_s)}"
+  function checkForm() {
+    if ($('.email').val().match(email_regexp)) {
+      return true;
+    } else {
+      $('.email-c').addClass('error');
+      return false;
+    }
+  }
+
+:coffeescript
+  $email = $('#input-email')
+  last_email = ""
+  auto_complete_fired = false
+  # console.log email_analysis_regexp_s
+  $email.bind 'keyup keydown click paste valuechange', (e) ->
+    if $('.email').val().match(email_regexp)
+      $('.email-c').removeClass 'error'
+    # console.log e
+    if $email.val().match(/@$/)
+      $email.val $email.val().replace(/@$/, email_ending)
+      $email.caretTo('@', true);
+      auto_complete_fired = true
+    if e.type == 'click' or e.keyCode == 37 or e.keyCode == 39
+      auto_complete_fired = false
+      # console.log 'unset auto_complete_fired'
+    if auto_complete_fired and e.type == 'keyup'
+      cp = $email.getCursorPosition()
+      bcp = $email.val().substring(0, cp)
+      if $email.val()[cp-1] == $email.val()[cp]
+        # console.log bcp
+        $email.val $email.val().replace(bcp + $email.val()[cp-1], bcp)
+        $email.caretTo(bcp, true);
+        return
+    email = $email.val()
+    # if !email.match(email_regexp) && last_email.match(email_regexp)
+    #   email = last_email
+    last_email = email
+    email = email + email_ending if !email.match(/@/)
+    # console.log email
+    matchData = email.keyMatch(email_analysis_regexp_s)
+    identity = null
+    if matchData[0]
+      # console.log matchData[0]
+      admission_year = matchData[0].admission_year
+      # console.log admission_year
+      identity = identities.filter((i) ->
+        i.code is matchData[0].identity_id
+      )[0]
+      # console.log identity
+      department = departments.filter((d) ->
+        d.code is parseInt(matchData[0].admission_department_id)
+      )[0]
+      # console.log department
+      if department
+        college = colleges.filter((c) ->
+          c.id is parseInt(department.college_id)
+        )[0]
+        # console.log college
+
+    if identity && identity.name
+      $('.identity').html identity.name
+      $('.identity').removeClass 'disabled'
+    else
+      $('.identity').html "其他"
+      $('.identity').addClass 'disabled'
+    if admission_year && admission_year
+      $('.admission_year').html admission_year
+      $('.admission_year').removeClass 'disabled'
+    else
+      $('.admission_year').html "?"
+      $('.admission_year').addClass 'disabled'
+    if college && college.name
+      $('.college').html college.name
+      $('.college').removeClass 'disabled'
+    else
+      $('.college').html "?"
+      $('.college').addClass 'disabled'
+    if department && department.name
+      $('.department').html department.name
+      $('.department').removeClass 'disabled'
+    else
+      $('.department').html "?"
+      $('.department').addClass 'disabled'
+
+  $email.keyup()
+
+:css
+  .top.menu .login.button { display: none; }

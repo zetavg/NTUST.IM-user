@@ -1,7 +1,7 @@
 <p>哈囉，<%= @user.name %>！</p>
 <p>感謝您在 <%= Setting.app_name %> 註冊，您的學校 email 為 <%= @user.unconfirmed_email %>，Facebook 帳號是 <%= link_to image_tag('https://graph.facebook.com/' + @user.fbid + '/picture?width=20&height=20'), "https://facebook.com/" + @user.fbid %>。</p>
 
-<p>請點擊下面的連結來驗證您的帳號：</p>
+<p>您的驗證碼是：<b><%= @token %></b>，或點擊下面的連結來驗證您的帳號：</p>
 
 <p><%= link_to confirmation_url(@resource, confirmation_token: @token), confirmation_url(@resource, confirmation_token: @token) %></p>
 

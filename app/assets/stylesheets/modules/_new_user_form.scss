@@ -1,0 +1,63 @@
+.new-user-form {
+
+	.grid {
+
+		.column {
+			.admission_year, .identity, .college, .department {
+				font-size: 28px;
+				font-weight: 800;
+
+				&.disabled {
+					color: rgba($black, .2);
+				}
+			}
+
+			&, & * {
+				text-align: center;
+			}
+
+			.small {
+				font-size: 16px;
+				color: rgba($black, .7);
+			}
+		}
+	}
+
+	.email-c {
+		max-width: 500px;
+		display: block;
+		margin: auto;
+	}
+
+	input.confirmation_token {
+		max-width: 200px;
+	}
+
+	.submit.button {
+		margin: 20px 0;
+	}
+
+	.confirmation_token.form {
+
+		.field {
+			display: inline-block;
+
+			input {
+				height: 40px;
+			}
+		}
+
+		.submit.button {
+			margin-top: 17px;
+		}
+	}
+
+	.error-label {
+		display: none;
+		position: absolute !important;
+	}
+
+	.error .error-label {
+		display: block;
+	}
+}

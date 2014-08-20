@@ -2,6 +2,7 @@ defaults: &defaults
   app_secret_key: <%= ENV["APP_SECRET_KEY"] %>
   app_pepper: <%= ENV["APP_PEPPER"] %>
   site_name: <%= ENV["SITE_NAME"] %>
+  org_name: <%= ENV["ORG_NAME"] %>
   app_name: <%= ENV["APP_NAME"] %>
   app_description: <%= ENV["APP_DESCRIPTION"] %>
   app_keywords: <%= ENV["APP_KEYWORDS"] %>
@@ -28,6 +29,7 @@ development:
   app_secret_key: 'app_secret_key_here'
   app_pepper: 'app_pepper_here'
   site_name: 'NTUST'
+  org_name: 'NTUST'
   app_name: 'NTUST'
   app_description: 'NTUST Student Information Platform'
   app_keywords: 'ntust'

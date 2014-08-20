@@ -13,4 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//
+//= require lib/regexWithNamedCapturingGroup
+//= require lib/jquery.getCursorPosition
+//= require lib/jquery.caret
+//
 // require_tree .
