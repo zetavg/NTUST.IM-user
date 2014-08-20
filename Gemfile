@@ -43,6 +43,7 @@ gem 'settingslogic', '~> 2.0.9'
 
 gem 'haml'
 gem 'haml-rails', '~> 0.5.3'
+gem 'normalize-rails', '>= 3.0.1'
 gem 'semantic-ui-sass', '>=  0.16.1.0'
 
 gem 'modernizr-rails'
