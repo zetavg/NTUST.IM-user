@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :get_app_setting
+  before_action :save_page_history
 
   private
 
@@ -13,5 +14,10 @@ class ApplicationController < ActionController::Base
     @google_analytics_id = Setting.google_analytics_id
     Setting['email_regexp'] = /#{Setting.email_regexp_s}/
     Setting['email_analysis_regexp'] = /#{Setting.email_analysis_regexp_s}/
+  end
+
+  def save_page_history
+    (session[:page_history] ||= []).unshift request.fullpath
+    session[:page_history].pop if session[:page_history].length > 10
   end
 end
