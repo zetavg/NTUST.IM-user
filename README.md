@@ -24,7 +24,7 @@ $ rails s  # or `ln -s "$(pwd)" ~/.pow/user.ntust` if you're using Pow
 ```bash
 $ gem install guard guard-livereload
 $ guard init livereload
-$ bundle exec guard  # or `bundle exec guard &!` in zsh
+$ bundle exec guard
 ```
 
 Sample Guardfile:
@@ -46,8 +46,13 @@ end
 
 The web admin panel is located at `http://[your.domain]/admin`, default account: email `admin@dev.null` with passowrd `password`.
 
+- Change your administrator password.
 - Add 學院 data to `colleges` table.
 - Add 系所 data to `departments` table.
+- Register yourself an account.
+- Give admin power to some users by setting their `admin` attribute to `true`.
+- Create some apps on `http://[your.domain]/oauth/applications`
+	- Application owned by admin won't need permission granted by users when calling OAuth API, and can access advanced APIs, e.g. `[admission_year]/[department_id]/[user_id].json`
 
 
 ## Contributing
