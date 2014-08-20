@@ -18,3 +18,5 @@
 # Ignore configuration files.
 /config/configuration.yml
 /config/database.yml
+
+Guardfile
