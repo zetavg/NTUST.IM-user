@@ -8,7 +8,7 @@
 //   @font-face
 // -------------------------------------
 
-// ...
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,700,900,500,100,300,400italic);
 
 // -------------------------------------
 //   Variables
@@ -48,11 +48,11 @@ $violet: violet;
 
 // ----- Base Colors ----- //
 
-$base-background: $white;
+$base-backgroundColor: $white;
 $base-color: #222222;
 $base-link-color: #0053c9;
 
-$primary-color: $blue;
+$primary-color: $black;
 $secondary-color: $white;
 $tertiary-colour: $red;
 
@@ -64,7 +64,7 @@ $base-boxShadow: 0 1px 2px rgba($base-color, 0.25);
 
 // ----- Base Typography ----- //
 
-$base-fontFamily: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", "Droid Arabic Kufi", "Droid Sans";
+$base-fontFamily: "Roboto", "Helvetica Neue", "Helvetica", "Arial", "Droid Arabic Kufi", "Droid Sans", sans-serif;
 $base-fontSize: 16px;
 $base-lineHeight: 1.5;
 
@@ -72,6 +72,7 @@ $base-lineHeight: 1.5;
 
 $base-whitespace: 20px;
 $base-content-maxWidth: 80rem;
+$base-content-padding: 16px;
 
 // ----- Layout ----- //
 

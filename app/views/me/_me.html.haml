@@ -1,0 +1,37 @@
+.container.me
+  .ui.grid.overview.hide-on-phone
+    .three.wide.column
+      = link_to image_tag(current_user.avator(500)), "https://facebook.com/#{current_user.fbid}", target: '_blank'
+    .thirteen.wide.column
+      .h1.name= current_user.name
+      %p #{current_user.admission_year} #{current_user.department.name}
+      .icons
+        .facebook-icon
+          %a{href: "https://facebook.com/#{current_user.fbid}", target: '_blank'}
+            %i.facebook.sign.icon
+        .mobile-verified-icon
+          %i.mobile.icon
+          %i.ok.sign.icon
+  .ui.pointing.menu
+    / %a.item{href: dashboard_path, class: "#{'active' if action?('dashboard')}"}
+    /   %i.dashboard.icon
+    /   概覽
+    %a.item{href: information_path, class: "#{'active' if action?('information')}"}
+      %i.user.icon
+      個人資料
+    / %a.item{href: notifications_path, class: "#{'active' if action?('notifications')}"}
+    /   %i.mail.icon
+    /   通知
+    / %a.item{href: friends_path, class: "#{'active' if action?('friends')}"}
+    /   %i.users.icon
+    /   好友列表
+    %a.item{href: settings_path, class: "#{'active' if action?('settings')}"}
+      %i.settings.icon
+      帳號設定
+    .right.menu
+      .ui.dropdown.item
+        進階
+        %i.dropdown.icon
+        .menu
+          %a.item 開發者
+  = yield

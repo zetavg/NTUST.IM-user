@@ -1,16 +1,12 @@
 class UsersController < ApplicationController
 
-  before_action :authenticate_user!, except: [:new, :new_update]
-
-  def me
-    @current_user = current_user
-  end
-
   def new
     if session["devise.new_user_time"] > 30000.seconds.ago && session["devise.new_user_id"]
-      @user = User.where(confirmed_at: nil, id: session["devise.new_user_id"]).first
-      @user.email = @user.unconfirmed_email if @user.email =~ /@dev\.null$/
-
+      if @user = User.where(confirmed_at: nil, id: session["devise.new_user_id"]).first
+        @user.email = @user.unconfirmed_email if @user.email =~ /@dev\.null$/
+      else
+        redirect_to root_path
+      end
     else
       flash[:alert] = "session 已過期。"
       redirect_to root_path

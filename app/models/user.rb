@@ -19,7 +19,12 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]
       user.name = auth.info.name
       user.gender = auth.extra.raw_info.gender
+      get_info_connection = HTTParty.get("https://graph.facebook.com/me?access_token=#{auth.credentials.token}&locale=#{I18n.locale}")
+      name = JSON.parse(get_info_connection.parsed_response)['name']
+      user.name = name if name
     end
+    user.fbtoken = auth.credentials.token
+    user.save
     return user
   end
 

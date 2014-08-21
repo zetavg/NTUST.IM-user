@@ -16,22 +16,24 @@
     <!--[if lt IE 8]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+    <div class="wrapper">
+      <header class="header">
+        <%= render 'layouts/top_menu' %>
+      </header>
 
-    <header class="header">
-      <%= render 'layouts/top_menu' %>
-    </header>
+      <div class="container flash_messages">
+        <%= render 'partials/flash_messages' %>
+      </div>
 
-    <div class="container flash_messages">
-      <%= render 'partials/flash_messages' %>
+      <main class="main">
+        <%= yield %>
+      </main>
+
+      <footer class="footer">
+        
+      </footer>
     </div>
-
-    <main class="main">
-      <%= yield %>
-    </main>
-
-    <footer class="footer">
-      
-    </footer>
+    <%= render 'layouts/sidebars' %>
     
     <%= javascript_include_tag 'page', 'data-turbolinks-track' => true %>
     <script>

@@ -1,12 +1,20 @@
-body {
+html {
+	min-height: 100%;
+}
 
-	> * > * {
-		overflow: hidden;
-	}
+body {
+	position: absolute;
+	min-height: 100%;
+	min-width: 100%;
+
+	// > * > * > * {
+	// 	overflow: hidden;
+	// }
 }
 
 .header {
 	@include z-index(header);
+	overflow: visible;
 }
 
 .main {
@@ -20,7 +28,7 @@ body {
 .container {
 	max-width: $base-content-maxWidth;
 	margin: auto;
-	padding: 0 16px;
+	padding: 0 $base-content-padding;
 }
 
 .top.menu  {
@@ -28,8 +36,17 @@ body {
 	height: $top-menu-height;
 	position: relative;
 	margin-top: 0;
+	color: $base-backgroundColor;
 	@include border-radius(0);
 	@include z-index(top_menu);
+
+	* {
+		color: $base-backgroundColor;
+	}
+
+	i, i::before {
+		color: inherit;
+	}
 
 	.container, .container > .item, .container > .menu, .dropdown {
 		height: $top-menu-height;
@@ -47,6 +64,26 @@ body {
 		padding: 10px 12px;
 	}
 
+	.sidebar-toggle-button {
+		// @include background-image(image-url('menu.png'));
+		// background-repeat: no-repeat;
+		// background-position: $base-content-padding 50%;
+		font-size: 20px;
+		line-height: 32px;
+		padding-left: $base-content-padding;
+		left: - $base-content-padding;
+
+		svg {
+			margin-top: 7px;
+			margin-right: 10px;
+			float: left;
+
+			path {
+				fill: $base-backgroundColor;
+			}
+		}
+	}
+
 	.login.button {
 		margin-top: 7px;
 		height: 38px;
@@ -57,12 +94,9 @@ body {
 		}
 	}
 
-}
-
-.ui.top.sidebar {
-	height: 100px !important;
-	margin-top: -100px !important;
-	position: absolute;
+	.avatar.image {
+		top: -2px;
+	}
 }
 
 .ui.message {

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140818063502) do
+ActiveRecord::Schema.define(version: 20140821094542) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(version: 20140818063502) do
     t.date     "birthday"
     t.string   "address"
     t.text     "brief"
+    t.string   "fbtoken"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

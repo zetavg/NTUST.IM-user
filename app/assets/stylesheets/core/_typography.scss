@@ -1,3 +1,30 @@
 * {
 	font-family: $base-fontFamily;
 }
+
+
+h1, .h1 {
+	font-size: rem(48px);
+	font-weight: 800;
+}
+
+h2, .h2 {
+	font-size: rem(36px);
+	font-weight: 600;
+}
+
+h3, .h3 {
+	font-size: rem(30px);
+}
+
+h4, .h4 {
+	font-size: rem(24px);
+}
+
+h5, .h5 {
+	font-size: rem(20px);
+}
+
+h6, .h6 {
+	font-size: rem(20px);
+}

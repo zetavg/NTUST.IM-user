@@ -9,7 +9,14 @@ Rails.application.routes.draw do
   match 'users/new', to: 'users#new_update', via: [:patch, :put]
   resources :users, :only => [:show, :edit, :update]
 
-  root "users#me"
+  match '/me', to: 'me#dashboard', via: [:get]
+  match '/dashboard', to: 'me#dashboard', via: [:get]
+  match '/information', to: 'me#information', via: [:get]
+  match '/notifications', to: 'me#notifications', via: [:get]
+  match '/friends', to: 'me#friends', via: [:get]
+  match '/settings', to: 'me#settings', via: [:get]
+
+  root "me#dashboard"
 
   namespace :api do
     namespace :v1 do

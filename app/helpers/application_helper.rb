@@ -8,6 +8,14 @@ module ApplicationHelper
     end
   end
 
+  def controller?(*controller)
+    controller.include?(params[:controller])
+  end
+
+  def action?(*action)
+    action.include?(params[:action])
+  end
+
   def regexp_parse(s)
     s.gsub('$', '').gsub('.+', '').gsub('\.', '.')
   end

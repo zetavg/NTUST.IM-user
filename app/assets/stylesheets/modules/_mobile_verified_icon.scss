@@ -1,0 +1,16 @@
+.mobile-verified-icon {
+	display: inline-block;
+	position: relative;
+
+	.mobile {
+		font-size: 132%;
+	}
+
+	.ok {
+		position: absolute;
+		bottom: 1px;
+		right: 2px;
+		font-size: 72%;
+		color: $green;
+	}
+}

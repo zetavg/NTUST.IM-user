@@ -1,0 +1,19 @@
+.me {
+
+	.overview {
+
+		.icons {
+			font-size: rem(20px);
+
+			> * {
+				position: relative;
+				display: inline-block;
+			}
+
+			.mobile-verified-icon {
+				top: 3px;
+				margin-left: -5px;
+			}
+		}
+	}
+}
