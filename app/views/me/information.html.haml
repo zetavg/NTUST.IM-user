@@ -1,2 +1,50 @@
 = render layout: 'me' do
-  .content c
+  = form_for @user, url: information_path do |f|
+    .ui.form
+      .ui.left.floated.header 基本資料
+      .two.fields
+        .field
+          %label 姓名
+          = f.text_field :name
+        .field
+          %label 性別
+          .ui.fluid.selection.dropdown
+            .text Select
+            %i.dropdown.icon
+            = f.text_field :gender, type: :hidden
+            / = f.select(:gender, gender_options_for_select)
+            / %input{:name => "gender", :type => "hidden"}
+            .menu
+              = options_for_select_to_item_menu gender_options_for_select
+
+      .two.fields
+        .field.ui.has-popup{"data-content" => "若要更改此欄，請洽詢系統管理者。", "data-variation" => "inverted"}
+          %label 入學年度
+          %input{:disabled => "disabled", :placeholder => "#{@user.admission_year}", :type => "text"}
+        .field.ui.has-popup{"data-content" => "若要更改此欄，請洽詢系統管理者。", "data-variation" => "inverted"}
+          %label 身份
+          %input{:disabled => "disabled", :placeholder => "#{t("user.identity." + @user.identity)}", :type => "text"}
+      .two.fields
+        .field.ui.has-popup{"data-content" => "若要更改此欄，請洽詢系統管理者。", "data-variation" => "inverted"}
+          %label 入學科系
+          %input{:disabled => "disabled", :placeholder => "#{@user.admission_college_name} #{@user.admission_department_name}", :type => "text"}
+        .field
+          %label 科系
+          = f.select :department_id, Department.get_options
+      .ui.left.floated.header
+        進階資料
+        %small 無論你的隱私設定為何，這裡的資料不會對外公開
+      .two.fields
+        .field
+          %label 手機
+          %input.mobile{:placeholder => "Comming soon", :type => "text", "data-content" => "用於身分認證與寄送通知簡訊"}
+        .field
+      = f.submit "儲存", class: 'ui blue submit button'
+
+:javascript
+  $(document).ready(function() {
+    $("#user_department_id").select2();
+    $('input.mobile').popup({
+      on: 'focus'
+    });
+  });

@@ -24,4 +24,7 @@ module ApplicationHelper
     image_tag 'https://graph.facebook.com/' + id.to_s + '/picture?width=' + size.to_s + '&height=' + size.to_s
   end
 
+  def options_for_select_to_item_menu(s)
+    s.gsub(/option/, 'div').gsub(/value/, 'class="item" data-value').html_safe
+  end
 end

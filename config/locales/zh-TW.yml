@@ -1,4 +1,10 @@
 zh-TW:
+  user:
+    identity:
+      bachelor: 大學生
+      master: 碩士生
+      doctor: 博士生
+      other: 其他
   date:
     abbr_day_names:
     - 日

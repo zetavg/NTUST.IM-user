@@ -12,9 +12,11 @@ Rails.application.routes.draw do
   match '/me', to: 'me#dashboard', via: [:get]
   match '/dashboard', to: 'me#dashboard', via: [:get]
   match '/information', to: 'me#information', via: [:get]
+  match '/information', to: 'me#information_update', via: [:post, :put, :patch]
   match '/notifications', to: 'me#notifications', via: [:get]
   match '/friends', to: 'me#friends', via: [:get]
   match '/settings', to: 'me#settings', via: [:get]
+  match '/settings', to: 'me#settings_update', via: [:post, :put, :patch]
 
   root "me#dashboard"
 

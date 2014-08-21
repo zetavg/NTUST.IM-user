@@ -4,13 +4,31 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :confirmable, :rememberable, :trackable, :validatable
   devise :omniauthable, :omniauth_providers => [:facebook]
   validates_uniqueness_of :fbid
+  validates :name, :gender, :presence => true
   scope :confirmed, -> { where("confirmed_at IS NOT NULL") }
 
   has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner
   belongs_to :department, primary_key: "code"
+  belongs_to :admission_department, class_name: "Department", primary_key: "code"
 
   def avator(size=100)
     'https://graph.facebook.com/' + fbid.to_s + '/picture?width=' + size.to_s + '&height=' + size.to_s
+  end
+
+  def admission_college_name
+    admission_department && admission_department.college && admission_department.college.name
+  end
+
+  def admission_department_name
+    admission_department && admission_department.name
+  end
+
+  def college_name
+    department && department.college && department.college.name
+  end
+
+  def department_name
+    department && department.name
   end
 
   def self.from_facebook(auth)

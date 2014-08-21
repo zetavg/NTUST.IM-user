@@ -16,4 +16,21 @@
 			}
 		}
 	}
+
+	.select2-container {
+		width: 100% !important;
+		height: 42px;
+		display: table;
+
+		a {
+			height: 100%;
+			display: table-cell;
+			vertical-align: middle;
+			padding: 0 1em;
+		}
+
+		.select2-choice .select2-arrow b {
+			background-position: 1px 7px;
+		}
+	}
 }
