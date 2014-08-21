@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require nprogress
+//= require nprogress-turbolinks
 //
 //= require lib/regexWithNamedCapturingGroup
 //= require lib/jquery.getCursorPosition

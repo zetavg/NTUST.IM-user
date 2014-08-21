@@ -34,11 +34,19 @@
 @import "settings";
 
 // -------------------------------------
-//   Semantic UI
+//   Vendor
 // -------------------------------------
 
+// ----- Semantic UI ----- //
+//
 @import "semantic-ui";
 @import "core/semantic-ui_overrides";
+
+// ----- NProgress ----- //
+
+$nprogress-color: $secondary-color;
+@import 'nprogress';
+@import 'nprogress-bootstrap';
 
 // -------------------------------------
 //   Core
