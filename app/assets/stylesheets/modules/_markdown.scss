@@ -4,7 +4,6 @@
 		line-height: 1.6;
 		padding-top: 10px;
 		padding-bottom: 10px;
-		background-color: white;
 
 	> *:first-child {
 		margin-top: 0 !important; }
@@ -38,7 +37,6 @@
 		position: relative; }
 
 	h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
-		background: url("../../images/modules/styleguide/para.png") no-repeat 10px center;
 		text-decoration: none; }
 
 	h1 tt, h1 code {
@@ -85,7 +83,6 @@
 		margin: 15px 0; }
 
 	hr {
-		background: transparent url("../../images/modules/pulls/dirty-shade.png") repeat-x 0 0;
 		border: 0 none;
 		color: #cccccc;
 		height: 4px;

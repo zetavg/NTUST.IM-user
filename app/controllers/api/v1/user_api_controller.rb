@@ -80,9 +80,9 @@ class Api::V1::UserApiController < ApplicationController
         #   end
         # end
         if params[:admission_year] == 'all'
-          result = users.all.select(:id, :name, :email, :admission_year, :department_id)
+          result = users.confirmed.all.select(:id, :name, :email, :admission_year, :department_id)
         else
-          result = users.where("admission_year = ?", params[:admission_year]).all.select(:id, :name, :email, :admission_year, :department_id)
+          result = users.confirmed.where("admission_year = ?", params[:admission_year]).all.select(:id, :name, :email, :admission_year, :department_id)
         end
         render json: result
       rescue

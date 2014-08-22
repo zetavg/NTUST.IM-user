@@ -52,6 +52,7 @@ class User < ActiveRecord::Base
     userdata['uid'] = self.id
     userdata['email'] = self.email
     userdata['name'] = self.name
+    userdata['gender'] = self.gender
     if self.mobile
       userdata['mobile_verified'] = true
     else

@@ -10,6 +10,10 @@
     {
       "path": "api/v1/user_api.{format}",
       "description": "使用者存取相關 API"
+    },
+    {
+      "path": "api/v1/data_api.{format}",
+      "description": "公開資料集 API"
     }
   ]
 }

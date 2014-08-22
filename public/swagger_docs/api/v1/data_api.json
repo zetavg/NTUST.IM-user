@@ -1,0 +1,19 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "data_api",
+  "apis": [
+    {
+      "path": "api/v1/departments.json",
+      "operations": [
+        {
+          "summary": "系所代碼",
+          "notes": "取得系所及代碼資料。",
+          "method": "get",
+          "nickname": "Api::V1::DataApi#departments"
+        }
+      ]
+    }
+  ]
+}
