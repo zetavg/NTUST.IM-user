@@ -7,6 +7,7 @@ defaults: &defaults
   app_description: <%= ENV["APP_DESCRIPTION"] %>
   app_keywords: <%= ENV["APP_KEYWORDS"] %>
   app_domain: <%= ENV["APP_DOMAIN"] %>
+  app_url: <%= ENV["APP_URL"] %>
   administrator_email: <%= ENV["ADMINISTRATOR_EMAIL"] %>
   administrator_url: <%= ENV["ADMINISTRATOR_URL"] %>
   mailer_sender: <%= ENV["MAILER_SENDER"] %>
@@ -34,6 +35,7 @@ development:
   app_description: 'NTUST Student Information Platform'
   app_keywords: 'ntust'
   app_domain: 'user.ntust.dev'
+  app_url: 'http://user.ntust.dev/'
   administrator_email: 'administrator_email_here'
   administrator_url: 'administrator_url_here'
   mailer_sender: 'please-change-me-at-config-configuration@example.com'

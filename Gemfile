@@ -65,6 +65,9 @@ gem 'activeadmin', github: 'gregbell/active_admin', ref: '7317949556476c3d67b0a8
 gem 'polyamorous', github: 'activerecord-hackery/polyamorous'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 
+gem 'swagger-docs', '~> 0.1.8'
+gem 'swagger-ui_rails', '~> 0.1.7'
+
 group :development do
   gem 'sqlite3'
   gem 'better_errors', '~> 1.1.0'

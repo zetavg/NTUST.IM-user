@@ -15,11 +15,12 @@ class MeController < ApplicationController
 
     if faild
       flash[:alert] = '儲存失敗。'
+      render :information
     else
       flash[:success] = '儲存成功。'
+      redirect_to information_path
     end
 
-    render :information
   end
 
   def notifications

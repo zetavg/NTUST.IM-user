@@ -1,0 +1,60 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "oauth_api",
+  "apis": [
+    {
+      "path": "api/v1/me.json",
+      "operations": [
+        {
+          "summary": "取得使用者資料",
+          "notes": "透過 access token 取得其擁有者的基本資料。",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "access_token",
+              "type": "string",
+              "description": "access token",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            }
+          ],
+          "method": "get",
+          "nickname": "Api::V1::OauthApi#me"
+        }
+      ]
+    },
+    {
+      "path": "api/v1/me.json",
+      "operations": [
+        {
+          "summary": "取得使用者資料",
+          "notes": "透過 access token 取得其擁有者的基本資料。",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "access_token",
+              "type": "string",
+              "description": "access token",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            }
+          ],
+          "method": "post",
+          "nickname": "Api::V1::OauthApi#me"
+        }
+      ]
+    }
+  ]
+}

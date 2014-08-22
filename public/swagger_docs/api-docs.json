@@ -1,0 +1,11 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "apis": [
+    {
+      "path": "api/v1/oauth_api.{format}",
+      "description": "OAuth 2.0 User 相關 API"
+    }
+  ]
+}

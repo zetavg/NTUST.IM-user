@@ -18,11 +18,16 @@ Rails.application.routes.draw do
   match '/settings', to: 'me#settings', via: [:get]
   match '/settings', to: 'me#settings_update', via: [:post, :put, :patch]
 
+  get '/api-docs.json' => "pages#api_docs_json"
+  get '/api-docs/api/:v/:name' => "pages#api_doc_json"
+  get '/api' => "pages#api_docs"
+
   root "me#dashboard"
 
   namespace :api do
     namespace :v1 do
-      get '/me' => "api#me"
+      get '/me' => "oauth_api#me"
+      post '/me' => "oauth_api#me"
     end
   end
 

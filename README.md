@@ -19,6 +19,12 @@ $ rake db:migrate
 $ rails s  # or `ln -s "$(pwd)" ~/.pow/user.ntust` if you're using Pow
 ```
 
+Generate API documentations:
+
+```bash
+$ rake swagger:docs
+```
+
 ### LiveReload
 
 ```bash
@@ -43,6 +49,12 @@ end
 
 
 ## Setup
+
+Database migration:
+
+```bash
+$ rake db:migrate
+```
 
 The web admin panel is located at `http://[your.domain]/admin`, default account: email `admin@dev.null` with passowrd `password`.
 

@@ -17,6 +17,8 @@
 //= require nprogress-turbolinks
 //= require select2
 //
+//= require swagger-ui
+//
 //= require lib/regexWithNamedCapturingGroup
 //= require lib/jquery.getCursorPosition
 //= require lib/jquery.caret
