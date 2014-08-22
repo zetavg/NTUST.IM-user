@@ -10,14 +10,14 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require swagger-ui
+//
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
 //= require nprogress
 //= require nprogress-turbolinks
 //= require select2
-//
-//= require swagger-ui
 //
 //= require lib/regexWithNamedCapturingGroup
 //= require lib/jquery.getCursorPosition
