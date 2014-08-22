@@ -6,7 +6,7 @@ Swagger::Docs::Config.register_apis({
     :api_file_path => "public/swagger_docs",
     # the URL base path to your API
     # if you want to delete all .json files at each generation
-    :clean_directory => false,
+    :clean_directory => true,
     :formatting => :pretty
   }
 })

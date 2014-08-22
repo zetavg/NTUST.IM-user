@@ -28,6 +28,10 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/me' => "oauth_api#me"
       post '/me' => "oauth_api#me"
+      post '/me/send_sms' => "oauth_api#send_sms"
+      get '/user/:id' => "user_api#user_data"
+      post '/user/:id' => "user_api#user_data"
+      post '/user/:id/send_sms' => "user_api#send_sms"
     end
   end
 

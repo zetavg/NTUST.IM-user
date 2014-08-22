@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
   before_filter :get_app_setting
   before_action :save_page_history
 
+  def doorkeeper_unauthorized_render_options
+    {:json => {:error => {:message => "Not authorized", :code => 401}}}
+  end
+
   private
 
   def get_app_setting

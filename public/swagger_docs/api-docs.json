@@ -6,6 +6,10 @@
     {
       "path": "api/v1/oauth_api.{format}",
       "description": "OAuth 2.0 User 相關 API"
+    },
+    {
+      "path": "api/v1/user_api.{format}",
+      "description": "使用者存取相關 API"
     }
   ]
 }

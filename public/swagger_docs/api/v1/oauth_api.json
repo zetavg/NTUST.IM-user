@@ -9,7 +9,7 @@
       "operations": [
         {
           "summary": "取得使用者資料",
-          "notes": "透過 access token 取得其擁有者的基本資料。",
+          "notes": "透過 access token 取得其擁有者的基本資料。回傳資料因 access token 的 scope 而異。",
           "parameters": [
             {
               "paramType": "query",
@@ -35,7 +35,7 @@
       "operations": [
         {
           "summary": "取得使用者資料",
-          "notes": "透過 access token 取得其擁有者的基本資料。",
+          "notes": "透過 access token 取得其擁有者的基本資料。回傳資料因 access token 的 scope 而異。",
           "parameters": [
             {
               "paramType": "query",
@@ -53,6 +53,51 @@
           ],
           "method": "post",
           "nickname": "Api::V1::OauthApi#me"
+        }
+      ]
+    },
+    {
+      "path": "api/v1/me/send_sms.json",
+      "operations": [
+        {
+          "summary": "傳送簡訊",
+          "notes": "傳送簡訊到 access token 擁有者的手機號碼 (若已認證)。需要 sms 權限。",
+          "parameters": [
+            {
+              "paramType": "form",
+              "name": "access_token",
+              "type": "string",
+              "description": "access token",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "message",
+              "type": "string",
+              "description": "簡訊內文",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "message": "Not Found 該使用者沒有填寫手機號碼"
+            },
+            {
+              "code": 429,
+              "message": "Too Many Requests 超出發送量限制"
+            },
+            {
+              "code": 503,
+              "message": "Service Unavailable 簡訊無法送出"
+            }
+          ],
+          "method": "post",
+          "nickname": "Api::V1::OauthApi#send_sms"
         }
       ]
     }

@@ -1,0 +1,131 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "user_api",
+  "apis": [
+    {
+      "path": "api/v1/user/{id}.json",
+      "operations": [
+        {
+          "summary": "取得指定使用者資料",
+          "notes": "透過 access token 取得其擁有者的基本資料。需要 offline_access 權限，回傳資料因 access token 的 scope 而異。",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "application_id",
+              "type": "string",
+              "description": "應用程式 ID",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "secret",
+              "type": "string",
+              "description": "應用程式秘鑰",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "message": "Not Found 沒有此使用者"
+            }
+          ],
+          "method": "get",
+          "nickname": "Api::V1::UserApi#user_data"
+        }
+      ]
+    },
+    {
+      "path": "api/v1/user/{id}.json",
+      "operations": [
+        {
+          "summary": "取得指定使用者資料",
+          "notes": "透過 access token 取得其擁有者的基本資料。需要 offline_access 權限，回傳資料因 access token 的 scope 而異。",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "application_id",
+              "type": "string",
+              "description": "應用程式 ID",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "secret",
+              "type": "string",
+              "description": "應用程式秘鑰",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "message": "Not Found 沒有此使用者"
+            }
+          ],
+          "method": "post",
+          "nickname": "Api::V1::UserApi#user_data"
+        }
+      ]
+    },
+    {
+      "path": "api/v1/user/{id}/send_sms.json",
+      "operations": [
+        {
+          "summary": "傳送簡訊給指定使用者",
+          "notes": "傳送簡訊到 access token 擁有者的手機號碼 (若已認證)。需要 sms 與 offline_access 權限。",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "application_id",
+              "type": "string",
+              "description": "應用程式 ID",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "secret",
+              "type": "string",
+              "description": "應用程式秘鑰",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "message": "Not Found 沒有此使用者，或該使用者沒有填寫手機號碼"
+            },
+            {
+              "code": 429,
+              "message": "Too Many Requests 超出發送量限制"
+            },
+            {
+              "code": 503,
+              "message": "Service Unavailable 簡訊無法送出"
+            }
+          ],
+          "method": "post",
+          "nickname": "Api::V1::UserApi#send_sms"
+        }
+      ]
+    }
+  ]
+}

@@ -46,6 +46,61 @@ class User < ActiveRecord::Base
     return user
   end
 
+  def api_get_data(scopes=[], admin=false)
+    userdata = {}
+    userdata['id'] = self.id
+    userdata['uid'] = self.id
+    userdata['email'] = self.email
+    userdata['name'] = self.name
+    if self.mobile
+      userdata['mobile_verified'] = true
+    else
+      userdata['mobile_verified'] = false
+    end
+    if scopes.include?('school') || admin
+      userdata['student_id'] = self.student_id
+      userdata['identity'] = self.identity
+      userdata['admission_year'] = self.admission_year
+      userdata['admission_department_code'] = self.admission_department_id
+      userdata['department_code'] = self.department_id
+      userdata['college'] = self.department.college.name
+      userdata['admission_department'] = self.admission_department.name
+      userdata['department'] = self.department.name
+    end
+    if scopes.include?('facebook') || admin
+      userdata['fbid'] = self.fbid
+    end
+    if scopes.include?('profile') || admin
+      userdata['brief'] = self.brief
+    end
+    if admin
+      userdata = userdata.merge(self.attributes)
+    end
+    userdata
+  end
+
+  def api_send_sms(message, application_id, scopes=[], admin=false)
+    if scopes.include?('sms') || admin  # 有發送權
+      if application_id > 0  # 發送額度內
+        if self.mobile  # 可被接收
+          nexmo = Nexmo::Client.new(key: Setting.nexmo_key, secret: Setting.nexmo_secret)
+          begin
+            nexmo.send_message(from: Setting.site_name, to: self.mobile.tr('^0-9', ''), type: "unicode", text: message)
+          rescue
+            return {:error => {:message => "Send error", :code => 503}, :status => 503}
+          end
+        else
+          return {:error => {:message => "User has no mobile number", :code => 404}, :status => 404}
+        end
+      else
+        return {:error => {:message => "Too many requests", :code => 429}, :status => 429}
+      end
+    else
+      return {:error => {:message => "Not authorized", :code => 401}, :status => 401}
+    end
+    return {:success => {:message => "Ok", :code => 200}, :status => 200}
+  end
+
   protected
 
   def send_confirmation_notification?
