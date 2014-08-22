@@ -24,6 +24,13 @@
               "type": "string",
               "description": "應用程式秘鑰",
               "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "使用者 ID",
+              "required": true
             }
           ],
           "responseMessages": [
@@ -61,6 +68,13 @@
               "type": "string",
               "description": "應用程式秘鑰",
               "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "使用者 ID",
+              "required": true
             }
           ],
           "responseMessages": [
@@ -86,17 +100,31 @@
           "notes": "傳送簡訊到 access token 擁有者的手機號碼 (若已認證)。需要 sms 與 offline_access 權限。",
           "parameters": [
             {
-              "paramType": "query",
+              "paramType": "form",
               "name": "application_id",
               "type": "string",
               "description": "應用程式 ID",
               "required": true
             },
             {
-              "paramType": "query",
+              "paramType": "form",
               "name": "secret",
               "type": "string",
               "description": "應用程式秘鑰",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "使用者 ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "message",
+              "type": "string",
+              "description": "簡訊內文",
               "required": true
             }
           ],
@@ -124,6 +152,57 @@
           ],
           "method": "post",
           "nickname": "Api::V1::UserApi#send_sms"
+        }
+      ]
+    },
+    {
+      "path": "api/v1/admission_year/{admission_year}/department/{department_id}/users.json",
+      "operations": [
+        {
+          "summary": "列出使用者",
+          "notes": "僅供 admin 使用。",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "application_id",
+              "type": "string",
+              "description": "應用程式 ID",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "secret",
+              "type": "string",
+              "description": "應用程式秘鑰",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "admission_year",
+              "type": "string",
+              "description": "入學年，數字或 all",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "department_id",
+              "type": "string",
+              "description": "系所 CODE，數字或 all",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "message": "Not Found 沒有此使用者"
+            }
+          ],
+          "method": "get",
+          "nickname": "Api::V1::UserApi#list_users"
         }
       ]
     }
