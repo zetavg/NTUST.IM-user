@@ -19,37 +19,41 @@
               = options_for_select_to_item_menu gender_options_for_select
 
       .two.fields
-        .field.ui.has-popup{"data-content" => "若要更改此欄，請洽詢系統管理者。", "data-variation" => "inverted"}
+        .field.readonly.ui.has-popup{"data-content" => "若要更改此欄，請洽詢系統管理者"}
           %label 入學年度
-          %input{:disabled => "disabled", :placeholder => "#{@user.admission_year}", :type => "text"}
-        .field.ui.has-popup{"data-content" => "若要更改此欄，請洽詢系統管理者。", "data-variation" => "inverted"}
+          %input{:disabled => "disabled", :value => "#{@user.admission_year}", :type => "text"}
+        .field.readonly.ui.has-popup{"data-content" => "若要更改此欄，請洽詢系統管理者"}
           %label 身份
-          %input{:disabled => "disabled", :placeholder => "#{t("user.identity." + @user.identity)}", :type => "text"}
+          %input{:disabled => "disabled", :value => "#{t("user.identity." + @user.identity)}", :type => "text"}
       .two.fields
-        .field.ui.has-popup{"data-content" => "若要更改此欄，請洽詢系統管理者。", "data-variation" => "inverted"}
+        .field.readonly.ui.has-popup{"data-content" => "若要更改此欄，請洽詢系統管理者"}
           %label 入學科系
-          %input{:disabled => "disabled", :placeholder => "#{@user.admission_college_name} #{@user.admission_department_name}", :type => "text"}
+          %input{:disabled => "disabled", :value => "#{@user.admission_college_name} #{@user.admission_department_name}", :type => "text"}
         .field
           %label 科系
           = f.select :department_id, Department.get_options, :autocomplete => :off
       .ui.left.floated.header
         進階資料
         %small 無論你的隱私設定為何，這裡的資料皆不會對外公開
-      .two.fields
-        .two.fields
-          .field
-            %label 手機
-            %input.mobile{:name => 'mobile', :placeholder => "+886900000000", :type => "text", "data-content" => "用於身分認證與寄送通知簡訊", :value => "#{@user.mobile || @user.unconfirmed_mobile}"}
-          .field
-            - if @user.mobile
-              %i.ok.sign.icon
-            - elsif @user.unconfirmed_mobile
-              %input.mobile{:name => 'mobile_confirm_token', :placeholder => "驗證碼", :type => "text"}
-              %button{:name => "commit", :type => "submit", :value => "confirm_mobile", :class => "ui small purple submit button"} 驗證
-              %button{:name => "commit", :type => "submit", :value => "reconfirm_mobile", :class => "ui small submit button"} 重寄驗證簡訊
-
+      .two.fields.mobile
         .field
-      = f.submit "儲存", class: 'ui blue submit button'
+          %label 手機
+          .ui.icon.input
+            %input.mobile{:name => 'mobile', :placeholder => "+886900000000", :type => "text", "data-content" => "用於身分認證與寄送通知簡訊", :value => "#{@user.mobile || @user.unconfirmed_mobile}"}
+            - if @user.mobile
+              %i.ok.circle.icon.ui.has-popup{"data-content" => "號碼已經過認證"}
+            - elsif @user.unconfirmed_mobile
+              %i.attention.icon.ui.has-popup{"data-content" => "號碼未認證"}
+        .field
+          %label 　
+          - if @user.unconfirmed_mobile
+            %input.mobile.token{:name => 'mobile_confirm_token', :placeholder => "驗證碼", :type => "text"}
+            .action
+              %button{:name => "commit", :type => "submit", :value => "confirm_mobile", :class => "ui small purple submit button"} 驗證
+              %button{:name => "commit", :type => "submit", :value => "reconfirm_mobile", :class => "ui small frameless submit button"} 重寄驗證簡訊
+
+      = f.submit "儲存", class: 'ui green flat large submit button'
+
 
 :javascript
   $(document).ready(function() {

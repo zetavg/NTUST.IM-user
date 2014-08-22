@@ -72,8 +72,13 @@
 	@return #{$size / $base-fontSize}rem;
 }
 
-// ----- Vertical Rhythm ----- //
+// ----- Foreground Color ----- //
 
+@function foreground-color($color) {
+	@return contrast-color($color, $base-dark-color, $base-light-color, 52%);
+}
+
+// ----- Vertical Rhythm ----- //
 
 @mixin rhythm-to($leader: 0, $padding-leader: 0, $padding-trailer: 0, $trailer: 0, $font-size: $base-font-size) {
 	@include adjust-font-size-to($font-size);
@@ -100,6 +105,30 @@
 
 @mixin respond-to($val, $query: min-width, $media: screen) {
 	@media #{$media} and ($query: $val) {
+		@content;
+	}
+}
+
+@mixin phone {
+	@media screen and (max-width: 767px) {
+		@content;
+	}
+}
+
+@mixin tablet {
+	@media screen and (min-width: 768px) and (max-width: 991px) {
+		@content;
+	}
+}
+
+@mixin tablet_ {
+	@media screen and (min-width: 768px) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media screen and (min-width: 992px) {
 		@content;
 	}
 }

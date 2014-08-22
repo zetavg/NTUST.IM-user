@@ -29,6 +29,7 @@ $zIndex-elements: backstage,
                   main,
                   	main_content,
                   	main_special,
+                  ngprogress,
                   header,
                   	header_content,
                   top_menu,
@@ -39,22 +40,26 @@ $zIndex-elements: backstage,
 
 $black: #333;
 $white: #fff;
-$red: red;
-$orange: orange;
-$yellow: yellow;
-$green: green;
-$blue: blue;
-$violet: violet;
+$red: #d01716;
+$orange: #ff5722;
+$yellow: #ffeb3b;
+$green: #259b24;
+$blue: #03a9f4;
+$purple: #9c27b0;
+$violet: #673ab7;
 
 // ----- Base Colors ----- //
 
 $base-backgroundColor: $white;
+$base-body-backgroundColor: darken($base-backgroundColor, 10%);
 $base-color: #222222;
+$base-light-color: #fff;
+$base-dark-color: #222222;
 $base-link-color: #0053c9;
 
 $primary-color: $black;
-$secondary-color: $white;
-$tertiary-colour: $red;
+$secondary-color: $orange;
+$tertiary-colour: $violet;
 
 // ----- Base Borders & Box Shadows ----- //
 
@@ -76,4 +81,4 @@ $base-content-padding: 16px;
 
 // ----- Layout ----- //
 
-$top-menu-height: 52px;
+$top-menu-height: 58px;

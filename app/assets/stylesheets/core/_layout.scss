@@ -12,6 +12,27 @@ body {
 	// }
 }
 
+#nprogress {
+	@include z-index('ngprogress');
+
+	.bar {
+		@include z-index('ngprogress');
+		position: relative;
+		top: $top-menu-height;
+	}
+
+	.spinner {
+		@include z-index('ngprogress');
+		position: absolute;
+		bottom: 12px;
+		top: auto;
+	}
+}
+
+.wrapper {
+	background-color: $base-body-backgroundColor;
+}
+
 .header {
 	@include z-index(header);
 	overflow: visible;
@@ -23,6 +44,7 @@ body {
 
 .footer {
 	@include z-index(footer);
+	margin-top: 20px;
 }
 
 .container {
@@ -51,30 +73,42 @@ body {
 	.container, .container > .item, .container > .menu, .dropdown {
 		height: $top-menu-height;
 
-		&, & > a {
-			line-height: ($top-menu-height - 10px * 2);
-		}
+		// &, & > a {
+		// 	line-height: ($top-menu-height - 10px * 2);
+		// }
 
 		.button {
 			line-height: initial;
 		}
 	}
 
-	.item {
-		padding: 10px 12px;
+	> .item, > * > .item, > * > * > .item, > * > * > * > .item {
+		padding: 0 12px;
+		line-height: $top-menu-height;
+	}
+
+	.avatar.image {
+		height: $top-menu-height;
+
+		img {
+			max-width: 100px;
+			width: 34px;
+			height: 34px;
+			margin-top: ($top-menu-height - 34px) / 2;
+		}
 	}
 
 	.sidebar-toggle-button {
+		font-size: 20px;
 		// @include background-image(image-url('menu.png'));
 		// background-repeat: no-repeat;
 		// background-position: $base-content-padding 50%;
-		font-size: 20px;
-		line-height: 32px;
+		// line-height: 32px;
 		padding-left: $base-content-padding;
 		left: - $base-content-padding;
 
 		svg {
-			margin-top: 7px;
+			margin-top: ($top-menu-height - 18) / 2;
 			margin-right: 10px;
 			float: left;
 
@@ -92,10 +126,6 @@ body {
 		.label i {
 			line-height: 38px;
 		}
-	}
-
-	.avatar.image {
-		top: -2px;
 	}
 }
 

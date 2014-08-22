@@ -15,6 +15,29 @@
 				margin-left: -5px;
 			}
 		}
+
+		.column.avator {
+			min-width: 110px;
+			float: left;
+		}
+
+		.column.info {
+			width: auto !important;
+		}
+
+		@include tablet_ {
+			p {
+				margin: 8px 0;
+			}
+		}
+	}
+
+	.pointing.menu {
+		position: relative;
+		margin-top: -24px;
+		margin-left: -24px;
+		margin-right: -24px;
+		border-radius: 0;
 	}
 
 	.select2-container {
@@ -31,6 +54,26 @@
 
 		.select2-choice .select2-arrow b {
 			background-position: 1px 7px;
+		}
+	}
+
+	.fields.mobile {
+		> .field:first-child {
+			max-width: 240px;
+		}
+
+		.action {
+			display: inline-block;
+			bottom: 2px;
+			position: relative;
+			margin-left: 8px;
+
+			> * {
+				height: 40px;
+			}
+		}
+		.token {
+			width: 88px;
 		}
 	}
 }

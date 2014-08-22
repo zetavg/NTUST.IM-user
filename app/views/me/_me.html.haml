@@ -1,37 +1,40 @@
 .container.me
-  .ui.grid.overview.hide-on-phone
-    .three.wide.column
+  .ui.grid.overview
+    .three.wide.column.avator
       = link_to image_tag(current_user.avator(500)), "https://facebook.com/#{current_user.fbid}", target: '_blank'
-    .thirteen.wide.column
+    .thirteen.wide.column.info
       .h1.name= current_user.name
       %p #{current_user.admission_year} #{current_user.department_name}
       .icons
-        .facebook-icon
-          %a{href: "https://facebook.com/#{current_user.fbid}", target: '_blank'}
-            %i.facebook.sign.icon
-        .mobile-verified-icon
-          %i.mobile.icon
-          %i.ok.sign.icon
-  .ui.pointing.menu
-    / %a.item{href: dashboard_path, class: "#{'active' if action?('dashboard')}"}
-    /   %i.dashboard.icon
-    /   概覽
-    %a.item{href: information_path, class: "#{'active' if action?('information') || action?('information_update')}"}
-      %i.user.icon
-      個人資料
-    / %a.item{href: notifications_path, class: "#{'active' if action?('notifications')}"}
-    /   %i.mail.icon
-    /   通知
-    / %a.item{href: friends_path, class: "#{'active' if action?('friends')}"}
-    /   %i.users.icon
-    /   好友列表
-    %a.item{href: settings_path, class: "#{'active' if action?('settings') || action?('settings_update')}"}
-      %i.settings.icon
-      帳號設定
-    .right.menu
-      .ui.dropdown.item
-        進階
-        %i.dropdown.icon
-        .menu
-          %a.item 開發者
-  = yield
+        - if current_user.fbid
+          .facebook-icon.ui.has-popup{'data-content' => "FB 已認證", 'data-variation' => "inverted"}
+            %a{href: "https://facebook.com/#{current_user.fbid}", target: '_blank'}
+              %i.facebook.sign.icon
+        - if current_user.mobile
+          .mobile-verified-icon.ui.has-popup{'data-content' => "手機已認證", 'data-variation' => "inverted"}
+            %i.mobile.icon
+            %i.ok.sign.icon
+  .ui.paper
+    .ui.pointing.menu
+      / %a.item{href: dashboard_path, class: "#{'active' if action?('dashboard')}"}
+      /   %i.dashboard.icon
+      /   概覽
+      %a.item{href: information_path, class: "#{'active' if action?('information') || action?('information_update')}"}
+        %i.user.icon
+        個人資料
+      / %a.item{href: notifications_path, class: "#{'active' if action?('notifications')}"}
+      /   %i.mail.icon
+      /   通知
+      / %a.item{href: friends_path, class: "#{'active' if action?('friends')}"}
+      /   %i.users.icon
+      /   好友列表
+      %a.item{href: settings_path, class: "#{'active' if action?('settings') || action?('settings_update')}"}
+        %i.settings.icon
+        帳號設定
+      .right.menu
+        .ui.dropdown.item
+          進階
+          %i.dropdown.icon
+          .menu
+            %a.item 開發者
+    = yield

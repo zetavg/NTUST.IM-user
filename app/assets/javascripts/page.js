@@ -14,7 +14,7 @@ $(document).ready(function() {
 
   $('.ui.has-popup')
     .popup({
-      transition: 'horizontal flip'
+      position: 'bottom center'
     })
   ;
 
