@@ -13,6 +13,8 @@ defaults: &defaults
   mailer_sender: <%= ENV["MAILER_SENDER"] %>
   mailgun_api_key: <%= ENV["MAILGUN_API_KEY"] %>
   mailgun_domain: <%= ENV["MAILGUN_DOMAIN"] %>
+  nexmo_key: <%= ENV["NEXMO_KEY"] %>
+  nexmo_secret: <%= ENV["NEXMO_SECRET"] %>
   facebook_app_id: <%= ENV["FACEBOOK_APP_ID"] %>
   facebook_app_secret: <%= ENV["FACEBOOK_APP_SECRET"] %>
   google_analytics_id: <%= ENV["GOOGLE_ANALYTICS_ID"] %>
@@ -41,6 +43,8 @@ development:
   mailer_sender: 'please-change-me-at-config-configuration@example.com'
   mailgun_api_key: 'mailgun_api_key_here'
   mailgun_domain: 'mailgun_domain_here'
+  nexmo_key: 'nexmo_key_here'
+  nexmo_secret: 'nexmo_secret_here'
   facebook_app_id: 'facebook_app_id_here'
   facebook_app_secret: 'facebook_app_secret_here'
   google_analytics_id: 'google_analytics_id_here'

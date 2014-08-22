@@ -56,6 +56,7 @@ gem 'doorkeeper', '~> 1.4.0'
 gem 'httparty', '~> 0.13.1'
 
 gem 'mailgunner', '~> 2.0.0'
+gem 'nexmo'
 
 gem 'simple_form', '~> 3.0.2'
 gem 'seo_helper', '~> 1.0.2'

@@ -1,17 +1,18 @@
 = render layout: 'me' do
   = form_for @user, url: information_path do |f|
+    %button{:name => "commit", :type => "submit", :value => "commit", :style => "display: none;"}
     .ui.form
       .ui.left.floated.header 基本資料
       .two.fields
         .field
           %label 姓名
-          = f.text_field :name
+          = f.text_field :name, :autocomplete => :off
         .field
           %label 性別
           .ui.fluid.selection.dropdown
             .text Select
             %i.dropdown.icon
-            = f.text_field :gender, type: :hidden
+            = f.text_field :gender, type: :hidden, :autocomplete => :off
             / = f.select(:gender, gender_options_for_select)
             / %input{:name => "gender", :type => "hidden"}
             .menu
@@ -30,14 +31,23 @@
           %input{:disabled => "disabled", :placeholder => "#{@user.admission_college_name} #{@user.admission_department_name}", :type => "text"}
         .field
           %label 科系
-          = f.select :department_id, Department.get_options
+          = f.select :department_id, Department.get_options, :autocomplete => :off
       .ui.left.floated.header
         進階資料
-        %small 無論你的隱私設定為何，這裡的資料不會對外公開
+        %small 無論你的隱私設定為何，這裡的資料皆不會對外公開
       .two.fields
-        .field
-          %label 手機
-          %input.mobile{:placeholder => "Comming soon", :type => "text", "data-content" => "用於身分認證與寄送通知簡訊"}
+        .two.fields
+          .field
+            %label 手機
+            %input.mobile{:name => 'mobile', :placeholder => "+886900000000", :type => "text", "data-content" => "用於身分認證與寄送通知簡訊", :value => "#{@user.mobile || @user.unconfirmed_mobile}"}
+          .field
+            - if @user.mobile
+              %i.ok.sign.icon
+            - elsif @user.unconfirmed_mobile
+              %input.mobile{:name => 'mobile_confirm_token', :placeholder => "驗證碼", :type => "text"}
+              %button{:name => "commit", :type => "submit", :value => "confirm_mobile", :class => "ui small purple submit button"} 驗證
+              %button{:name => "commit", :type => "submit", :value => "reconfirm_mobile", :class => "ui small submit button"} 重寄驗證簡訊
+
         .field
       = f.submit "儲存", class: 'ui blue submit button'
 
