@@ -40,7 +40,7 @@
           %label 手機
           .ui.icon.input
             %input.mobile{:name => 'mobile', :placeholder => "+886900000000", :type => "text", "data-content" => "用於身分認證與寄送通知簡訊", :value => "#{@user.mobile || @user.unconfirmed_mobile}"}
-            - if @user.mobile
+            - if @user.mobile?
               %i.ok.circle.icon.ui.has-popup{"data-content" => "號碼已經過認證"}
             - elsif @user.unconfirmed_mobile
               %i.attention.icon.ui.has-popup{"data-content" => "號碼未認證"}

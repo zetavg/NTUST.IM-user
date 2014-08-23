@@ -10,7 +10,7 @@
           .facebook-icon.ui.has-popup{'data-content' => "FB 已認證", 'data-variation' => "inverted"}
             %a{href: "https://facebook.com/#{current_user.fbid}", target: '_blank'}
               %i.facebook.sign.icon
-        - if current_user.mobile
+        - if current_user.mobile?
           .mobile-verified-icon.ui.has-popup{'data-content' => "手機已認證", 'data-variation' => "inverted"}
             %i.mobile.icon
             %i.ok.sign.icon

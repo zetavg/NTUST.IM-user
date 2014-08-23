@@ -20,8 +20,13 @@ class Api::V1::UserApiController < ApplicationController
       render json: {:error => {:message => "User not found", :code => 404}, :status => 404}, status: 404
     else
       a = Doorkeeper::Application.where(["uid = ? and secret = ?", params['application_id'].tr('^A-Za-z0-9', ''), params['secret'].tr('^A-Za-z0-9', '')]).first
-      t = a.access_tokens.where('resource_owner_id', params['id'].tr('^0-9', '')).order('created_at DESC').first
-      render json: User.find(params['id'].tr('^0-9', '')).api_get_data(t.scopes, is_admin?)
+      t = a.access_tokens.where('resource_owner_id = ?', params['id'].tr('^0-9', '')).order('created_at DESC').first
+      if is_admin?
+        scopes = ['admin']
+      else
+        scopes = t.scopes
+      end
+        render json: User.find(params['id'].tr('^0-9', '')).api_get_data(scopes, is_admin?)
     end
   end
 
@@ -44,8 +49,13 @@ class Api::V1::UserApiController < ApplicationController
       render json: {:error => {:message => "User not found", :code => 404}, :status => 404}, status: 404
     else
       a = Doorkeeper::Application.where(["uid = ? and secret = ?", params['application_id'].tr('^A-Za-z0-9', ''), params['secret'].tr('^A-Za-z0-9', '')]).first
-      t = a.access_tokens.where('resource_owner_id', params['id'].tr('^0-9', '')).order('created_at DESC').first
-      respond = User.find(params['id'].tr('^0-9', '')).api_send_sms(params['message'], a.id, t.scopes, is_admin?)
+      t = a.access_tokens.where('resource_owner_id = ?', params['id'].tr('^0-9', '')).order('created_at DESC').first
+      if is_admin?
+        scopes = ['admin']
+      else
+        scopes = t.scopes
+      end
+      respond = User.find(params['id'].tr('^0-9', '')).api_send_sms(params['message'], a.id, scopes, is_admin?)
       render json: respond, status: respond[:status]
     end
   end
@@ -106,7 +116,7 @@ class Api::V1::UserApiController < ApplicationController
     end
     a = Doorkeeper::Application.where(["uid = ? and secret = ?", params['application_id'].tr('^A-Za-z0-9', ''), params['secret'].tr('^A-Za-z0-9', '')]).first
     if a
-      t = a.access_tokens.where('resource_owner_id', params['id'].tr('^0-9', '')).order('created_at DESC').first
+      t = a.access_tokens.where('resource_owner_id = ?', params['id'].tr('^0-9', '')).order('created_at DESC').first
       if t && !t.revoked_at && t.scopes.include?('offline_access')
         return true
       elsif is_admin?

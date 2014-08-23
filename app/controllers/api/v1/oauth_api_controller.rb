@@ -13,7 +13,7 @@ class Api::V1::OauthApiController < ApplicationController
   end
 
   def me
-    respond_with User.find(doorkeeper_token.resource_owner_id).api_get_data(doorkeeper_token.scopes, is_admin?)
+    render json: User.find(doorkeeper_token.resource_owner_id).api_get_data(doorkeeper_token.scopes, is_admin?)
   end
 
   swagger_api :send_sms do

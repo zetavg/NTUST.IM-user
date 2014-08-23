@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
     userdata['email'] = self.email
     userdata['name'] = self.name
     userdata['gender'] = self.gender
-    if self.mobile
+    if self.mobile?
       userdata['mobile_verified'] = true
     else
       userdata['mobile_verified'] = false
@@ -64,9 +64,9 @@ class User < ActiveRecord::Base
       userdata['admission_year'] = self.admission_year
       userdata['admission_department_code'] = self.admission_department_id
       userdata['department_code'] = self.department_id
-      userdata['college'] = self.department.college.name
-      userdata['admission_department'] = self.admission_department.name
-      userdata['department'] = self.department.name
+      userdata['college'] = self.department && self.department.college && self.department.college.name
+      userdata['admission_department'] = self.admission_department && self.admission_department.name
+      userdata['department'] = self.department && self.department.name
     end
     if scopes.include?('facebook') || admin
       userdata['fbid'] = self.fbid
@@ -82,8 +82,8 @@ class User < ActiveRecord::Base
 
   def api_send_sms(message, application_id, scopes=[], admin=false)
     if scopes.include?('sms') || admin  # 有發送權
-      if OauthApplicationData.get(application_id).sms_quota > 1  # 發送額度內
-        if self.mobile  # 可被接收
+      if OauthApplicationData.get(application_id).sms_quota > 0  # 發送額度內
+        if self.mobile? && self.mobile.to_s != ''  # 可被接收
           data = OauthApplicationData.get(application_id)
           data.sms_quota -= 1
           data.save
