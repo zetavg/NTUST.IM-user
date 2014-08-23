@@ -1,0 +1,30 @@
+.oauth.auth {
+
+	.box {
+		margin: 20px auto 160px;
+		width: 460px;
+		max-width: 92%;
+		@include box-shadow(0 17px 50px 0 rgba(0, 0, 0, 0.19));
+	}
+
+	.head {
+		margin: -24px -24px 32px -24px;
+		padding: 36px;
+		background-color: $primary-color;
+		color: foreground-color($primary-color);
+		font-weight: 900;
+		font-size: rem(30px);
+	}
+
+	.ui.section.divider {
+		margin: 32px -24px 26px;
+	}
+
+	.actions {
+
+		> * {
+			display: inline-block;
+			width: 40%;
+		}
+	}
+}

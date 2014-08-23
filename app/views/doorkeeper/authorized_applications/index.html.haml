@@ -1,0 +1,15 @@
+= render layout: 'me/me' do
+  .ui.left.floated.header 
+    授權的應用程式
+  %table.ui.table.segment
+    %thead
+      %tr
+        %th 名稱
+        %th 授權日期
+        %th 動作
+    %tbody
+      - @applications.each do |application|
+        %tr{:id => "application_#{application.id}"}
+          %td= application.name
+          %td= application.created_at.strftime('%Y-%m-%d %H:%M:%S')
+          %td= render 'delete_form', application: application, submit_btn_css: 'ui small red button'

@@ -1,0 +1,35 @@
+= form_for [:oauth, application], html: {class: 'form-horizontal', role: 'form'} do |f|
+  .ui.form
+    - if application.errors.any?
+      .ui.error.message{"data-alert" => ""}
+        %p Whoops! Check your form for possible errors
+    .two.fields
+      .field
+        %label= f.label :name, class: 'col-sm-2 control-label', for: 'application_name'
+        = f.text_field :name, class: 'form-control'
+        - if doorkeeper_errors_for application, :name
+          .ui.red.pointing.above.ui.label= doorkeeper_errors_for application, :name
+      .field
+
+    .two.fields
+      .field
+        %label= f.label :redirect_uri, class: 'col-sm-2 control-label', for: 'application_redirect_uri'
+        = f.text_area :redirect_uri, class: 'form-control'
+        - if doorkeeper_errors_for application, :redirect_uri
+          .ui.red.pointing.above.ui.label= doorkeeper_errors_for application, :redirect_uri
+        .ui.pointing.above.ui.label
+          Use one line per URI
+          %br
+          - if Doorkeeper.configuration.native_redirect_uri
+            %span.help-block
+              Use
+              %code= Doorkeeper.configuration.native_redirect_uri
+              for local tests
+      .field
+
+  .ui.buttons
+    = f.submit 'Submit', class: 'ui green flat button'
+    .or
+    = link_to "Cancel", oauth_applications_path, class: 'ui red flat button'
+
+

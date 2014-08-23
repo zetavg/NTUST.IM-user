@@ -36,5 +36,7 @@
           進階
           %i.dropdown.icon
           .menu
-            %a.item 開發者
+            = link_to '應用程式', oauth_authorized_applications_path, class: 'item'
+            = link_to '開發者', oauth_applications_path, class: 'item'
+            = link_to 'API 文件', api_path, target: '_blank', class: 'item'
     = yield

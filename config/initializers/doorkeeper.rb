@@ -17,8 +17,8 @@ Doorkeeper.configure do
     # Put your admin authentication logic here.
     # Example implementation:
     # Admin.find_by_id(session[:admin_id]) || redirect_to(new_admin_session_url)
-    # User.find_by_id(current_user.id) || redirect_to(root_path)
-    User.where(["admin = ?", true]).find_by_id(current_user.id) || redirect_to(root_path)
+    User.find_by_id(current_user.id) || redirect_to(root_path)
+    # User.where(["admin = ?", true]).find_by_id(current_user.id) || redirect_to(root_path)
   end
 
   # Authorization Code expiration time (default 10 minutes).

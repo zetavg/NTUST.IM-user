@@ -1,0 +1,38 @@
+= render layout: 'me/me' do
+  - if current_user.admin?
+    .ui.left.floated.header 
+      所有應用程式
+      = link_to '新增', new_oauth_application_path, class: 'ui green mini flat button'
+      .ui.label
+        = current_user.name
+        %a.detail
+          %i.star.icon
+          admin
+  - else
+    .ui.left.floated.header 
+      您的應用程式
+      = link_to '新增', new_oauth_application_path, class: 'ui green mini flat button'
+  %table.ui.table.segment
+    %thead
+      %tr
+        %th 名稱
+        %th Callback URL
+        - if current_user.admin?
+          %th 擁有者
+        %th 簡訊發送額度
+        %th 動作
+    %tbody
+      - @applications.each do |application|
+        %tr{:id => "application_#{application.id}"}
+          %td= link_to application.name, [:oauth, application]
+          %td= application.redirect_uri
+          - if current_user.admin?
+            %td #{User.where('id = ?', application.owner_id).first && User.where('id = ?', application.owner_id).first.name} (#{application.owner_id})
+          %td -
+          %td
+            = form_tag [:oauth, application] do
+              %input{:name => "_method", :type => "hidden", :value => "delete"}/
+              .ui.buttons.tiny
+                = link_to '編輯', edit_oauth_application_path(application), class: 'ui blue flat button'
+                .or
+                = submit_tag 'Destroy', onclick: "return confirm('Are you sure?')", class: 'ui red flat button'

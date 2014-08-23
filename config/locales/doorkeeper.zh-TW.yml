@@ -1,4 +1,4 @@
-en:
+zh-TW:
   activerecord:
     errors:
       models:
@@ -28,14 +28,14 @@ en:
               relative_uri: 'must be an absolute URI.'
   doorkeeper:
     scopes:
-      public: 'ID 和姓名'
-      email: '學校 email 信箱'
-      facebook: 'Facebook 帳號'
-      school: '學籍資料，包括入學年度、身份、系所、學號'
-      profile: '個人資料，包括簡介'
+      public: '查看您公開的基本資訊'
+      email: '取得您的學校 email 信箱'
+      facebook: '取得您的 Facebook 帳號'
+      school: '取得您的學籍資料'
+      profile: '取得您的個人資料'
       sms: '傳送簡訊給您 (但不會得知您的手機號碼)'
       offline_access: '隨時取用您的資料'
-      admin: '所有資料'
+      admin: '取得您的所有資料'
     errors:
       messages:
         # Common error messages
@@ -75,6 +75,8 @@ en:
           notice: 'Application deleted.'
         update:
           notice: 'Application updated.'
+        destroy:
+          notice: '應用程式已刪除。'
       authorized_applications:
         destroy:
           notice: 'Application revoked.'

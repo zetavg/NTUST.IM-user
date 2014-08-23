@@ -1,0 +1,63 @@
+= render layout: 'me/me' do
+
+  .ui.head.h2
+    %small 
+      = link_to '應用程式/ ', oauth_applications_path
+    #{@application.name}
+
+  .ui.divided.list
+    .item
+      %i.bolt.icon
+      .content
+        .header Application Id
+        .description 
+          應用程式 ID
+        %code#application_id= @application.uid
+    .item
+      %i.key.icon
+      .content
+        %a.header Secret
+        .description 
+          應用程式密鑰
+        %code#secret= @application.secret
+    .item
+      %i.map.icon
+      .content
+        %a.header Callback urls
+        .description 
+          網址
+        .ui.small.divided.list
+          - @application.redirect_uri.split.each do |uri|
+            .item
+              = link_to 'Authorize', oauth_authorization_path(client_id: @application.uid, redirect_uri: uri, response_type: 'code'), class: 'right floated tiny ui purple button', target: '_blank'
+              .content
+                .header 
+                  %code= uri
+  
+  = form_tag [:oauth, @application] do
+    %input{:name => "_method", :type => "hidden", :value => "delete"}
+    .ui.buttons
+      = link_to '編輯', edit_oauth_application_path(@application), class: 'ui blue flat button'
+      .or
+      = submit_tag 'Destroy', onclick: "return confirm('Are you sure?')", class: 'ui red flat button'
+
+  / .row
+  /   .col-md-8
+  /     %h4 Application Id:
+  /     %p
+  /       %code#application_id= @application.uid
+  /     %h4 Secret:
+  /     %p
+  /       %code#secret= @application.secret
+  /     %h4 Callback urls:
+  /     %table
+  /       - @application.redirect_uri.split.each do |uri|
+  /         %tr
+  /           %td
+  /             %code= uri
+  /           %td
+  /             = link_to 'Authorize', oauth_authorization_path(client_id: @application.uid, redirect_uri: uri, response_type: 'code'), class: 'btn btn-success', target: '_blank'
+  /   .col-md-4
+  /     %h3 Actions
+  /     %p= link_to 'Edit', edit_oauth_application_path(@application), class: 'btn btn-primary'
+  /     %p= render 'delete_form', application: @application, submit_btn_css: 'btn btn-danger'

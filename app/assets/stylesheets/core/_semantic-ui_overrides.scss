@@ -273,6 +273,10 @@ a.ui.step {
 	}
 }
 
+.ui.table td {
+	clear: both;
+}
+
 // off-canvas
 
 body> .wrapper > * {

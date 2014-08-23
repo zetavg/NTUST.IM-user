@@ -1,0 +1,6 @@
+= render layout: 'me/me' do
+  .ui.head.h2
+    %small
+      = link_to '應用程式/ ', oauth_applications_path
+    編輯 #{@application.name}
+  = render 'form', application: @application
