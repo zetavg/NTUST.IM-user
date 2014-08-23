@@ -4,6 +4,7 @@ defaults: &defaults
   site_name: <%= ENV["SITE_NAME"] %>
   org_name: <%= ENV["ORG_NAME"] %>
   app_name: <%= ENV["APP_NAME"] %>
+  app_logo: <%= ENV["APP_LOGO"] %>
   app_description: <%= ENV["APP_DESCRIPTION"] %>
   app_keywords: <%= ENV["APP_KEYWORDS"] %>
   app_domain: <%= ENV["APP_DOMAIN"] %>
@@ -34,6 +35,7 @@ development:
   site_name: 'NTUST'
   org_name: 'NTUST'
   app_name: 'NTUST'
+  app_logo: ''
   app_description: 'NTUST Student Information Platform'
   app_keywords: 'ntust'
   app_domain: 'user.ntust.dev'

@@ -80,6 +80,10 @@ body {
 		.button {
 			line-height: initial;
 		}
+
+		.icon {
+			margin-right: -7px;
+		}
 	}
 
 	> .item, > * > .item, > * > * > .item, > * > * > * > .item {
@@ -114,6 +118,25 @@ body {
 
 			path {
 				fill: $base-backgroundColor;
+			}
+		}
+	}
+
+	.logo {
+		overflow: visible;
+		display: inline-block;
+		position: relative;
+		height: $top-menu-height;
+
+		img, svg {
+			max-height: none;
+			max-width: none;
+			height: $top-menu-height - 18px*2;
+			margin-top: 18px;
+			margin-left: 7px;
+
+			path, circle {
+				fill: $white;
 			}
 		}
 	}

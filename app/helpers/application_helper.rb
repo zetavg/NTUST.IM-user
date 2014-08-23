@@ -16,6 +16,18 @@ module ApplicationHelper
     action.include?(params[:action])
   end
 
+  def app_logo
+    if Setting.app_logo.to_s != ''
+      if Setting.app_logo.to_s.match(/^</)  # if SVG path
+        Setting.app_logo.to_s.html_safe
+      else
+        image_tag Setting.app_logo
+      end
+    else
+      Setting.app_name
+    end
+  end
+
   def regexp_parse(s)
     s.gsub('$', '').gsub('.+', '').gsub('\.', '.')
   end
