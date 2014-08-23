@@ -82,8 +82,11 @@ class User < ActiveRecord::Base
 
   def api_send_sms(message, application_id, scopes=[], admin=false)
     if scopes.include?('sms') || admin  # 有發送權
-      if application_id > 0  # 發送額度內
+      if OauthApplicationData.get(application_id).sms_quota > 1  # 發送額度內
         if self.mobile  # 可被接收
+          data = OauthApplicationData.get(application_id)
+          data.sms_quota -= 1
+          data.save
           nexmo = Nexmo::Client.new(key: Setting.nexmo_key, secret: Setting.nexmo_secret)
           begin
             nexmo.send_message(from: Setting.site_name, to: self.mobile.tr('^0-9', ''), type: "unicode", text: message)

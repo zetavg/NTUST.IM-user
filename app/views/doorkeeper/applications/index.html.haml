@@ -28,7 +28,7 @@
           %td= application.redirect_uri
           - if current_user.admin?
             %td #{User.where('id = ?', application.owner_id).first && User.where('id = ?', application.owner_id).first.name} (#{application.owner_id})
-          %td -
+          %td= OauthApplicationData.get(application.id).sms_quota
           %td
             = form_tag [:oauth, application] do
               %input{:name => "_method", :type => "hidden", :value => "delete"}/
