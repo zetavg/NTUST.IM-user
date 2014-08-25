@@ -277,6 +277,18 @@ a.ui.step {
 	clear: both;
 }
 
+.ui.steps {
+	border-radius: 2px;
+
+	.step:first-child {
+		border-radius: 2px 0 0 2px;
+	}
+
+	.step:last-child {
+		border-radius: 0 2px 2px 0;
+	}
+}
+
 // off-canvas
 
 body> .wrapper > * {

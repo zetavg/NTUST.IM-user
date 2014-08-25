@@ -1,11 +1,6 @@
 .ui.top.inverted.sidebar.menu
   .container
-    - width = (100 / (Application.nav.count + 2)).to_s + '%'
-    .app.home{style: "width : #{width}"}
-      %a.item{href: root_path}
-        .icon
-          %i.left.arrow.icon
-        .name 　
+    - width = (100 / (Application.nav.count + 1)).to_s + '%'
     - Application.nav.each do |app|
       .app{style: "background-color: #{app.color}; width : #{width}"}
         - if app.enabled

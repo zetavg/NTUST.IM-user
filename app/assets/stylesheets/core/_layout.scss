@@ -70,6 +70,14 @@ body {
 		color: inherit;
 	}
 
+	.container {
+		position: relative;
+
+		@include desktop {
+			padding-right: 7px;
+		}
+	}
+
 	.container, .container > .item, .container > .menu, .dropdown {
 		height: $top-menu-height;
 
@@ -127,22 +135,70 @@ body {
 		}
 	}
 
-	.sidebar-toggle-button {
+	.logo {
 		font-size: 20px;
+		line-height: $top-menu-height;
+	}
+
+	.sidebar-toggle-button {
+		// font-size: 20px;
 		// @include background-image(image-url('menu.png'));
 		// background-repeat: no-repeat;
 		// background-position: $base-content-padding 50%;
 		// line-height: 32px;
-		padding-left: $base-content-padding;
-		left: - $base-content-padding;
+		// padding-left: $base-content-padding;
+		// left: - $base-content-padding;
+
+		// svg {
+		// 	margin-top: ($top-menu-height - 18) / 2;
+		// 	margin-right: 10px;
+		// 	float: left;
+
+		// 	path {
+		// 		fill: $base-backgroundColor;
+		// 	}
+		// }
+	}
+
+	.sidebar-toggle-button {
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: 0 15px;
 
 		svg {
-			margin-top: ($top-menu-height - 18) / 2;
-			margin-right: 10px;
-			float: left;
+			margin-top: ($top-menu-height - 18px)/2;
 
 			path {
 				fill: $base-backgroundColor;
+			}
+		}
+
+		g {
+
+			path {
+				@include transform(none);
+				@include transition-property(all);
+				@include transition-duration(.4s);
+				@include transition-delay(.4s);
+			}
+		}
+
+		body.pushed & {
+
+			g {
+
+				path {
+					transform: rotate(-45deg) translateX(-6px) translateY(3px);
+				}
+
+				path:first-child {
+					@include transform(rotate(45deg) translateX(2px) translateY(-2px));
+				}
+
+				path:last-child {
+					@include transform(rotate(-45deg) translateX(-6px) translateY(-2px));
+				}
 			}
 		}
 	}
@@ -151,17 +207,30 @@ body {
 		overflow: visible;
 		display: inline-block;
 		position: relative;
+		left: 36px;
 		height: $top-menu-height;
+		@include transition-property(color);
+		@include transition-duration(.3s);
 
 		img, svg {
 			max-height: none;
 			max-width: none;
 			height: $top-menu-height - 18px*2;
 			margin-top: 18px;
-			margin-left: 7px;
+			// margin-left: 7px;
 
 			path, circle {
 				fill: $white;
+				@include transition-property(fill);
+				@include transition-duration(.3s);
+			}
+		}
+
+		&:hover {
+			color: lighten($secondary-color, 18%);
+
+			svg path, svg circle {
+				fill: lighten($secondary-color, 18%);
 			}
 		}
 	}
@@ -194,7 +263,7 @@ body {
 }
 
 .top.sidebar {
-	background-color: shade($primary-color, 32%) !important;
+	background-color: #222 !important;
 
 	.container {
 		position: relative;
