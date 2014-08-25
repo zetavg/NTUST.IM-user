@@ -23,4 +23,4 @@
 //= require lib/jquery.getCursorPosition
 //= require lib/jquery.caret
 //
-// require_tree .
+//= require_tree ./pages
