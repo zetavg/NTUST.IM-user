@@ -10,17 +10,15 @@
       .logo= app_logo
 
     .right.menu
+      .show-on-desktop.top-menu-items
+        = render 'partials/top_menu_items'
       - if current_user
-        .ui.pointing.dropdown.link.item
-          .ui.avatar.image= image_tag current_user.avator(100)
-          = current_user.name
-          %i.angle.down.icon
-          .menu
-            %a.item{href: root_path}
-              %i.setting.icon
-              帳號設定
-            %a.item{href: destroy_user_session_path, 'data-method' => :delete}
-              %i.sign.out.icon
-              登出
+        .hide-on-phone
+          .ui.pointing.dropdown.link.item
+            .ui.avatar.image= image_tag current_user.avator(100)
+            = current_user.name
+            %i.angle.down.icon
+            .menu
+              = render 'partials/user_menu'
       - else
         = render 'partials/facebook_login_button'

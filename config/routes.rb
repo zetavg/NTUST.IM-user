@@ -34,6 +34,8 @@ Rails.application.routes.draw do
       post '/user/:id/send_sms' => "user_api#send_sms"
       get '/admission_year/:admission_year/department/:department_id/users' => "user_api#list_users"
       get '/departments' => "data_api#departments"
+      get '/site_navigation' => "data_api#site_navigation"
+      get '/site_menu' => "data_api#site_menu"
     end
   end
 

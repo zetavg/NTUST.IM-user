@@ -50,11 +50,7 @@ end
 
 ## Setup
 
-Database migration:
-
-```bash
-$ rake db:migrate
-```
+Database migration: `rake db:migrate`.
 
 The web admin panel is located at `http://[your.domain]/admin`, default account: email `admin@dev.null` with passowrd `password`.
 

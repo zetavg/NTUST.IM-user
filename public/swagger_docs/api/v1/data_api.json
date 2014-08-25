@@ -14,6 +14,28 @@
           "nickname": "Api::V1::DataApi#departments"
         }
       ]
+    },
+    {
+      "path": "api/v1/site_navigation.json",
+      "operations": [
+        {
+          "summary": "本站導航",
+          "notes": "子網站導航。",
+          "method": "get",
+          "nickname": "Api::V1::DataApi#site_navigation"
+        }
+      ]
+    },
+    {
+      "path": "api/v1/site_menu.json",
+      "operations": [
+        {
+          "summary": "本站選單",
+          "notes": "子網站選單。",
+          "method": "get",
+          "nickname": "Api::V1::DataApi#site_menu"
+        }
+      ]
     }
   ]
 }

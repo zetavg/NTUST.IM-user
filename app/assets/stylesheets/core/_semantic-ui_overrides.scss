@@ -292,13 +292,26 @@ body.pushed.left {
 }
 
 body.pushed.left > .wrapper > * {
-	left: 275px !important;
-	right: -275px !important;
+	left: 240px !important;
+	right: -240px !important;
 }
 
 .ui.left.sidebar {
 	@include transition-duration(.5s);
 	// @include transition-delay(.5s);
+	width: 240px !important;
+	margin-left: -240px !important;
+
+	&.active {
+		margin-left: 0 !important;
+	}
+}
+
+body.top.pushed {
+
+	.ui.popup {
+		margin-top: -90px;
+	}
 }
 
 // .ui.left.sidebar.active {

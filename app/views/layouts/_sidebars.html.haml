@@ -1,12 +1,56 @@
-.ui.top.inverted.teal.sidebar.menu
+.ui.top.inverted.sidebar.menu
   .container
-    %center
-      %a.item Comming Soon
+    - width = (100 / (Application.nav.count + 2)).to_s + '%'
+    .app.home{style: "width : #{width}"}
+      %a.item{href: root_path}
+        .icon
+          %i.left.arrow.icon
+        .name 　
+    - Application.nav.each do |app|
+      .app{style: "background-color: #{app.color}; width : #{width}"}
+        - if app.enabled
+          %a.item.ui.has-popup{'data-content' => app.description, :href => app.url}
+            - if app.icon.to_s != ''
+              .icon= image_tag app.icon
+            .name= app.name
+        - else
+          %a.item.disabled.ui.has-popup{'data-content' => 'Coming Soon...'}
+            - if app.icon.to_s != ''
+              .icon= image_tag app.icon
+            .name= app.name
+    .app.more{style: "width : #{width}"}
+      %a.item.ui.has-popup{'data-content' => '更多', :onclick => '$(".apps.sidebar").sidebar("toggle");'}
+        .name ⋯
     / .header.item Top Sidebar menu
     / %a.item One
     / %a.item Two
     / %a.item Three
-.ui.left.sidebar
-  .container
-    %center
-      %a.item Comming Soon
+.ui.left.inverted.mobile.sidebar.vertical.menu
+  .user.show-on-phone
+    - if current_user
+      .about
+        .ui.avatar.image= image_tag current_user.avator(100)
+        .name= current_user.name
+      .menu
+        = render 'partials/user_menu'
+    - else
+      .login= render 'partials/facebook_login_button'
+  = render 'partials/top_menu_items'
+  .bottom
+    %a.item{onclick: '$(".apps.sidebar").sidebar("toggle");'} ⋮
+
+.ui.left.inverted.thin.apps.sidebar.vertical.menu
+  - Application.menu.each do |app|
+    - if app.enabled
+      %a.item.ui.has-popup{'data-content' => app.description, :href => app.url}
+        - if app.icon.to_s != ''
+          / .icon= image_tag app.icon
+        .name= app.name
+        .description= app.description
+    - else
+      %a.item.disabled.ui.has-popup{'data-content' => 'Coming Soon...'}
+        - if app.icon.to_s != ''
+          / .icon= image_tag app.icon
+        .name= app.name
+        .description= app.description
+

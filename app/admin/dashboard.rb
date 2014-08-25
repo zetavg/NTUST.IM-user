@@ -20,6 +20,9 @@ ActiveAdmin.register_page "Dashboard" do
             Setting.each do |key, value|
               if key =~ /key$/ || key =~ /secret/ || key =~ /pepper$/
                 li "#{key}: #{value[0..5] + value.gsub(/./, '*')}"
+              elsif key =~ /logo$/ || key =~ /icon$/
+                value = value[0..50] + '...' if value.length > 50
+                li "#{key}: #{value}"
               else
                 li "#{key}: #{value}"
               end

@@ -81,7 +81,7 @@ body {
 			line-height: initial;
 		}
 
-		.icon {
+		.dropdown > .icon {
 			margin-right: -7px;
 		}
 	}
@@ -89,6 +89,31 @@ body {
 	> .item, > * > .item, > * > * > .item, > * > * > * > .item {
 		padding: 0 12px;
 		line-height: $top-menu-height;
+	}
+
+	.right.menu {
+
+		> * {
+			display: inline-block;
+		}
+
+		.top-menu-items {
+
+			> * {
+
+				&:last-child::after {
+					left: auto;
+					right: 0px;
+					background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.03) 100%);
+					background-image: linear-gradient(rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.03) 100%);
+					position: absolute;
+					content: '';
+					top: 0%;
+					width: 1px;
+					height: 100%;
+				}
+			}
+		}
 	}
 
 	.avatar.image {
@@ -142,12 +167,20 @@ body {
 	}
 
 	.login.button {
-		margin-top: 7px;
-		height: 38px;
+		margin-top: 12px;
+		height: 33px;
 		padding-top: 0.59em;
+		padding-right: 14px;
+
+		.label {
+			left: -32px;
+			width: 36px;
+		}
 
 		.label i {
-			line-height: 38px;
+			line-height: 35px;
+			margin-right: -8px;
+			margin-left: -7px;
 		}
 	}
 }
@@ -157,5 +190,172 @@ body {
 	&.alert {
 		background-color: $red;
 		color: $white;
+	}
+}
+
+.top.sidebar {
+	background-color: shade($primary-color, 32%) !important;
+
+	.container {
+		position: relative;
+		padding: 0;
+		height: 100%;
+		overflow: hidden;
+
+		> * {
+			height: 100%;
+			position: relative;
+			top: 0;
+			display: inline-block;
+			vertical-align: middle;
+			text-align: center;
+		}
+
+		.app.home {
+			background-color: shade($primary-color, 38%) !important;
+		}
+
+		.item {
+			width: 100%;
+			display: block;
+			top: -4px;
+			padding-top: 4px;
+
+			&.disabled {
+				@include opacity(.5);
+			}
+
+			&::after {
+				content: "";
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				background-color: rgba(255,255,255, 0);
+				@include transition-property(background-color);
+				@include transition-duration(.3s);
+			}
+
+			&:not(.disabled):hover {
+				background-color: transparent;
+
+				&::after {
+					background-color: rgba(255,255,255, .18);
+				}
+			}
+		}
+
+		.icon, .icon img {
+			width: 50px;
+			height: 50px;
+			font-size: 40px;
+			margin: 4px auto auto 0;
+			margin-left: auto;
+			margin-right: auto;
+
+			i {
+				margin-top: 28px;
+			}
+		}
+
+		.name {
+			line-height: 100px;
+			font-size: rem(20px);
+		}
+
+		.more .name {
+			line-height: 100px;
+			font-size: rem(50px);
+		}
+
+		.icon + .name {
+			line-height: 54px;
+		}
+	}
+}
+
+.mobile.sidebar {
+	background-color: darken($primary-color, 20%);
+
+	.user {
+		width: 100%;
+		background-color: rgba(0,0,0, .2);
+
+		.about {
+			height: 118px;
+			width: 100%;
+			text-align: center;
+
+			.avatar, .avatar img {
+				width: 60px;
+				height: 60px;
+			}
+
+			.avatar {
+				margin: 16px 10px 10px;
+			}
+
+			.name {
+				width: 100%;
+				height: 20px;
+				font-size: rem(20px);
+				color: $white;
+				font-weight: 800;
+			}
+		}
+
+		.login {
+			text-align: center;
+			margin: 8px 0;
+			margin-left: 19px;
+		}
+
+		.menu > .item {
+			display: inline-block;
+			width: 50%;
+			text-align: center;
+
+			&:nth-child(2n) {
+				// border-left: 1px solid rgba(255, 255, 255, 0.03);
+				// text-align: right;
+			}
+
+			&:before {
+				content: none;
+			}
+
+			i.icon {
+				// margin-right: -5px;
+				// margin-top: 1px;
+				float: none;
+				margin: 0;
+			}
+		}
+	}
+
+	.bottom {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		text-align: center;
+
+		* {
+			font-size: rem(20px);
+		}
+	}
+}
+
+
+.apps.sidebar {
+
+	.name {
+		font-size: rem(24px);
+		padding-bottom: 4px;
+	}
+
+	.description {
+		font-size: 50%;
+		@include opacity(.5);
 	}
 }

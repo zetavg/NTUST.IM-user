@@ -23,15 +23,20 @@ $(document).ready(function() {
   ;
 
   $('.top-sidebar-toggle-button').unbind('click').bind('click', function () {
-    if ($('.left.sidebar').sidebar('is open')) {
-      $('.left.sidebar').sidebar('hide');
+    if ($('.mobile.sidebar').sidebar('is open')) {
+      $('.mobile.sidebar').sidebar('hide');
     } else if ($('.top.sidebar').sidebar('is open')) {
       $('.top.sidebar').sidebar('hide');
+    } else if ($('.apps.sidebar').sidebar('is open')) {
+      $('.apps.sidebar').sidebar('hide');
     } else {
+      $('.wrapper > .main').unbind('click').bind('click', function () {
+        $('.sidebar').sidebar('hide');
+      });
       if ($(window).width() > 992) {
         $('.top.sidebar').sidebar('toggle');
       } else {
-        $('.left.sidebar').sidebar('toggle');
+        $('.mobile.sidebar').sidebar('toggle');
       }
     }
   });
