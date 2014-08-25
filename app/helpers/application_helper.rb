@@ -28,6 +28,18 @@ module ApplicationHelper
     end
   end
 
+  def apps_navigation
+    Application.nav
+  end
+
+  def apps_menu
+    Application.menu
+  end
+
+  def default_authorize_path
+    user_omniauth_authorize_path(:facebook)
+  end
+
   def regexp_parse(s)
     s.gsub('$', '').gsub('.+', '').gsub('\.', '.')
   end

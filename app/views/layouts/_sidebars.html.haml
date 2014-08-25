@@ -1,18 +1,18 @@
 .ui.top.inverted.sidebar.menu
   .container
-    - width = (100 / (Application.nav.count + 1)).to_s + '%'
-    - Application.nav.each do |app|
-      .app{style: "background-color: #{app.color}; width : #{width}"}
-        - if app.enabled
-          %a.item.ui.has-popup{'data-content' => app.description, :href => app.url}
-            - if app.icon.to_s != ''
-              .icon= image_tag app.icon
-            .name= app.name
+    - width = (100 / (apps_navigation.count + 1)).to_s + '%'
+    - apps_navigation.each do |app|
+      .app{style: "background-color: #{app['color']}; width : #{width}"}
+        - if app['enabled']
+          %a.item.ui.has-popup{'data-content' => app['description'], :href => app['url']}
+            - if app['icon'].to_s != ''
+              .icon= image_tag app['icon']
+            .name= app['name']
         - else
           %a.item.disabled.ui.has-popup{'data-content' => 'Coming Soon...'}
-            - if app.icon.to_s != ''
-              .icon= image_tag app.icon
-            .name= app.name
+            - if app['icon'].to_s != ''
+              .icon= image_tag app['icon']
+            .name= app['name']
     .app.more{style: "width : #{width}"}
       %a.item.ui.has-popup{'data-content' => '更多', :onclick => '$(".apps.sidebar").sidebar("toggle");'}
         .name ⋯
@@ -35,17 +35,16 @@
     %a.item{onclick: '$(".apps.sidebar").sidebar("toggle");'} ⋮
 
 .ui.left.inverted.thin.apps.sidebar.vertical.menu
-  - Application.menu.each do |app|
-    - if app.enabled
-      %a.item.ui.has-popup{'data-content' => app.description, :href => app.url}
-        - if app.icon.to_s != ''
-          / .icon= image_tag app.icon
-        .name= app.name
-        .description= app.description
+  - apps_menu.each do |app|
+    - if app['enabled']
+      %a.item.ui.has-popup{'data-content' => app['description'], :href => app['url']}
+        - if app['icon'].to_s != ''
+          / .icon= image_tag app['icon']
+        .name= app['name']
+        .description= app['description']
     - else
       %a.item.disabled.ui.has-popup{'data-content' => 'Coming Soon...'}
-        - if app.icon.to_s != ''
-          / .icon= image_tag app.icon
-        .name= app.name
-        .description= app.description
-
+        - if app['icon'].to_s != ''
+          / .icon= image_tag app['icon']
+        .name= app['name']
+        .description= app['description']
