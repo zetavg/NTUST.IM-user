@@ -16,6 +16,17 @@
       ]
     },
     {
+      "path": "api/v1/site_data.json",
+      "operations": [
+        {
+          "summary": "本站資料",
+          "notes": "本站資料。",
+          "method": "get",
+          "nickname": "Api::V1::DataApi#site_data"
+        }
+      ]
+    },
+    {
       "path": "api/v1/site_navigation.json",
       "operations": [
         {

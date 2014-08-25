@@ -13,6 +13,24 @@ class Api::V1::DataApiController < ApplicationController
     render json: Department.all.select('code', 'name')
   end
 
+  swagger_api :site_data do
+    summary "本站資料"
+    notes "本站資料。"
+  end
+
+  def site_data
+    data = {}
+
+    data['site_name'] = Setting.site_name
+    data['org_name'] = Setting.org_name
+    data['administrator_url'] = Setting.administrator_url
+    data['administrator_email'] = Setting.administrator_email
+    data['mailer_sender'] = Setting.mailer_sender
+    data['google_analytics_id'] = Setting.google_analytics_id
+
+    render json: data
+  end
+
   swagger_api :site_navigation do
     summary "本站導航"
     notes "子網站導航。"
