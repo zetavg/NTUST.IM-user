@@ -3,6 +3,9 @@ class PagesController < ApplicationController
   def api_docs
   end
 
+  def example
+  end
+
   def api_docs_json
     data = JSON.parse( IO.read('public/swagger_docs/api-docs.json') )
     data['basePath'] = Setting.app_url

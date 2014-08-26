@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   get '/api-docs/api/:v/:name' => "pages#api_doc_json"
   get '/api' => "pages#api_docs"
 
+  get '/example' => "pages#example"
+
   root "me#dashboard"
 
   namespace :api do
