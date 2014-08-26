@@ -4,18 +4,44 @@
 
 $(document).ready(function() {
 
-  $('.ui.dropdown')
-    .dropdown()
+  $('.ui.accordion')
+    .accordion()
   ;
 
   $('.ui.checkbox')
     .checkbox()
   ;
 
+  $('.ui.dimmable')
+    .dimmer('show')
+  ;
+
+  $('.ui.dropdown')
+    .dropdown()
+  ;
+
+  $('.ui.modal')
+    .modal()
+  ;
+
+  $('.ui.checkbox')
+    .checkbox()
+  ;
+
+  // $('.ui.popup')
+  //   .popup({
+  //     position: 'bottom center'
+  //   })
+  // ;
+
   $('.ui.has-popup')
     .popup({
       position: 'bottom center'
     })
+  ;
+
+  $('.ui.rating')
+    .rating()
   ;
 
   $('.top.sidebar').first()

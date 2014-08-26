@@ -189,7 +189,7 @@ body {
 			g {
 
 				path {
-					transform: rotate(-45deg) translateX(-6px) translateY(3px);
+					@include transform(rotate(-45deg) translateX(-6px) translateY(3px));
 				}
 
 				path:first-child {
