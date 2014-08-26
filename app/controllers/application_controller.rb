@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :get_app_setting
   before_action :save_page_history
+  after_action :login_control
 
   def doorkeeper_unauthorized_render_options
     {:json => {:error => {:message => "Not authorized", :code => 401}}}
@@ -23,5 +24,13 @@ class ApplicationController < ActionController::Base
   def save_page_history
     (session[:page_history] ||= []).unshift request.fullpath
     session[:page_history].pop if session[:page_history].length > 10
+  end
+
+  def login_control
+    if current_user
+      cookies[:user_logined] = { value: true, domain: Setting.app_domain.gsub(/^[^\.]*/, '') }
+    else
+      cookies[:user_logined] = { value: false, domain: Setting.app_domain.gsub(/^[^\.]*/, '') }
+    end
   end
 end
