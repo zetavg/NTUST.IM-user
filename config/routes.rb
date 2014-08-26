@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   match 'users/new', to: 'users#new_update', via: [:patch, :put]
   resources :users, :only => [:show, :edit, :update]
 
+  devise_scope :user do
+    get '/logout' => "devise/sessions#destroy"
+  end
+
   match '/me', to: 'me#dashboard', via: [:get]
   match '/dashboard', to: 'me#dashboard', via: [:get]
   match '/information', to: 'me#information', via: [:get]
