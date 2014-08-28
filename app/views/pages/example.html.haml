@@ -156,6 +156,27 @@
   %a.ui.purple.button Purple Button
   %a.ui.teal.button Teal Button
   %a.ui.orange.button Orange Button
+  %a.ui.black.flat.button Black Button
+  %a.ui.green.flat.button Green BUtton
+  %a.ui.red.flat.button Red Button
+  %a.ui.blue.flat.button Blue Button
+  %a.ui.purple.flat.button Purple Button
+  %a.ui.teal.flat.button Teal Button
+  %a.ui.orange.flat.button Orange Button
+  %a.ui.black.float.button Black Button
+  %a.ui.green.float.button Green BUtton
+  %a.ui.red.float.button Red Button
+  %a.ui.blue.float.button Blue Button
+  %a.ui.purple.float.button Purple Button
+  %a.ui.teal.float.button Teal Button
+  %a.ui.orange.float.button Orange Button
+  %a.ui.black.frameless.button Black Button
+  %a.ui.green.frameless.button Green BUtton
+  %a.ui.red.frameless.button Red Button
+  %a.ui.blue.frameless.button Blue Button
+  %a.ui.purple.frameless.button Purple Button
+  %a.ui.teal.frameless.button Teal Button
+  %a.ui.orange.frameless.button Orange Button
   Toggle
   A button can be formatted to toggle on and off
   .ui.toggle.button.hover
@@ -709,7 +730,13 @@
     %img{:src => "/images/demo/highres3.jpg"}/
   Ribbon
   A label can appear as a ribbon attaching itself to an element.
-  .ui.ribbon.label Dogs
+  .ui.raised.segment
+    .ui.ribbon.label Dogs
+    %p Pretty nice animals.
+    .ui.teal.ribbon.label Cats
+    %p Also pretty nice animals, but can prefer solitude.
+    .ui.red.ribbon.label Ogres and monsters
+    %p Never seen one as a pet before, but I imagine they'd make pretty terrible companions.
   Attached
   A label can attach to a content segment
   .ui.top.attached.label HTML
@@ -4559,7 +4586,8 @@
   \.modal('show')
   ;
   HTML
-  .ui.modal
+
+  .ui.modal.test
     %i.close.icon
     .header
       Header
@@ -4583,6 +4611,24 @@
   ;
   HTML
   .ui.basic.modal
+    .header
+      Change Your Homepage
+    .content
+      .left
+        %i.home.icon
+      .right
+        %p
+          Are you sure you want to change your homepage to
+          = succeed "?" do
+            %b Poodle.com
+    .actions
+      .two.fluid.ui.buttons
+        .ui.negative.labeled.icon.button
+          %i.remove.icon
+          No
+        .ui.positive.right.labeled.icon.button
+          Yes
+          %i.checkmark.icon
   Variations
 
   Size
@@ -4606,7 +4652,7 @@
 
   Active
   An active modal is visible on the page
-  .active.ui.modal ...
+  / .active.ui.modal ...
 
 
 
