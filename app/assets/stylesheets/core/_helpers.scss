@@ -75,7 +75,7 @@
 // ----- Foreground Color ----- //
 
 @function foreground-color($color) {
-	@return contrast-color($color, $base-dark-color, $base-light-color, 52%);
+	@return contrast-color($color, $base-dark-color, $base-light-color, 60%);
 }
 
 // ----- Vertical Rhythm ----- //

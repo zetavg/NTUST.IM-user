@@ -40,13 +40,13 @@
 // -------------------------------------
 
 // ----- Semantic UI ----- //
-//
-@import "semantic-ui";
+
+@import "core/semantic-ui-sass";
 @import "core/semantic-ui_overrides";
 
 // ----- NProgress ----- //
 
-$nprogress-color: $secondary-color;
+$nprogress-color: $tertiary-colour;
 @import 'nprogress';
 @import 'nprogress-bootstrap';
 

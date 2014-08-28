@@ -48,6 +48,10 @@ $(document).ready(function() {
     .sidebar('attach events', '.top-sidebar-toggle-button')
   ;
 
+  $('.message .close').on('click', function() {
+    $(this).closest('.message').fadeOut();
+  });
+
   $('.top-sidebar-toggle-button').unbind('click').bind('click', function () {
     if ($('.mobile.sidebar').sidebar('is open')) {
       $('.mobile.sidebar').sidebar('hide');

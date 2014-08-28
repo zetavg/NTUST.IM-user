@@ -126,6 +126,7 @@ body {
 
 	.avatar.image {
 		height: $top-menu-height;
+		background-color: transparent;
 
 		img {
 			max-width: 100px;
@@ -238,7 +239,7 @@ body {
 	.login.button {
 		margin-top: 12px;
 		height: 33px;
-		padding-top: 0.59em;
+		padding-top: 0.4em;
 		padding-right: 14px;
 
 		.label {
@@ -251,6 +252,13 @@ body {
 			margin-right: -8px;
 			margin-left: -7px;
 		}
+	}
+}
+
+.ui.buttons {
+
+	.or::before {
+		line-height: 1.6em;
 	}
 }
 
@@ -363,6 +371,7 @@ body {
 
 			.avatar {
 				margin: 16px 10px 10px;
+				background-color: transparent;
 			}
 
 			.name {
