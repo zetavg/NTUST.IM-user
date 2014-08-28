@@ -1,0 +1,13 @@
+.container
+  / %a.logo{:href => root_path}= app_logo
+  .credit.hide-on-phone
+    %span 系統設計 /
+    %a{href: ''} Neson
+    %span.small － brought to you by
+    %a{href: ''} the Misk
+  .menu.hide-on-phone
+    = render 'menus/footer'
+    = # %a.item{href: root_path}
+    = #   首頁
+    = # %a.item
+    = #   關於
