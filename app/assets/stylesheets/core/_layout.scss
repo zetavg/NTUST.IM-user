@@ -23,7 +23,7 @@ body {
 
 	.spinner {
 		@include z-index('ngprogress');
-		position: absolute;
+		position: fixed;
 		bottom: 12px;
 		top: auto;
 	}
