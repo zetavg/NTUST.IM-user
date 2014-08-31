@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def new
-    if session["devise.new_user_time"] > 30000.seconds.ago && session["devise.new_user_id"]
+    if session["devise.new_user_time"] > 600.seconds.ago && session["devise.new_user_id"]
       if @user = User.where(confirmed_at: nil, id: session["devise.new_user_id"]).first
         @user.email = @user.unconfirmed_email if @user.email =~ /@dev\.null$/
       else

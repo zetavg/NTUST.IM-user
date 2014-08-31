@@ -99,7 +99,7 @@
       )[0]
       # console.log identity
       department = departments.filter((d) ->
-        d.code is parseInt(matchData[0].admission_department_id)
+        String(d.code) is String(matchData[0].admission_department_id)
       )[0]
       # console.log department
       if department
