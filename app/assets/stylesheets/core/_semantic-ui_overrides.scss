@@ -457,3 +457,9 @@ body.top.pushed {
 		display: none !important;
 	}
 }
+
+body > .ui.dimmer .ui.loader {
+	@include background-image(image-url('core/loading.gif'));
+	width: 43px;
+	height: 11px;
+}
