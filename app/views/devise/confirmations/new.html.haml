@@ -1,9 +1,10 @@
 .ui.vertical.center.wrapper{style: "height: 100vh; position: absolute; top: 0;"}
   .ui.vertical.center
     .ui.fluid.form.segment.large.box.new-user-form
-      %h2 喔喔
+      %h2 Email 驗證
       = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
         = f.full_error :confirmation_token
+        %p 驗證失敗可能原因為：驗證碼錯誤、Email 已被註冊、驗證碼過期。
         .back
           %br
           = link_to "回", "javascript:history.back()"
