@@ -23,7 +23,7 @@ body {
 
 	.spinner {
 		@include z-index('ngprogress');
-		position: absolute;
+		position: fixed;
 		bottom: 12px;
 		top: auto;
 	}
@@ -33,18 +33,108 @@ body {
 	background-color: $base-body-backgroundColor;
 }
 
-.header {
+.wrapper > .header {
 	@include z-index(header);
 	overflow: visible;
 }
 
-.main {
+.wrapper > .main {
 	@include z-index(main);
+	min-height: calc(100vh - #{$top-menu-height + $footer-height});
+	box-sizing: border-box;
+	padding-bottom: 20px;
 }
 
-.footer {
+.wrapper > .footer {
 	@include z-index(footer);
-	margin-top: 20px;
+	height: $footer-height;
+	background-color: #333;
+
+	.container > * {
+		display: inline-block;
+	}
+
+	.logo {
+		font-size: 20px;
+		line-height: $footer-height;
+	}
+
+	.logo {
+		overflow: visible;
+		display: inline-block;
+		position: relative;
+		height: $footer-height;
+		@include transition-property(color);
+		@include transition-duration(.3s);
+
+		img, svg {
+			max-height: none;
+			max-width: none;
+			height: $footer-height - 45px*2;
+			margin-top: 45px;
+			// margin-left: 7px;
+
+			path, circle {
+				fill: $white;
+				@include transition-property(fill);
+				@include transition-duration(.3s);
+			}
+		}
+
+		&:hover {
+			color: lighten($secondary-color, 18%);
+
+			svg path, svg circle {
+				fill: lighten($secondary-color, 18%);
+			}
+		}
+	}
+
+	.menu, .credit {
+		float: right;
+		font-size: 14px;
+		line-height: $footer-height;
+
+		&, * {
+			color: $white;
+		}
+	}
+
+	.menu {
+		@include opacity(.9);
+
+		a {
+			&:hover {
+				@include opacity(1);
+			}
+
+			&::after {
+				content: "·";
+				padding: 0 4px 0 3px;
+				@include opacity(.7);
+			}
+
+			&:last-of-type::after {
+				content: "－";
+				@include opacity(.4);
+			}
+		}
+	}
+
+	.credit {
+
+		> * {
+			@include opacity(.3);
+		}
+
+		a {
+			@include opacity(.4);
+		}
+
+		a:hover {
+			@include opacity(.8);
+		}
+	}
 }
 
 .container {
@@ -120,6 +210,10 @@ body {
 					width: 1px;
 					height: 100%;
 				}
+			}
+
+			.item {
+				padding: 0 17px;
 			}
 		}
 	}
@@ -238,6 +332,7 @@ body {
 
 	.login.button {
 		margin-top: 12px;
+		margin-bottom: 12px;
 		height: 33px;
 		padding-top: 0.4em;
 		padding-right: 14px;

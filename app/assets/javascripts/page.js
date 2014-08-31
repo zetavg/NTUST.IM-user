@@ -1,6 +1,8 @@
 // This file will be included in each page, inside the body tag.
 //
 //= require semantic-ui
+//
+//= require_tree ./pages
 
 $(document).ready(function() {
 

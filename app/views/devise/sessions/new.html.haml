@@ -1,3 +1,9 @@
+- if session[:user_return_to].to_s.match(/^\/oauth\/authorize/)
+  :javascript
+    if (document.referrer.match(/#{Setting.app_domain}/)) {
+      window.location = "#{default_authorize_path}";
+    }
+
 .ui.vertical.center.wrapper.devise.login{style: "height: 100vh; position: absolute; top: 0;"}
   .ui.vertical.center
     .ui.fluid.form.segment.login.box
