@@ -1,6 +1,7 @@
 - if session[:user_return_to].to_s.match(/^\/oauth\/authorize/)
   :javascript
     if (document.referrer.match(/#{Setting.app_domain}/)) {
+      $('body').dimmer('show');
       window.location = "#{default_authorize_path}";
     }
 
