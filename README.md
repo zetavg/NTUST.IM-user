@@ -1,5 +1,5 @@
-NTUST.IM - User
-===============
+UAPP - Core
+=============
 
 The core user authentication & management system.
 
@@ -16,7 +16,7 @@ If the `.yml` file dosen't exists, `.yml.example` will be used. So you can confi
 ```bash
 $ bundle install --without production
 $ rake db:migrate
-$ rails s  # or `ln -s "$(pwd)" ~/.pow/user.ntust` if you're using Pow
+$ rails s  # or `ln -s "$(pwd)" ~/.pow/ntust` if you're using Pow
 ```
 
 Generate API documentations:
@@ -48,11 +48,11 @@ end
 ```
 
 
-## Setup
+## Deploy & Setup
 
-Database migration: `rake db:migrate`.
+In order to let users experience using all sub-applications as a single system, this application should be deployed at the top-level domain (your.domain) while other sub-applications deployed at the subdomains (*.your.domain).
 
-The web admin panel is located at `http://[your.domain]/admin`, default account: email `admin@dev.null` with passowrd `password`.
+The web admin panel is located at `http://[your.domain]/admin`, default account: username `admin` with passowrd `password`.
 
 - Change your administrator password.
 - Add 學院 data to `colleges` table.
