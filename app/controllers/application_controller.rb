@@ -35,11 +35,11 @@ class ApplicationController < ActionController::Base
 
   def login_control
     if current_user
-      # cookies[:user_logined] = { value: true, domain: Setting.app_domain.gsub(/^[^\.]*/, '') }
-      cookies[:user_logined] = { value: true, domain: '.' + Setting.app_domain }
+      t = Time.now.to_i.to_s
+      cookies[:login_token_gtime] = { value: t, domain: '.' + Setting.app_domain }
+      cookies[:login_token] = { value: Digest::MD5.hexdigest(Setting.site_secret_key + t + current_user.id.to_s), domain: '.' + Setting.app_domain }
     else
-      # cookies[:user_logined] = { value: false, domain: Setting.app_domain.gsub(/^[^\.]*/, '') }
-      cookies[:user_logined] = { value: false, domain: '.' + Setting.app_domain }
+      cookies[:login_token] = { value: '', domain: '.' + Setting.app_domain }
     end
   end
 end

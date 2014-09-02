@@ -1,4 +1,5 @@
 defaults: &defaults
+  site_secret_key: <%= ENV["SITE_SECRET_KEY"] %>
   app_secret_key: <%= ENV["APP_SECRET_KEY"] %>
   app_pepper: <%= ENV["APP_PEPPER"] %>
   site_name: <%= ENV["SITE_NAME"] %>
@@ -30,6 +31,7 @@ test:
 
 development:
   <<: *defaults
+  site_secret_key: 'site_secret_key_here'
   app_secret_key: 'app_secret_key_here'
   app_pepper: 'app_pepper_here'
   site_name: 'NTUST'

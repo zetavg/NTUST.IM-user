@@ -1,10 +1,3 @@
-- if session[:user_return_to].to_s.match(/^\/oauth\/authorize/)
-  :javascript
-    if (document.referrer.match(/#{Setting.app_domain}/)) {
-      $('body').dimmer('show');
-      window.location = "#{default_authorize_path}";
-    }
-
 .ui.vertical.center.wrapper.devise.login{style: "height: 100vh; position: absolute; top: 0;"}
   .ui.vertical.center
     .ui.fluid.form.segment.login.box
@@ -13,3 +6,14 @@
 
 :css
   .top.menu .login.button { display: none; }
+
+- if session[:user_return_to].to_s.match(/^\/oauth\/authorize/)
+  :javascript
+    if (document.referrer.match(/#{Setting.app_domain}/)) {
+      $('.ui.message').css('display', 'none');
+      $('.login.box').css('display', 'none');
+      $(function () {
+        $('body').dimmer('show');
+        window.location = "#{default_authorize_path}";
+      });
+    }

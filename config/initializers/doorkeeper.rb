@@ -9,6 +9,13 @@ Doorkeeper.configure do
     # Put your resource owner authentication logic here.
     # Example implementation:
     #   User.find_by_id(session[:user_id]) || redirect_to(new_user_session_url)
+    if current_user
+      t = Time.now.to_i.to_s
+      cookies[:login_token_gtime] = { value: t, domain: '.' + Setting.app_domain }
+      cookies[:login_token] = { value: Digest::MD5.hexdigest(Setting.site_secret_key + t + current_user.id.to_s), domain: '.' + Setting.app_domain }
+    else
+      cookies[:login_token] = { value: '', domain: '.' + Setting.app_domain }
+    end
     (current_user && User.confirmed.find(current_user.id)) || warden.authenticate!(:scope => :user)
   end
 
