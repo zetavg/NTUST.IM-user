@@ -21,4 +21,5 @@
             .menu
               = render 'partials/user_menu'
       - else
-        = render 'partials/facebook_login_button'
+        .hide-on-phone
+          = render 'partials/facebook_login_button'

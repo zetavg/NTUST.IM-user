@@ -231,7 +231,7 @@ a.ui.step {
 	}
 }
 
-.ui.buttons .button:hover, .ui.button:hover, .ui.buttons .active.button, .ui.button, .ui.button.active {
+.ui.buttons .button:hover, .ui.button:hover, .ui.buttons .active.button, .ui.button, .ui.button.active, .ui.buttons .l_button:hover, .ui.l_button:hover, .ui.l_buttons .active.l_button, .ui.l_button, .ui.l_button.active {
 	// @include border-radius(2px);
 	background-color: $secondary-color;
 	color: foreground-color($secondary-color);
@@ -274,6 +274,17 @@ a.ui.step {
 		&.frameless {
 			background-color: rgba(0,0,0, 0);
 			color: $white;
+			&:hover {
+				background-color: rgba(0,0,0, .1);
+			}
+		}
+	}
+	&.grey {
+		background-color: #ccc;
+		color: foreground-color(#ccc);
+		&.frameless {
+			background-color: rgba(0,0,0, 0);
+			color: #ccc;
 			&:hover {
 				background-color: rgba(0,0,0, .1);
 			}
