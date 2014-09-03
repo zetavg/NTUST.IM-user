@@ -10,3 +10,22 @@
 		margin-bottom: 320px;
 	}
 }
+
+.devise.new.user {
+
+	.login.box {
+		margin-top: 18px;
+		margin-bottom: 0;
+	}
+
+	@include tablet_ {
+		height: 100vh;
+		position: absolute !important;
+		top: 0;
+
+		.login.box {
+			margin-top: 20px;
+			margin-bottom: 320px;
+		}
+	}
+}
