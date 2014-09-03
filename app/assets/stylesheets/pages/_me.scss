@@ -10,19 +10,29 @@
 		overflow: visible;
 		@include box-shadow(0 0 64px 8px rgba(0,0,0, 1) inset);
 		@include opacity(1);
+		@include transition-property(opacity);
+		@include transition-duration(.3s);
 		display: none;
 
 		html.chrome & {
 			display: block;
 		}
 
+		html.select2-opened & {
+			@include opacity(0);
+		}
+
 		img {
 			max-width: 200%;
-			width: calc(100% + 20vw);
-			margin-bottom: -10vw;
-			margin-left: -10vw;
-			@include filter(blur(100px) brightness(1.2) contrast(1.2));
-			@include filter(blur(7vw) brightness(1.2) contrast(1.2));
+			width: calc(100% + 120px);
+			margin-bottom: -60px;
+			margin-left: -60px;
+			// @include filter(blur(100px) brightness(1.2) contrast(1.2));
+			// @include filter(blur(7vw) brightness(1.2) contrast(1.2));
+			// @include filter(blur(52px));
+			@include filter(blur(10px));
+			@include filter(blur(10px) brightness(1.1) contrast(1.1));
+			// @include filter(blur(7vw));
 		}
 
 		&::after {
@@ -121,6 +131,13 @@
 		}
 		.token {
 			width: 88px;
+		}
+	}
+
+	#s2id_user_department_id {
+
+		.select2-choice {
+			width: 100%;
 		}
 	}
 }

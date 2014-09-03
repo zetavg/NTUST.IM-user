@@ -46,6 +46,8 @@ $(document).ready(function() {
     .rating()
   ;
 
+  $('select.select2, .select2 > select').select2().on("select2-opening", function() { $('html').addClass('select2-opened'); $('html').addClass('select2-open'); }).on("select2-close", function() { $('html').removeClass('select2-open'); });
+
   $('.top.sidebar').first()
     .sidebar('attach events', '.top-sidebar-toggle-button')
   ;

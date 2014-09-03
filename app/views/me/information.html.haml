@@ -31,7 +31,8 @@
           %input{:disabled => "disabled", :value => "#{@user.admission_college_name} #{@user.admission_department_name}", :type => "text"}
         .field
           %label 科系
-          = f.select :department_id, Department.get_options, :autocomplete => :off
+          .select2
+            = f.select :department_id, Department.get_options, :autocomplete => :off
       .ui.left.floated.header
         進階資料
         %small 無論你的隱私設定為何，這裡的資料皆不會對外公開
@@ -57,7 +58,6 @@
 
 :javascript
   $(document).ready(function() {
-    $("#user_department_id").select2();
     $('input.mobile').popup({
       on: 'focus'
     });
