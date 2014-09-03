@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   belongs_to :department, primary_key: "code"
   belongs_to :admission_department, class_name: "Department", primary_key: "code"
 
-  def avator(size=100)
+  def avatar(size=100)
     'https://graph.facebook.com/' + fbid.to_s + '/picture?width=' + size.to_s + '&height=' + size.to_s
   end
 
@@ -42,6 +42,10 @@ class User < ActiveRecord::Base
       user.name = name if name
     end
     user.fbtoken = auth.credentials.token
+    get_info_connection = HTTParty.get("https://graph.facebook.com/me?access_token=#{auth.credentials.token}&locale=#{I18n.locale}")
+    user.fblink = JSON.parse(get_info_connection.parsed_response)['link']
+    get_avatar_connection = HTTParty.get('https://graph.facebook.com/10201633297353809/picture?width=500&height=500&redirect=false')
+    user.avatar = JSON.parse(get_avatar_connection.parsed_response)['data']['url']
     user.save
     return user
   end

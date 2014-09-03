@@ -1,7 +1,7 @@
 .container.me
   .ui.grid.overview
     .three.wide.column.avator
-      = link_to image_tag(current_user.avator(500)), "https://facebook.com/#{current_user.fbid}", target: '_blank'
+      = link_to image_tag(current_user.avatar(512)), "https://facebook.com/#{current_user.fbid}", target: '_blank'
     .thirteen.wide.column.info
       .h1.name= current_user.name
       %p #{current_user.admission_year} #{current_user.department_name}

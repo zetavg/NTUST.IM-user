@@ -24,7 +24,7 @@
   .user.show-on-phone
     - if current_user
       .about
-        .ui.avatar.image= image_tag current_user.avator(100)
+        .ui.avatar.image= image_tag current_user.avatar(100)
         .name= current_user.name
       .menu
         = render 'partials/user_menu'
