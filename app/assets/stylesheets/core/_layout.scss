@@ -29,6 +29,10 @@ body {
 	}
 }
 
+.flash_messages {
+	@include z-index('flash_messages');
+}
+
 body > .wrapper {
 	background-color: $base-body-backgroundColor;
 }

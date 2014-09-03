@@ -1,0 +1,3 @@
+- apps_navigation.each do |app|
+  - if app['enabled']
+    %a.item{href: app.url}= app.name
