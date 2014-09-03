@@ -47,10 +47,13 @@ body > .wrapper > .main {
 	min-height: calc(100vh - #{$top-menu-height + $footer-height});
 	box-sizing: border-box;
 	padding-bottom: 20px;
+	margin-bottom: $footer-height;
 }
 
 body > .wrapper > .footer {
 	@include z-index(footer);
+	position: absolute;
+	bottom: 0;
 	height: $footer-height;
 	background-color: #333;
 

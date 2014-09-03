@@ -389,6 +389,11 @@ a.ui.step {
 
 body> .wrapper > * {
 	position: relative;
+	@include transition-property(left, right, -webkit-transform);
+	@include transition-property(left, right, -moz-transform);
+	@include transition-property(left, right, -ms-transform);
+	@include transition-property(left, right, -o-transform);
+	@include transition-property(left, right, transform);
 	@include transition-property(left, right, -webkit-transform, -moz-transform, -ms-transform, -o-transform, transform);
 	@include transition-duration(.5s);
 	left: 0;
@@ -411,6 +416,13 @@ body.pushed.left > .wrapper > * {
 }
 
 .ui.left.sidebar {
+	position: absolute;
+	position: fixed;
+	@include transition-property(left, right, -webkit-transform);
+	@include transition-property(left, right, -moz-transform);
+	@include transition-property(left, right, -ms-transform);
+	@include transition-property(left, right, -o-transform);
+	@include transition-property(left, right, transform);
 	@include transition-property(left, right, -webkit-transform, -moz-transform, -ms-transform, -o-transform, transform);
 	@include transition-duration(.5s);
 	// @include transition-delay(.5s);
@@ -423,7 +435,6 @@ body.pushed.left > .wrapper > * {
 		@include translateX(0);
 	}
 }
-
 
 @include not-desktop {
 
@@ -440,6 +451,7 @@ body.pushed.left > .wrapper > * {
 
 	.ui.apps.left.sidebar {
 		@include transform(translateX(-240px) translateY(100%));
+		// margin-bottom: -100%;
 		// @include transition-delay(.5s);
 		padding-top: 7px;
 

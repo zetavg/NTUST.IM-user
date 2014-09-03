@@ -19,6 +19,7 @@
 //= require nprogress-turbolinks
 //= require select2
 //
+//= require lib/deviceClasses
 //= require lib/regexWithNamedCapturingGroup
 //= require lib/jquery.getCursorPosition
 //= require lib/jquery.caret

@@ -8,15 +8,21 @@
 		bottom: 0;
 		width: 100%;
 		overflow: visible;
-		@include opacity(.9);
+		@include box-shadow(0 0 64px 8px rgba(0,0,0, 1) inset);
+		@include opacity(1);
+		display: none;
+
+		html.chrome & {
+			display: block;
+		}
 
 		img {
 			max-width: 200%;
-			width: 118%;
-			margin-bottom: -9%;
-			margin-left: -9%;
-			@include filter(blur(100px));
-			@include filter(blur(7vw));
+			width: calc(100% + 20vw);
+			margin-bottom: -10vw;
+			margin-left: -10vw;
+			@include filter(blur(100px) brightness(1.2) contrast(1.2));
+			@include filter(blur(7vw) brightness(1.2) contrast(1.2));
 		}
 
 		&::after {
@@ -27,7 +33,7 @@
 			height: 120%;
 			top: -10%;
 			left: -10%;
-			@include background-image(linear-gradient(top, rgba($base-body-backgroundColor, 1) 0%, rgba($base-body-backgroundColor, 1) 10%, rgba($base-body-backgroundColor, .1) 80%, rgba($base-body-backgroundColor, 0) 100%));
+			@include background-image(linear-gradient(top, rgba($base-body-backgroundColor, 1) 0%, rgba($base-body-backgroundColor, 1) 32%, rgba($base-body-backgroundColor, .1) 80%, rgba($base-body-backgroundColor, 0) 100%));
 		}
 	}
 
