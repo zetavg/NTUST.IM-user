@@ -1,4 +1,6 @@
 ActiveAdmin.register Admin do
+  menu priority: 1000, label: "系統管理員帳號"
+
   permit_params :username, :email, :password, :password_confirmation
 
   index do

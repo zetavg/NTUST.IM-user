@@ -41,7 +41,7 @@ class Api::V1::OauthApiController < ApplicationController
   def is_admin?
     admin = false
     if doorkeeper_token.scopes.include?('admin')
-      if doorkeeper_token.application.owner.admin?
+      if doorkeeper_token.application.admin_app?
         admin = true
       end
     end

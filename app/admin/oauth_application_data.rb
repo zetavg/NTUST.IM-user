@@ -1,6 +1,5 @@
 ActiveAdmin.register OauthApplicationData do
-
-  menu priority: 90
+  menu priority: 51, label: "應用程式資料", parent: "應用程式"
 
   permit_params :sms_quota
 

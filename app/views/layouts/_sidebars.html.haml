@@ -4,7 +4,7 @@
     - apps_navigation.each do |app|
       .app{style: "background-color: #{app['color']}; width : #{width}"}
         - if app['enabled']
-          %a.item.ui.has-popup{'data-content' => app['description'], :href => app['url']}
+          %a.item.ui.has-popup{'data-content' => app['description'], :href => app['url'], :target => ('_blank' if app['cross_domin'])}
             - if app['icon'].to_s != ''
               .icon= image_tag app['icon']
             .name= app['name']
@@ -37,7 +37,7 @@
 .ui.left.inverted.thin.apps.sidebar.vertical.menu
   - apps_menu.each do |app|
     - if app['enabled']
-      %a.item.ui.has-popup{'data-content' => app['description'], :href => app['url']}
+      %a.item.ui.has-popup{'data-content' => app['description'], :href => app['url'], :target => ('_blank' if app['cross_domin'])}
         - if app['icon'].to_s != ''
           / .icon= image_tag app['icon']
         .name= app['name']

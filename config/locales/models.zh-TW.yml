@@ -1,0 +1,9 @@
+zh-TW:
+  activerecord:
+    models:
+      user: "使用者"
+      admin: "系統管理員"
+      site_navigation: "網站導覽"
+      college: "學院資料"
+      department: "系所資料"
+      doorkeeper_application: "應用程式"

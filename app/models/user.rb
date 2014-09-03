@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :fbid
   validates :name, :gender, :presence => true
   scope :confirmed, -> { where("confirmed_at IS NOT NULL") }
+  scope :unconfirmed, -> { where("confirmed_at IS NULL") }
 
   has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner
   belongs_to :department, primary_key: "code"

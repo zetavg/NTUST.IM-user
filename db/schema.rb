@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140903135744) do
+ActiveRecord::Schema.define(version: 20140903161849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,22 +52,6 @@ ActiveRecord::Schema.define(version: 20140903135744) do
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
   add_index "admins", ["unlock_token"], name: "index_admins_on_unlock_token", unique: true, using: :btree
   add_index "admins", ["username"], name: "index_admins_on_username", unique: true, using: :btree
-
-  create_table "applications", force: true do |t|
-    t.string   "url"
-    t.string   "name"
-    t.string   "icon"
-    t.text     "description"
-    t.string   "color"
-    t.integer  "priority",           default: 99999, null: false
-    t.boolean  "show_in_navigation", default: false, null: false
-    t.boolean  "show_in_menu",       default: false, null: false
-    t.boolean  "enabled",            default: false, null: false
-    t.string   "login_url"
-    t.string   "logout_url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "colleges", force: true do |t|
     t.string   "code"
@@ -142,6 +126,32 @@ ActiveRecord::Schema.define(version: 20140903135744) do
 
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
+
+  create_table "settings", force: true do |t|
+    t.string   "var",                   null: false
+    t.text     "value"
+    t.integer  "thing_id"
+    t.string   "thing_type", limit: 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
+
+  create_table "site_navigations", force: true do |t|
+    t.string   "url"
+    t.string   "name"
+    t.string   "icon"
+    t.text     "description"
+    t.string   "color"
+    t.integer  "priority",           default: 99999, null: false
+    t.boolean  "show_in_navigation", default: false, null: false
+    t.boolean  "show_in_menu",       default: false, null: false
+    t.boolean  "enabled",            default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "cross_domin"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                       default: "",    null: false

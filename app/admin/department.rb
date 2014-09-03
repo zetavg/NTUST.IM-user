@@ -1,17 +1,14 @@
 ActiveAdmin.register Department do
+  menu priority: 111, parent: "資料集"
 
-  menu priority: 40
-
-  permit_params :college, :code, :name
+  permit_params :college_id, :code, :name
 
   index do
     selectable_column
     id_column
-    column :college
     column :code
     column :name
-    column :created_at
-    column :updated_at
+    column :college
     actions
   end
 end

@@ -24,7 +24,7 @@ Doorkeeper.configure do
     # Put your admin authentication logic here.
     # Example implementation:
     # Admin.find_by_id(session[:admin_id]) || redirect_to(new_admin_session_url)
-    User.find_by_id(current_user.id) || redirect_to(root_path)
+    (current_user && User.find_by_id(current_user.id)) || (current_admin && Admin.find_by_id(current_admin.id)) || redirect_to(root_path)
     # User.where(["admin = ?", true]).find_by_id(current_user.id) || redirect_to(root_path)
   end
 
@@ -92,7 +92,7 @@ Doorkeeper.configure do
   #   client.superapp? or resource_owner.admin?
   # end
   skip_authorization do |resource_owner, client|
-    client.application.owner.admin?
+    client.application.admin_app?
   end
 
   # WWW-Authenticate Realm (default "Doorkeeper").
@@ -102,4 +102,15 @@ Doorkeeper.configure do
   # Some applications require dynamic query parameters on their request_uri
   # set to true if you want this to be allowed
   wildcard_redirect_uri true
+end
+
+class Doorkeeper::Application < ActiveRecord::Base
+  scope :user_apps, -> { where("owner_type = ?", 'User') }
+  scope :admin_apps, -> { where("owner_type = ?", 'Admin') }
+
+  has_one :data, class_name: "OauthApplicationData", foreign_key: "application_id"
+
+  def admin_app?
+    (!!owner && owner_type == 'User' && owner.admin?) || owner_type == 'Admin'
+  end
 end

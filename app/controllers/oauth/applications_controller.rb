@@ -6,11 +6,11 @@ class Oauth::ApplicationsController < Doorkeeper::ApplicationsController
   end
 
   def index
-    if current_user.admin?
-      @applications = Doorkeeper::Application.all
-    else
+    # if current_user.admin?
+    #   @applications = Doorkeeper::Application.all
+    # else
       @applications = current_user.oauth_applications
-    end
+    # end
   end
 
   def create

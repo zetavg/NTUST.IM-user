@@ -46,6 +46,7 @@ ActiveAdmin.setup do |config|
   #
   # This will ONLY change the title for the admin section. Other
   # namespaces will continue to use the main "site_title" configuration.
+  config.default_namespace = :admin
 
   # == User Authentication
   #
@@ -121,7 +122,7 @@ ActiveAdmin.setup do |config|
   # config.allow_comments = false
   #
   # You can disable the menu item for the comments index page:
-  # config.show_comments_in_menu = false
+  config.show_comments_in_menu = false
   #
   # You can change the name under which comments are registered:
   # config.comments_registration_name = 'AdminComment'
@@ -241,3 +242,14 @@ ActiveAdmin.setup do |config|
   # config.filters = true
 
 end
+
+module ActiveAdmin
+   module Views
+    class IndexAsDetailedTable < ActiveAdmin::Views::IndexAsTable
+
+       def self.index_name
+         "detailed_table"
+       end
+     end
+   end
+ end

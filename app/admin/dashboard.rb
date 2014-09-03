@@ -31,25 +31,31 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
       column do
-        panel "Recent Register Users" do
-          table_for User.order("created_at DESC").limit(10) do
+        panel "Recent Signed-In Users" do
+          table_for User.where('current_sign_in_at IS NOT NULL').order("current_sign_in_at DESC").limit(10) do
             column("Name") { |user| link_to(user.name, admin_user_path(user)) }
             column("Fbid") { |user| link_to(user.fbid, "https://facebook.com/#{user.fbid}", :target => "_blank") }
-            column("Email") { |user| user.email }
-            column("Created At") { |user| user.created_at }
-            column("Updated At") { |user| user.updated_at }
-            column("IP") { |user| user.current_sign_in_ip }
-          end
-        end
-        panel "Recent Login Users" do
-          table_for User.order("current_sign_in_at DESC").limit(10) do
-            column("Name") { |user| link_to(user.name, admin_user_path(user)) }
-            column("Fbid") { |user| link_to(user.fbid, "https://facebook.com/#{user.fbid}", :target => "_blank") }
-            column("Email") { |user| user.email }
-            column("Current Sign In At") { |user| user.current_sign_in_at }
+            column("SID") { |user| user.student_id }
+            column("Current Sign In") { |user| user.current_sign_in_at && distance_of_time_in_words_to_now(user.current_sign_in_at) }
             column("Sign In Count") { |user| user.sign_in_count }
             column("IP") { |user| user.current_sign_in_ip }
             column("Last Sign In Ip") { |user| user.last_sign_in_ip }
+          end
+        end
+        panel "Recent Registered Users" do
+          table_for User.order("created_at DESC").limit(10) do
+            column("Name") { |user| link_to(user.name, admin_user_path(user)) }
+            column("Fbid") { |user| link_to(user.fbid, "https://facebook.com/#{user.fbid}", :target => "_blank") }
+            column("SID") { |user| user.student_id }
+            column("Created At") { |user| user.created_at }
+            column("Confirmed") do |user|
+              if !!user.confirmed_at
+                status_tag('Yes', :class => 'yes')
+              else
+                status_tag('No', :class => 'no')
+              end
+            end
+            column("IP") { |user| user.current_sign_in_ip }
           end
         end
       end

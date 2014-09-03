@@ -8,3 +8,5 @@ $(document).ready ->
     setTimeout (->
       $("select.select2").select2 placeholder: "Select..."
     ), 100
+
+  $("select").select2()

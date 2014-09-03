@@ -37,7 +37,7 @@ class Api::V1::DataApiController < ApplicationController
   end
 
   def site_navigation
-    render json: Application.nav
+    render json: SiteNavigation.nav
   end
 
   swagger_api :site_menu do
@@ -46,6 +46,6 @@ class Api::V1::DataApiController < ApplicationController
   end
 
   def site_menu
-    render json: Application.menu
+    render json: SiteNavigation.menu
   end
 end

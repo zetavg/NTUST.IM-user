@@ -40,10 +40,12 @@ gem 'unicorn'
 # gem 'debugger', group: [:development, :test]
 
 gem 'settingslogic', '~> 2.0.9'
+gem 'rails-settings-cached', '0.4.1'
 
 gem 'haml'
 gem 'haml-rails', '~> 0.5.3'
 gem 'markdown-rails'
+gem 'redcarpet', '~> 3.1.2'
 
 gem 'normalize-rails', '>= 3.0.1'
 gem 'semantic-ui-sass', '>=  0.16.1.0'

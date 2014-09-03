@@ -135,7 +135,7 @@ class Api::V1::UserApiController < ApplicationController
     admin = false
     a = Doorkeeper::Application.where(["uid = ? and secret = ?", params['application_id'].tr('^A-Za-z0-9', ''), params['secret'].tr('^A-Za-z0-9', '')]).first
     if a
-      if a.owner.admin?
+      if a.admin_app?
         admin = true
       end
     end
