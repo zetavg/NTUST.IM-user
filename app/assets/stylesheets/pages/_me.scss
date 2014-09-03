@@ -1,10 +1,42 @@
 .me {
 
+	.background {
+		position: absolute;
+		z-index: 0;
+		z-index: -1;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		overflow: visible;
+		@include opacity(.9);
+
+		img {
+			max-width: 200%;
+			width: 118%;
+			margin-bottom: -9%;
+			margin-left: -9%;
+			@include filter(blur(100px));
+			@include filter(blur(7vw));
+		}
+
+		&::after {
+			content: '';
+			display: block;
+			position: absolute;
+			width: 120%;
+			height: 120%;
+			top: -10%;
+			left: -10%;
+			@include background-image(linear-gradient(top, rgba($base-body-backgroundColor, 1) 0%, rgba($base-body-backgroundColor, 1) 10%, rgba($base-body-backgroundColor, .1) 80%, rgba($base-body-backgroundColor, 0) 100%));
+		}
+	}
+
 	.ui.paper {
 		overflow: visible;
 	}
 
 	.overview {
+		@include text-shadow(0 0 36px rgba($base-body-backgroundColor, .8), 0 0 7px rgba($base-body-backgroundColor, 0.4));
 
 		.icons {
 			font-size: rem(20px);

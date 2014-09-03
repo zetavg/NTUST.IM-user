@@ -42,10 +42,11 @@ class User < ActiveRecord::Base
       user.name = name if name
     end
     user.fbtoken = auth.credentials.token
-    get_info_connection = HTTParty.get("https://graph.facebook.com/me?access_token=#{auth.credentials.token}&locale=#{I18n.locale}")
-    user.fblink = JSON.parse(get_info_connection.parsed_response)['link']
-    get_avatar_connection = HTTParty.get('https://graph.facebook.com/10201633297353809/picture?width=500&height=500&redirect=false')
-    user.avatar = JSON.parse(get_avatar_connection.parsed_response)['data']['url']
+    get_info_connection = HTTParty.get("https://graph.facebook.com/me?fields=id,name,link,picture.height(500).width(500),cover,devices&access_token=#{auth.credentials.token}&locale=#{I18n.locale}")
+    info = JSON.parse(get_info_connection.parsed_response)
+    user.fblink = info['link']
+    user.fbcover = info['cover']['source']
+    user.avatar = info['picture']['data']['url']
     user.save
     return user
   end
@@ -74,6 +75,7 @@ class User < ActiveRecord::Base
     end
     if scopes.include?('facebook') || admin
       userdata['fbid'] = self.fbid
+      userdata['fbcover'] = self.fbcover
     end
     if scopes.include?('profile') || admin
       userdata['brief'] = self.brief
