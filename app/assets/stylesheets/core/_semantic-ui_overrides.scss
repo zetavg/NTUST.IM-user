@@ -389,10 +389,15 @@ a.ui.step {
 
 body> .wrapper > * {
 	position: relative;
-	@include transition-property(left, right);
+	@include transition-property(left, right, -webkit-transform, -moz-transform, -ms-transform, -o-transform, transform);
 	@include transition-duration(.5s);
 	left: 0;
 	right: 0;
+}
+
+body.pushed.top {
+	margin: 0 !important;
+	@include translateY(100px);
 }
 
 body.pushed.left {
@@ -400,18 +405,55 @@ body.pushed.left {
 }
 
 body.pushed.left > .wrapper > * {
-	left: 240px !important;
-	right: -240px !important;
+	// left: 240px !important;
+	// right: -240px !important;
+	@include translateX(240px);
 }
 
 .ui.left.sidebar {
+	@include transition-property(left, right, -webkit-transform, -moz-transform, -ms-transform, -o-transform, transform);
 	@include transition-duration(.5s);
 	// @include transition-delay(.5s);
 	width: 240px !important;
-	margin-left: -240px !important;
+	// margin-left: -240px !important;
+	margin-left: 0 !important;
+	@include translateX(-240px);
 
 	&.active {
-		margin-left: 0 !important;
+		@include translateX(0);
+	}
+}
+
+
+@include not-desktop {
+
+	.ui.mobile.left.sidebar {
+
+		body.pushed.left & {
+			@include transform(translateX(0) translateY(-100%));
+
+			&.active {
+				@include transform(translateX(0) translateY(0));
+			}
+		}
+	}
+
+	.ui.apps.left.sidebar {
+		@include transform(translateX(-240px) translateY(100%));
+		// @include transition-delay(.5s);
+		padding-top: 7px;
+
+		body.pushed.left & {
+			@include transform(translateX(0) translateY(100%));
+			@include transition-duration(0);
+			@include transition-delay(0);
+
+			&.active {
+				@include transform(translateX(0) translateY(0));
+				@include transition-duration(.5s);
+				@include transition-delay(0);
+			}
+		}
 	}
 }
 

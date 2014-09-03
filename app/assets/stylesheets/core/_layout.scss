@@ -448,7 +448,7 @@ body > .wrapper > .footer {
 }
 
 .mobile.sidebar {
-	background-color: darken($primary-color, 20%);
+	background-color: darken($primary-color, 2%) !important;
 
 	.user {
 		width: 100%;
@@ -521,6 +521,7 @@ body > .wrapper > .footer {
 
 
 .apps.sidebar {
+	background-color: darken($primary-color, 10%) !important;
 
 	.name {
 		font-size: rem(24px);

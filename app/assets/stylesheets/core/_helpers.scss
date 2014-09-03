@@ -127,6 +127,12 @@
 	}
 }
 
+@mixin not-desktop {
+	@media screen and (max-width: 991px) {
+		@content;
+	}
+}
+
 @mixin desktop {
 	@media screen and (min-width: 992px) {
 		@content;
