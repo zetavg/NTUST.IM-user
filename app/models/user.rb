@@ -45,8 +45,8 @@ class User < ActiveRecord::Base
     get_info_connection = HTTParty.get("https://graph.facebook.com/me?fields=id,name,link,picture.height(500).width(500),cover,devices&access_token=#{auth.credentials.token}&locale=#{I18n.locale}")
     info = JSON.parse(get_info_connection.parsed_response)
     user.fblink = info['link']
-    user.fbcover = info['cover']['source']
-    user.avatar = info['picture']['data']['url']
+    user.fbcover = info['cover'] && info['cover']['source']
+    user.avatar = info['picture'] && info['picture']['data'] && info['picture']['data']['url']
     user.save
     return user
   end
