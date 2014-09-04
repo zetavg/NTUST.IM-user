@@ -10,7 +10,7 @@ class Api::V1::DataApiController < ApplicationController
   end
 
   def departments
-    render json: Department.all.select('code', 'name')
+    render json: Department.all.select('code', 'name').map { |hash| hash.attributes.select { |k, v| ['code', 'name'].include? k } }
   end
 
   swagger_api :site_data do
@@ -37,7 +37,7 @@ class Api::V1::DataApiController < ApplicationController
   end
 
   def site_navigation
-    render json: SiteNavigation.nav
+    render json: SiteNavigation.nav.map { |hash| hash.attributes.select { |k, v| ['name', 'url', 'icon', 'description', 'color', 'priority', 'enabled', 'cross_domin'].include? k } }
   end
 
   swagger_api :site_menu do
@@ -46,6 +46,6 @@ class Api::V1::DataApiController < ApplicationController
   end
 
   def site_menu
-    render json: SiteNavigation.menu
+    render json: SiteNavigation.menu.map { |hash| hash.attributes.select { |k, v| ['name', 'url', 'icon', 'description', 'color', 'priority', 'enabled', 'cross_domin'].include? k } }
   end
 end
