@@ -1,0 +1,93 @@
+// *************************************
+//
+//   Default Settings
+//
+// *************************************
+
+// -------------------------------------
+//   @font-face
+// -------------------------------------
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,700,900,500,100,300,400italic);
+
+// -------------------------------------
+//   Variables
+// -------------------------------------
+
+// ----- Layouts ----- //
+
+// Z-index
+
+$zIndex-elements: backstage,
+                    hero_content,
+                  background,
+                  shadow,
+                  container,
+                  main_background,
+                  main,
+                    main_content,
+                    main_special,
+                  footer,
+                    footer_content,
+                  flash_messages,
+                  ngprogress,
+                  header,
+                    header_content,
+                  top_menu,
+                    top_menu_content,
+                  trigger;
+
+// ----- Colors ----- //
+
+$black: #333 !default;
+$white: #fff !default;
+$red: #d01716 !default;
+$orange: #e64a19 !default;
+$yellow: #ffeb3b !default;
+$green: #259b24 !default;
+$teal: #009688 !default;
+$blue: #455ede !default;
+$light-blue: #3f51b5 !default;
+$purple: #9c27b0 !default;
+$violet: #673ab7 !default;
+
+$primary-color: <%= (ENV["APP_PRIMARY_COLOR"].to_s != '' && ENV["APP_PRIMARY_COLOR"]) || '$black' %> !default;
+$secondary-color: <%= (ENV["APP_SECONDARY_COLOR"].to_s != '' && ENV["APP_SECONDARY_COLOR"]) || '$blue' %> !default;
+$tertiary-colour: <%= (ENV["APP_TERTIARY_COLOUR"].to_s != '' && ENV["APP_TERTIARY_COLOUR"]) || '$orange' %> !default;
+
+// ----- Base Colors ----- //
+
+$base-backgroundColor: $white !default;
+$base-body-backgroundColor: darken($base-backgroundColor, 10%) !default;
+$base-color: #222222 !default;
+$base-light-color: #fff !default;
+$base-dark-color: #222222 !default;
+$base-link-color: $secondary-color !default;
+
+// ----- Base Borders & Box Shadows ----- //
+
+$base-border: 1px solid $base-color !default;
+$base-borderRadius: 3px !default;
+$base-boxShadow: 0 1px 2px rgba($base-color, 0.25) !default;
+
+// ----- Base Typography ----- //
+
+$base-fontFamily: "Roboto", "Helvetica Neue", "Helvetica", "Arial", "Droid Arabic Kufi", "Droid Sans", sans-serif !default;
+$base-fontSize: 16px !default;
+$base-lineHeight: 1.5 !default;
+
+// ----- Base Layout ----- //
+
+$base-whitespace: 20px !default;
+$base-content-maxWidth: 80rem !default;
+$base-content-padding: 16px !default;
+
+// ----- Layout ----- //
+
+$top-menu-height: 58px !default;
+$footer-height: 40px !default;
+$button-borderRadius: 3px !default;
+$item-borderRadius: 2px !default;
+$segment-borderRadius: 2px !default;
+$modal-borderRadius: 2px !default;
+$dimmer-backgroundColor: rgba(0,0,0, .32) !default;
