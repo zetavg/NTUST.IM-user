@@ -86,4 +86,6 @@ end
 gem 'rails_12factor', group: :production
 gem 'rb-readline', '~> 0.5.1'
 
+gem 'newrelic_rpm'
+
 ruby "2.0.0"
