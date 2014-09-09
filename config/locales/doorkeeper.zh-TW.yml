@@ -30,7 +30,9 @@ zh-TW:
     scopes:
       public: '查看您公開的基本資訊'
       email: '取得您的學校 email 信箱'
-      facebook: '取得您的 Facebook 帳號'
+      facebook: '取得您的 Facebook 帳號資料'
+      friends: '查看您的好友名單'
+      notification: '傳送通知給您'
       school: '取得您的學籍資料'
       profile: '取得您的個人資料'
       sms: '傳送簡訊給您 (但不會得知您的手機號碼)'

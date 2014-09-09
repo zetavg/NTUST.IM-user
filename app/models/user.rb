@@ -96,6 +96,13 @@ class User < ActiveRecord::Base
       userdata['fbid'] = self.fbid
       userdata['fbcover'] = self.fbcover
     end
+    if scopes.include?('friends') || admin
+      if admin
+        userdata['friends'] = self.friends.select(:id, :name, :mobile, :email, :fbid, :gender, :student_id, :identity, :admission_year, :admission_department_id, :department_id, :fblink, :fbcover).map { |f| {id: f[:id], uid: f[:id], name: f[:name], email: f[:email], fbid: f[:fbid], gender: f[:gender], student_id: f[:student_id], identity: f[:identity], admission_year: f[:admission_year], admission_department_id: f[:admission_department_id], department_id: f[:department_id], fblink: f[:fblink], fbcover: f[:fbcover], mobile_verified: f.mobile? } }
+      else
+        userdata['friends'] = self.friends.select(:id, :name, :mobile).map { |f| {id: f[:id], uid: f[:id], name: f[:name], mobile_verified: f.mobile? } }
+      end
+    end
     if scopes.include?('profile') || admin
       userdata['brief'] = self.brief
     end
