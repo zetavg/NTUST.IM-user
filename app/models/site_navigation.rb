@@ -15,12 +15,12 @@ class SiteNavigation < ActiveRecord::Base
   end
 
   def update_cache
-    Rails.cache.write("site_navigation_nav", SiteNavigation.scope_nav.to_a)
-    Rails.cache.write("site_navigation_menu", SiteNavigation.scope_menu.to_a)
+    Rails.cache.write("site_navigation_nav", SiteNavigation.scope_nav.to_a.map { |hash| hash.attributes.select { |k, v| ['name', 'url', 'icon', 'description', 'color', 'priority', 'enabled', 'cross_domin'].include? k } })
+    Rails.cache.write("site_navigation_menu", SiteNavigation.scope_menu.to_a.map { |hash| hash.attributes.select { |k, v| ['name', 'url', 'icon', 'description', 'color', 'priority', 'enabled', 'cross_domin'].include? k } })
   end
 
   def self.update_cache
-    Rails.cache.write("site_navigation_nav", SiteNavigation.scope_nav.to_a)
-    Rails.cache.write("site_navigation_menu", SiteNavigation.scope_menu.to_a)
+    Rails.cache.write("site_navigation_nav", SiteNavigation.scope_nav.to_a.map { |hash| hash.attributes.select { |k, v| ['name', 'url', 'icon', 'description', 'color', 'priority', 'enabled', 'cross_domin'].include? k } })
+    Rails.cache.write("site_navigation_menu", SiteNavigation.scope_menu.to_a.map { |hash| hash.attributes.select { |k, v| ['name', 'url', 'icon', 'description', 'color', 'priority', 'enabled', 'cross_domin'].include? k } })
   end
 end

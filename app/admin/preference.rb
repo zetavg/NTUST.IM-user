@@ -10,6 +10,12 @@ ActiveAdmin.register_page "Preference" do
           ol do
 
             li do
+              label '維修模式'
+              f.input :id => "cb-maintenance_mode", :type => 'checkbox', :onchange => "if (this.checked) { document.getElementById('ip-maintenance_mode').value = 'true'; } else { document.getElementById('ip-maintenance_mode').value = 'false'; }", "#{Preference.maintenance_mode ? 'checked' : 'not_checked'}" => ('checked' if Preference.maintenance_mode)
+              f.input :name => "data[maintenance_mode]", :id => "ip-maintenance_mode", :type => 'hidden'
+            end
+
+            li do
               label 'LOGO (可以是圖片網址、或是 svg 向量圖)'
               f.textarea :name => "data[app_logo]" do
                 Preference.app_logo
@@ -37,6 +43,8 @@ ActiveAdmin.register_page "Preference" do
 
   page_action :update, :method => :post do
     params['data'].each do |k, v|
+      v = true if v.to_s == 'true'
+      v = false if v.to_s == 'false'
       Preference[k] = v
     end
     redirect_to :back, :notice => "設定已更新"

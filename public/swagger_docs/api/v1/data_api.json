@@ -5,6 +5,17 @@
   "resourcePath": "data_api",
   "apis": [
     {
+      "path": "api/v1/colleges.json",
+      "operations": [
+        {
+          "summary": "學院代碼",
+          "notes": "取得學院及代碼資料。",
+          "method": "get",
+          "nickname": "Api::V1::DataApi#colleges"
+        }
+      ]
+    },
+    {
       "path": "api/v1/departments.json",
       "operations": [
         {
