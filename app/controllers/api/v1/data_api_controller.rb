@@ -51,6 +51,9 @@ class Api::V1::DataApiController < ApplicationController
 
     data['site_logo'] = Preference['app_logo']
 
+    data['colleges_data'] = College.all.select('code', 'name').map { |hash| hash.attributes.select { |k, v| ['code', 'name'].include? k } }
+    data['departments_data'] = Department.all.select('code', 'name').map { |hash| hash.attributes.select { |k, v| ['code', 'name'].include? k } }
+
     render json: data
   end
 

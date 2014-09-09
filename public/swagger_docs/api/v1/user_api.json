@@ -22,7 +22,7 @@
               "paramType": "query",
               "name": "secret",
               "type": "string",
-              "description": "應用程式秘鑰",
+              "description": "應用程式密鑰",
               "required": true
             },
             {
@@ -66,7 +66,7 @@
               "paramType": "query",
               "name": "secret",
               "type": "string",
-              "description": "應用程式秘鑰",
+              "description": "應用程式密鑰",
               "required": true
             },
             {
@@ -110,7 +110,7 @@
               "paramType": "form",
               "name": "secret",
               "type": "string",
-              "description": "應用程式秘鑰",
+              "description": "應用程式密鑰",
               "required": true
             },
             {
@@ -173,7 +173,7 @@
               "paramType": "query",
               "name": "secret",
               "type": "string",
-              "description": "應用程式秘鑰",
+              "description": "應用程式密鑰",
               "required": true
             },
             {
@@ -203,6 +203,136 @@
           ],
           "method": "get",
           "nickname": "Api::V1::UserApi#list_users"
+        }
+      ]
+    },
+    {
+      "path": "api/v1/find_user.json",
+      "operations": [
+        {
+          "summary": "條件尋找使用者",
+          "notes": "僅供 admin 使用。尋找條件參數擇一填寫。",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "application_id",
+              "type": "string",
+              "description": "應用程式 ID",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "secret",
+              "type": "string",
+              "description": "應用程式密鑰",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "fbid",
+              "type": "string",
+              "description": "Facebook ID",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "sid",
+              "type": "string",
+              "description": "學號",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "name",
+              "type": "string",
+              "description": "名稱",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "email",
+              "type": "string",
+              "description": "email",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "message": "Not Found 沒有此使用者"
+            }
+          ],
+          "method": "get",
+          "nickname": "Api::V1::UserApi#find_user"
+        }
+      ]
+    },
+    {
+      "path": "api/v1/find_user.json",
+      "operations": [
+        {
+          "summary": "條件尋找使用者",
+          "notes": "僅供 admin 使用。尋找條件參數擇一填寫。",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "application_id",
+              "type": "string",
+              "description": "應用程式 ID",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "secret",
+              "type": "string",
+              "description": "應用程式密鑰",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "fbid",
+              "type": "string",
+              "description": "Facebook ID",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "sid",
+              "type": "string",
+              "description": "學號",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "name",
+              "type": "string",
+              "description": "名稱",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "email",
+              "type": "string",
+              "description": "email",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "message": "Not Found 沒有此使用者"
+            }
+          ],
+          "method": "post",
+          "nickname": "Api::V1::UserApi#find_user"
         }
       ]
     }

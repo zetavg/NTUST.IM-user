@@ -1,42 +1,43 @@
-.div{style: "max-width: 960px; margin: auto; margin-top: 20px;"}
+.container
+  .div{style: "max-width: 960px; margin: auto; margin-top: 20px;"}
 
-  .container
-    %h1 API Documents
-    .markdown
-      :markdown
-        本系統提供 OAuth 2.0 認證協定以及相關使用者資源 API 供開發者存取，可用於各平台應用程式之開發，並提供服務予使用者。
+    .container.ui.paper
+      %h1 API Documents
+      .markdown
+        :markdown
+          本系統提供 OAuth 2.0 認證協定以及相關使用者資源 API 供開發者存取，可用於各平台應用程式之開發，並提供服務予使用者。
 
-        應用程式 ID 與密鑰可由 [oauth/applications/](/oauth/applications/) 產生，若需要取得 access token 做測試，可以用此網址手動取得授權： <code>#{Setting.app_url}oauth/authorize?client\_id=<span style="color: #dd1144;">應用程式ID</span>&redirect\_uri=<span style="color: #dd1144;">redirect\_uri</span>&response\_type=token&scope=<span style="color: #dd1144;">scope1+scope2</span></code> (access_token 會出現在網址列)。
+          應用程式 ID 與密鑰可由 [oauth/applications/](/oauth/applications/) 產生，若需要取得 access token 做測試，可以用此網址手動取得授權： <code>#{Setting.app_url}oauth/authorize?client\_id=<span style="color: #dd1144;">應用程式ID</span>&redirect\_uri=<span style="color: #dd1144;">redirect\_uri</span>&response\_type=token&scope=<span style="color: #dd1144;">scope1+scope2</span></code> (access_token 會出現在網址列)。
 
-        可用的 OAuth scope 如下:
+          可用的 OAuth scope 如下:
 
-        - `public`: 取得使用者 ID 和姓名 (預設)
-        - `email`: 取得學校 email 信箱
-        - `facebook`: 取得 Facebook 帳號與 Facebook 相關資料
-        - `friends`: 取得好友名單
-        - `notification`: 傳送通知 (未實作)
-        - `school`: 取得學籍資料，包括入學年度、身份、系所、學號
-        - `profile`: 取得個人資料，包括簡介
-        - `sms`: 傳送簡訊
-        - `offline_access`: 可隨時使用應用程式 ID 與秘鑰存取 API，無論使用者有無登入
-        - `admin`: 所有權限，僅限系統管理員 (admin) 使用
+          - `public`: 取得使用者 ID 和姓名 (預設)
+          - `email`: 取得學校 email 信箱
+          - `facebook`: 取得 Facebook 帳號與 Facebook 相關資料
+          - `friends`: 取得好友名單
+          - `notification`: 傳送通知 (未實作)
+          - `school`: 取得學籍資料，包括入學年度、身份、系所、學號
+          - `profile`: 取得個人資料，包括簡介
+          - `sms`: 傳送簡訊
+          - `offline_access`: 可隨時使用應用程式 ID 與秘鑰存取 API，無論使用者有無登入
+          - `admin`: 所有權限，僅限系統管理員 (admin) 使用
 
-        部分 API 僅限系統管理員 (admin) 使用。
+          部分 API 僅限系統管理員 (admin) 使用。
 
-= render 'swagger_ui/swagger_ui', discovery_url: '/api-docs.json'
+      = render 'swagger_ui/swagger_ui', discovery_url: '/api-docs.json'
 
-:javascript
-  window.onload = function () {
-    setTimeout(function () {
-      if (window.location.hash == "") {
-        $('#swagger-ui-container .heading h2 > a').click();
-      }
-      console.log('done');
-    }, 320);
-  };
+      :javascript
+        window.onload = function () {
+          setTimeout(function () {
+            if (window.location.hash == "") {
+              $('#swagger-ui-container .heading h2 > a').click();
+            }
+            console.log('done');
+          }, 1000);
+        };
 
-%p
-  %a{href: "#", onclick: "goSite();"} 　　
+      %p
+        %a{href: "#", onclick: "goSite();"} 　　
 
 :javascript
   sites = [

@@ -9,7 +9,7 @@ class Api::V1::UserApiController < ApplicationController
     summary "取得指定使用者資料"
     notes "透過 access token 取得其擁有者的基本資料。需要 offline_access 權限，回傳資料因 access token 的 scope 而異。"
     param :query, :application_id, :string, :required, "應用程式 ID"
-    param :query, :secret, :string, :required, "應用程式秘鑰"
+    param :query, :secret, :string, :required, "應用程式密鑰"
     param :path, :id, :integer, :required, "使用者 ID"
     response :unauthorized
     response :not_found, 'Not Found 沒有此使用者'
@@ -34,7 +34,7 @@ class Api::V1::UserApiController < ApplicationController
     summary "傳送簡訊給指定使用者"
     notes "傳送簡訊到 access token 擁有者的手機號碼 (若已認證)。需要 sms 與 offline_access 權限。"
     param :form, :application_id, :string, :required, "應用程式 ID"
-    param :form, :secret, :string, :required, "應用程式秘鑰"
+    param :form, :secret, :string, :required, "應用程式密鑰"
     param :path, :id, :integer, :required, "使用者 ID"
     param :form, :message, :string, :required, "簡訊內文"
     response :unauthorized
@@ -65,7 +65,7 @@ class Api::V1::UserApiController < ApplicationController
     summary "列出使用者"
     notes "僅供 admin 使用。"
     param :query, :application_id, :string, :required, "應用程式 ID"
-    param :query, :secret, :string, :required, "應用程式秘鑰"
+    param :query, :secret, :string, :required, "應用程式密鑰"
     param :path, :admission_year, :string, :required, "入學年，數字或 all"
     # param :path, :college_id, :string, :required, "學院 ID，數字或 all"
     param :path, :department_id, :string, :required, "系所 CODE，數字或 all"
@@ -94,6 +94,43 @@ class Api::V1::UserApiController < ApplicationController
         else
           result = users.confirmed.where("admission_year = ?", params[:admission_year]).all.select(:id, :name, :email, :admission_year, :department_id)
         end
+        render json: result
+      rescue
+        render json: {:error => {:message => "Not found", :code => 404}, :status => 404}, status: 404
+      end
+    else
+      render json: {:error => {:message => "Not authorized", :code => 401}, :status => 401}, status: 401
+    end
+  end
+
+  swagger_api :find_user do
+    summary "條件尋找使用者"
+    notes "僅供 admin 使用。尋找條件參數擇一填寫。"
+    param :query, :application_id, :string, :required, "應用程式 ID"
+    param :query, :secret, :string, :required, "應用程式密鑰"
+    param :query, :fbid, :string, :optional, "Facebook ID"
+    param :query, :sid, :string, :optional, "學號"
+    param :query, :name, :string, :optional, "名稱"
+    param :query, :email, :string, :optional, "email"
+    response :unauthorized
+    response :not_found, 'Not Found 沒有此使用者'
+  end
+
+  def find_user
+    if is_admin?
+      begin
+        if params[:fbid].to_s != ''
+          result = User.confirmed.where(fbid: params[:fbid]).all
+        elsif params[:sid].to_s != ''
+          result = User.confirmed.where(student_id: params[:sid]).all
+        elsif params[:name].to_s != ''
+          result = User.confirmed.where(name: params[:name]).all
+        elsif params[:email].to_s != ''
+          result = User.confirmed.where(email: params[:email]).all
+        end
+
+        raise 'Not found' if !result || result.count == 0
+
         render json: result
       rescue
         render json: {:error => {:message => "Not found", :code => 404}, :status => 404}, status: 404
