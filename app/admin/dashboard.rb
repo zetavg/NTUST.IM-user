@@ -16,6 +16,10 @@ ActiveAdmin.register_page "Dashboard" do
         panel "System Info" do
           div Rails::Info.to_s.gsub(/\n/, '<br>').html_safe
           hr
+          if Preference['admin_web_transactions_chart_code'].to_s != ''
+            div Preference['admin_web_transactions_chart_code'].html_safe
+            hr
+          end
           ul do
             Setting.each do |key, value|
               if key =~ /key$/ || key =~ /secret/ || key =~ /pepper$/
@@ -31,6 +35,11 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
       column do
+        if Preference['admin_throughput_chart_code'].to_s != ''
+          panel "Throughput" do
+            div Preference['admin_throughput_chart_code'].html_safe
+          end
+        end
         panel "Recent Signed-In Users" do
           table_for User.where('current_sign_in_at IS NOT NULL').order("current_sign_in_at DESC").limit(10) do
             column("Name") { |user| link_to(user.name, admin_user_path(user)) }

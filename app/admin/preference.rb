@@ -5,6 +5,7 @@ ActiveAdmin.register_page "Preference" do
 
     form :action => admin_preference_update_path, :method => :post do |f|
       f.input :name => 'authenticity_token', :type => :hidden, :value => form_authenticity_token.to_s
+
       panel "Preference" do
         fieldset do
           ol do
@@ -16,16 +17,24 @@ ActiveAdmin.register_page "Preference" do
             end
 
             li do
-              label 'LOGO (可以是圖片網址、或是 svg 向量圖)'
-              f.textarea :name => "data[app_logo]" do
-                Preference.app_logo
-              end
-            end
-
-            li do
               label '全站公告 (支援 markdown 語法)'
               f.textarea :name => "data[announcement]" do
                 Preference.announcement
+              end
+            end
+
+          end
+        end
+      end
+
+      panel "Site Settings" do
+        fieldset do
+          ol do
+
+            li do
+              label 'LOGO (可以是圖片網址、或是 svg 向量圖)'
+              f.textarea :name => "data[app_logo]" do
+                Preference.app_logo
               end
             end
 
@@ -42,6 +51,25 @@ ActiveAdmin.register_page "Preference" do
           end
         end
       end
+
+      panel "Admin Dashboard Settings" do
+        fieldset do
+          ol do
+
+            li do
+              label 'Throughput Chart Code'
+              f.input :name => "data[admin_throughput_chart_code]", :type => 'text', :value => Preference.admin_throughput_chart_code
+            end
+
+            li do
+              label 'Web Transactions Chart Code'
+              f.input :name => "data[admin_web_transactions_chart_code]", :type => 'text', :value => Preference.admin_web_transactions_chart_code
+            end
+
+          end
+        end
+      end
+
       f.input :type => 'submit', :value => '更新'
     end
   end
