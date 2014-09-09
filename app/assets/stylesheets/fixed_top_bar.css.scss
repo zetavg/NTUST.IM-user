@@ -1,0 +1,56 @@
+@import "compass/css3";
+@import "default_settings";
+@import "settings";
+@import "core/helpers";
+
+$top-menu-shadow-height: 5px;
+
+body {
+
+	> .wrapper {
+
+		> .main {
+			min-height: calc(100vh - #{$top-menu-height + $footer-height + $top-menu-shadow-height*4});
+		}
+
+		&::before {
+			content: '';
+			display: block;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: $top-menu-height + $top-menu-shadow-height;
+			@include z-index('ngprogress');
+			@include background-image(linear-gradient(top, rgba(0,0,0, .52) 0, rgba(0,0,0, .52) $top-menu-height, rgba(0,0,0, 0) $top-menu-height + $top-menu-shadow-height));
+		}
+
+		&::after {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: $top-menu-height + $top-menu-shadow-height*4;
+			@include z-index('ngprogress');
+			@include background-image(linear-gradient(top, rgba($base-body-backgroundColor, 1) 0, rgba($base-body-backgroundColor, 1) $top-menu-height + $top-menu-shadow-height, rgba($base-body-backgroundColor, 0) $top-menu-height + $top-menu-shadow-height*4));
+		}
+
+		> .header {
+			position: fixed;
+		}
+
+		> .header + * {
+			margin-top: $top-menu-height + $top-menu-shadow-height*4;
+		}
+	}
+
+	> .sidebar.menu {
+		position: fixed !important;
+	}
+
+	#nprogress .bar {
+		position: fixed;
+	}
+}

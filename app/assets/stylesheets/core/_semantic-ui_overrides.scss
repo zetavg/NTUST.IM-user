@@ -387,7 +387,7 @@ a.ui.step {
 
 // off-canvas
 
-body> .wrapper > * {
+body > .wrapper > * {
 	position: relative;
 	@include transition-property(left, right, -webkit-transform);
 	@include transition-property(left, right, -moz-transform);
@@ -400,9 +400,26 @@ body> .wrapper > * {
 	right: 0;
 }
 
+.ui.sidebar, .wrapper::before, .wrapper::after {
+	@include transition-property(left, right, -webkit-transform);
+	@include transition-property(left, right, -moz-transform);
+	@include transition-property(left, right, -ms-transform);
+	@include transition-property(left, right, -o-transform);
+	@include transition-property(left, right, transform);
+	@include transition-property(left, right, -webkit-transform, -moz-transform, -ms-transform, -o-transform, transform);
+	@include transition-duration(.5s);
+}
+
 body.pushed.top {
 	margin: 0 !important;
-	@include translateY(100px);
+
+	> .wrapper > *, > .wrapper::before, > .wrapper::after {
+		@include translateY(100px);
+	}
+
+	.ui.top.sidebar {
+		@include translateY(100px);
+	}
 }
 
 body.pushed.left {
@@ -418,13 +435,6 @@ body.pushed.left > .wrapper > * {
 .ui.left.sidebar {
 	position: absolute;
 	position: fixed;
-	@include transition-property(left, right, -webkit-transform);
-	@include transition-property(left, right, -moz-transform);
-	@include transition-property(left, right, -ms-transform);
-	@include transition-property(left, right, -o-transform);
-	@include transition-property(left, right, transform);
-	@include transition-property(left, right, -webkit-transform, -moz-transform, -ms-transform, -o-transform, transform);
-	@include transition-duration(.5s);
 	// @include transition-delay(.5s);
 	width: 240px !important;
 	// margin-left: -240px !important;
