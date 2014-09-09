@@ -4,12 +4,12 @@
     - apps_navigation.each do |app|
       .app{style: "background-color: #{app['color']}; width : #{width}"}
         - if app['enabled']
-          %a.item.ui.has-popup{'data-content' => app['description'], :href => app['url'], :target => ('_blank' if app['cross_domin'])}
+          %a.item.ui{'title' => app['description'], 'data-content' => app['description'], :href => app['url'], :target => ('_blank' if app['cross_domin'])}
             - if app['icon'].to_s != ''
               .icon= image_tag app['icon']
             .name= app['name']
         - else
-          %a.item.disabled.ui.has-popup{'data-content' => 'Coming Soon...'}
+          %a.item.disabled.ui.has-popup{'title' => 'Coming Soon...', 'data-content' => 'Coming Soon...'}
             - if app['icon'].to_s != ''
               .icon= image_tag app['icon']
             .name= app['name']

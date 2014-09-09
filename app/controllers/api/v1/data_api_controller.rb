@@ -45,6 +45,7 @@ class Api::V1::DataApiController < ApplicationController
 
     data['site_navigation'] = SiteNavigation.nav
     data['site_menu'] = SiteNavigation.menu
+    data['page_footer'] = Preference['page_footer']
 
     data['maintenance_mode'] = Preference['maintenance_mode']
 

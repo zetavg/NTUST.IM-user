@@ -16,6 +16,19 @@ module ApplicationHelper
     action.include?(params[:action])
   end
 
+  def markdown_format(s)
+    options = {
+      filter_html: true,
+      hard_wrap: true,
+      link_attributes: { rel: 'nofollow', target: "_blank" },
+      space_after_headers: true,
+      fenced_code_blocks: true
+    }
+    renderer = Redcarpet::Render::HTML.new(options)
+    markdown = Redcarpet::Markdown.new(renderer, autolink: true, tables: true)
+    markdown.render(s).html_safe
+  end
+
   def app_logo
     if Preference.app_logo.to_s != ''
       if Preference.app_logo.to_s.match(/^</)  # if SVG path
@@ -28,12 +41,20 @@ module ApplicationHelper
     end
   end
 
+  def site_announcement
+    Preference['announcement'] && markdown_format(Preference['announcement']).gsub(/\<\/?p\>/, '').html_safe
+  end
+
   def apps_navigation
     SiteNavigation.nav
   end
 
   def apps_menu
     SiteNavigation.menu
+  end
+
+  def page_footer
+    Preference['page_footer'] && Preference['page_footer'].html_safe
   end
 
   def default_authorize_path

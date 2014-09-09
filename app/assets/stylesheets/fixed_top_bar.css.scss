@@ -42,7 +42,20 @@ body {
 		}
 
 		> .header + * {
-			margin-top: $top-menu-height + $top-menu-shadow-height*4;
+			margin-top: $top-menu-height + $top-menu-shadow-height*3;
+
+			& > *:not(.site_announcement):first-child {
+				margin-top: -$top-menu-shadow-height*3;
+				overflow: auto;
+
+				& > *:first-child {
+					margin-top: $top-menu-shadow-height*4 !important;
+				}
+			}
+
+			& > .site_announcement {
+				margin-top: -$top-menu-shadow-height*3;
+			}
 		}
 	}
 
@@ -52,5 +65,15 @@ body {
 
 	#nprogress .bar {
 		position: fixed;
+	}
+}
+
+body {
+
+	> .wrapper.has_site_announcement {
+
+		&::after {
+			@include background-image(linear-gradient(top, rgba(lighten(#eee098, 4%), 1) 0, rgba(lighten(#eee098, 4%), 1) $top-menu-height + $top-menu-shadow-height, rgba(lighten(#eee098, 4%), 0) $top-menu-height + $top-menu-shadow-height*4));
+		}
 	}
 }

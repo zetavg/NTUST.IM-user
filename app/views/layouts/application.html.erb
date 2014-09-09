@@ -19,16 +19,22 @@
     <!--[if lt IE 8]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div class="wrapper">
+    <div class="wrapper <%= 'has_site_announcement' if site_announcement.to_s != '' %>">
       <header class="header">
         <%= render 'layouts/top_menu' %>
       </header>
 
-      <div class="container flash_messages">
-        <%= render 'partials/flash_messages' %>
-      </div>
-
       <main class="main">
+        <% if site_announcement.to_s != '' %>
+          <div class="site_announcement">
+            <div class="container">
+              <i class="info icon"></i><%= site_announcement %>
+            </div>
+          </div>
+        <% end %>
+        <div class="container flash_messages">
+          <%= render 'partials/flash_messages' %>
+        </div>
         <%= yield %>
       </main>
 

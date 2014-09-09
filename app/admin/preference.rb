@@ -34,6 +34,11 @@ ActiveAdmin.register_page "Preference" do
               f.input :name => "data[fb_page]", :type => 'text', :value => Preference.fb_page
             end
 
+            li do
+              label '頁腳內容，可使用 HTML，例如： <a class="item" href="/">回首頁</a>'
+              f.input :name => "data[page_footer]", :type => 'text', :value => Preference.page_footer
+            end
+
           end
         end
       end
