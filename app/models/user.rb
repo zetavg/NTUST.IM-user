@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   scope :confirmed, -> { where("confirmed_at IS NOT NULL") }
   scope :unconfirmed, -> { where("confirmed_at IS NULL") }
 
+  has_many :friendships, class_name: "UserFriendship"
+  has_many :friends, through: :friendships
+
   has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner
   belongs_to :department, primary_key: "code"
   belongs_to :admission_department, class_name: "Department", primary_key: "code"
@@ -43,13 +46,27 @@ class User < ActiveRecord::Base
       name = JSON.parse(get_info_connection.parsed_response)['name']
       user.name = name if name
     end
+
     user.fbtoken = auth.credentials.token
-    get_info_connection = HTTParty.get("https://graph.facebook.com/me?fields=id,name,link,picture.height(500).width(500),cover,devices&access_token=#{auth.credentials.token}&locale=#{I18n.locale}")
+    get_info_connection = HTTParty.get("https://graph.facebook.com/me?fields=id,name,friends,link,picture.height(500).width(500),cover,devices&access_token=#{auth.credentials.token}&locale=#{I18n.locale}")
     info = JSON.parse(get_info_connection.parsed_response)
     user.fblink = info['link']
     user.fbcover = info['cover'] && info['cover']['source']
     user.avatar = info['picture'] && info['picture']['data'] && info['picture']['data']['url']
     user.save
+
+    ActiveRecord::Base.transaction do
+      user.friends.delete_all
+      friends = (info['friends'] && info['friends']['data']) || []
+      friend_fbids = friends.map { |f| f['id'] }
+      friend_with_ids = User.select(:id).where(fbid: friend_fbids)
+      friendship_inserts = friend_with_ids.map { |f| "(#{user.id}, #{f[:id]})" }
+      if friendship_inserts.length > 0
+        sql = "INSERT INTO user_friendships (user_id, friend_id) VALUES #{friendship_inserts.join(', ')}"
+        ActiveRecord::Base.connection.execute(sql)
+      end
+    end
+
     return user
   end
 
