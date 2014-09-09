@@ -41,6 +41,18 @@ class MeController < ApplicationController
   end
 
   def settings
+    @settings = current_user.settings.get_all
+  end
+
+  def settings_update
+    if params['display_fixed_top_bar'].to_s == 'yes'
+      current_user.settings['display_not_fixed_top_bar'] = false
+    else
+      current_user.settings['display_not_fixed_top_bar'] = true
+    end
+
+    flash[:notice] = '設定已儲存。'
+    redirect_to settings_path
   end
 
   private

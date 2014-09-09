@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include RailsSettings::Extend
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :confirmable, :rememberable, :trackable, :validatable
@@ -82,6 +83,7 @@ class User < ActiveRecord::Base
       userdata['brief'] = self.brief
     end
     if admin
+      userdata['settings'] = settings.get_all
       userdata = userdata.merge(self.attributes)
     end
     userdata

@@ -1,2 +1,14 @@
 = render layout: 'me' do
-  .content Comming soon
+  = form_tag url: settings_path do
+    %button{:name => "commit", :type => "submit", :value => "commit", :style => "display: none;"}
+    .ui.form
+      .ui.left.floated.header 顯示設定
+      .two.fields
+        .field
+          .ui.slider.checkbox
+            = check_box_tag 'display_fixed_top_bar', 'yes', !@settings['display_not_fixed_top_bar']
+            %label 固定式上方選單
+          %label
+        .field
+
+      = submit_tag "儲存", class: 'ui green flat large submit button'
