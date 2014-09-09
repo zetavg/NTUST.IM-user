@@ -8,6 +8,9 @@ class MeController < ApplicationController
   end
 
   def information_update
+    t = Time.now.to_i.to_s
+    cookies[:login_update_time] = { value: t, domain: '.' + Setting.app_domain }
+
     faild = false
 
     if !@user.update(my_params)
@@ -45,6 +48,9 @@ class MeController < ApplicationController
   end
 
   def settings_update
+    t = Time.now.to_i.to_s
+    cookies[:login_update_time] = { value: t, domain: '.' + Setting.app_domain }
+
     if params['display_fixed_top_bar'].to_s == 'yes'
       current_user.settings['display_not_fixed_top_bar'] = false
     else
