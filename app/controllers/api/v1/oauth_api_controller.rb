@@ -44,7 +44,7 @@ class Api::V1::OauthApiController < ApplicationController
         params[:sender_url] = nil
         raise 'error' if !User.find(doorkeeper_token.resource_owner_id).send_notification(params[:title], params[:type], params[:content], params[:url], params[:image], doorkeeper_token.application_id, params[:priority], params[:importance], params[:sender], params[:sender_url], params[:icon], params[:event_name], params[:datetime], params[:location])
       rescue
-        respond = {:success => {:message => "Error (Not found?)", :code => 404}, :status => 404}
+        respond = {:error => {:message => "Error (Not found?)", :code => 404}, :status => 404}
       end
     else
       respond = {:error => {:message => "Not authorized", :code => 401}, :status => 401}

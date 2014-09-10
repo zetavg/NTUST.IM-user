@@ -93,6 +93,123 @@
       ]
     },
     {
+      "path": "api/v1/user/{id}/send_notification.json",
+      "operations": [
+        {
+          "summary": "傳送通知給指定使用者",
+          "notes": "傳送通知給 access token 擁有者。需要 notification 與 offline_access 權限。",
+          "parameters": [
+            {
+              "paramType": "form",
+              "name": "application_id",
+              "type": "string",
+              "description": "應用程式 ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "secret",
+              "type": "string",
+              "description": "應用程式密鑰",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "使用者 ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "title",
+              "type": "string",
+              "description": "通知標題",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "type",
+              "type": "string",
+              "description": "通知類型",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "content",
+              "type": "string",
+              "description": "通知內文",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "url",
+              "type": "string",
+              "description": "通知連結網址",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "priority",
+              "type": "integer",
+              "description": "通知急迫性，1 緊急 ~ 3 不緊急，0 代表非常緊急，若使用者有設定將此類通知轉發簡訊，將會送出簡訊並扣除簡訊額度 (轉發簡訊功能未實作)",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "importance",
+              "type": "integer",
+              "description": "通知重要性，1 重要 ~ 3 不重要，0 將會置頂直到使用者進行動作",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "image",
+              "type": "string",
+              "description": "圖片",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "icon",
+              "type": "string",
+              "description": "圖示，預設為應用程式圖示",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "event_name",
+              "type": "string",
+              "description": "事件名稱，配合特殊類型使用",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "datetime",
+              "type": "string",
+              "description": "時間，配合特殊類型使用",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "location",
+              "type": "string",
+              "description": "地點，配合特殊類型使用",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            }
+          ],
+          "method": "post",
+          "nickname": "Api::V1::UserApi#send_notification"
+        }
+      ]
+    },
+    {
       "path": "api/v1/user/{id}/send_sms.json",
       "operations": [
         {
