@@ -66,9 +66,9 @@ class Api::V1::UserApiController < ApplicationController
     notes "僅供 admin 使用。"
     param :query, :application_id, :string, :required, "應用程式 ID"
     param :query, :secret, :string, :required, "應用程式密鑰"
-    param :path, :admission_year, :string, :required, "入學年，數字或 all"
-    # param :path, :college_id, :string, :required, "學院 ID，數字或 all"
-    param :path, :department_id, :string, :required, "系所 CODE，數字或 all"
+    param :path, :admission_year, :string, :required, "入學年，數字或 'all'"
+    # param :path, :college_code, :string, :required, "學院 CODE，或 'all'"
+    param :path, :department_code, :string, :required, "系所 CODE，或 'all'"
     response :unauthorized
     response :not_found, 'Not Found 沒有此使用者'
   end
@@ -76,23 +76,23 @@ class Api::V1::UserApiController < ApplicationController
   def list_users
     if is_admin?
       begin
-        # if params[:college_id] == 'all'
-          if params[:department_id] == 'all'
+        # if params[:college_code] == 'all'
+          if params[:department_code] == 'all'
             users = User
           else
-            users = Department.where("code = ?", params[:department_id]).first.students
+            users = Department.where("code = ?", params[:department_code]).first.students
           end
         # else
-        #   if params[:department_id] == 'all'
-        #     users = College.where("id = ?", params[:college_id]).first.students
+        #   if params[:department_code] == 'all'
+        #     users = College.where("code = ?", params[:college_code]).first.students
         #   else
-        #     users = College.where("id = ?", params[:college_id]).first.departments.where("code = ?", params[:department_id]).first.students
+        #     users = College.where("code = ?", params[:college_code]).first.departments.where("code = ?", params[:department_code]).first.students
         #   end
         # end
         if params[:admission_year] == 'all'
-          result = users.confirmed.all.select(:id, :name, :email, :admission_year, :department_id)
+          result = users.confirmed.all.select(:id, :name, :email, :admission_year, :department_code)
         else
-          result = users.confirmed.where("admission_year = ?", params[:admission_year]).all.select(:id, :name, :email, :admission_year, :department_id)
+          result = users.confirmed.where("admission_year = ?", params[:admission_year]).all.select(:id, :name, :email, :admission_year, :department_code)
         end
         render json: result
       rescue

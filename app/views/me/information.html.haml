@@ -32,7 +32,7 @@
         .field
           %label 科系
           .select2
-            = f.select :department_id, Department.get_options, :autocomplete => :off
+            = f.select :department_code, Department.get_options, :autocomplete => :off
       .ui.left.floated.header
         進階資料
         %small 無論你的隱私設定為何，這裡的資料皆不會對外公開

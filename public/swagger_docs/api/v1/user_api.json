@@ -156,7 +156,7 @@
       ]
     },
     {
-      "path": "api/v1/admission_year/{admission_year}/department/{department_id}/users.json",
+      "path": "api/v1/admission_year/{admission_year}/department/{department_code}/users.json",
       "operations": [
         {
           "summary": "列出使用者",
@@ -180,14 +180,14 @@
               "paramType": "path",
               "name": "admission_year",
               "type": "string",
-              "description": "入學年，數字或 all",
+              "description": "入學年，數字或 'all'",
               "required": true
             },
             {
               "paramType": "path",
-              "name": "department_id",
+              "name": "department_code",
               "type": "string",
-              "description": "系所 CODE，數字或 all",
+              "description": "系所 CODE，或 'all'",
               "required": true
             }
           ],

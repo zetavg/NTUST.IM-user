@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
   has_many :friends, through: :friendships
 
   has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner
-  belongs_to :department, primary_key: "code"
-  belongs_to :admission_department, class_name: "Department", primary_key: "code"
+  belongs_to :department, primary_key: "code", foreign_key: "department_code"
+  belongs_to :admission_department, class_name: "Department", primary_key: "code", foreign_key: "admission_department_code"
 
   def avatar(size=100)
     'https://graph.facebook.com/' + fbid.to_s + '/picture?width=' + size.to_s + '&height=' + size.to_s
@@ -86,8 +86,8 @@ class User < ActiveRecord::Base
       userdata['student_id'] = self.student_id
       userdata['identity'] = self.identity
       userdata['admission_year'] = self.admission_year
-      userdata['admission_department_code'] = self.admission_department_id
-      userdata['department_code'] = self.department_id
+      userdata['admission_department_code'] = self.admission_department_code
+      userdata['department_code'] = self.department_code
       userdata['college'] = self.department && self.department.college && self.department.college.name
       userdata['admission_department'] = self.admission_department && self.admission_department.name
       userdata['department'] = self.department && self.department.name
@@ -98,7 +98,7 @@ class User < ActiveRecord::Base
     end
     if scopes.include?('friends') || admin
       if admin
-        userdata['friends'] = self.friends.select(:id, :name, :mobile, :email, :fbid, :gender, :student_id, :identity, :admission_year, :admission_department_id, :department_id, :fblink, :fbcover).map { |f| {id: f[:id], uid: f[:id], name: f[:name], email: f[:email], fbid: f[:fbid], gender: f[:gender], student_id: f[:student_id], identity: f[:identity], admission_year: f[:admission_year], admission_department_id: f[:admission_department_id], department_id: f[:department_id], fblink: f[:fblink], fbcover: f[:fbcover], mobile_verified: f.mobile? } }
+        userdata['friends'] = self.friends.select(:id, :name, :mobile, :email, :fbid, :gender, :student_id, :identity, :admission_year, :admission_department_code, :department_code, :fblink, :fbcover).map { |f| {id: f[:id], uid: f[:id], name: f[:name], email: f[:email], fbid: f[:fbid], gender: f[:gender], student_id: f[:student_id], identity: f[:identity], admission_year: f[:admission_year], admission_department_code: f[:admission_department_code], department_code: f[:department_code], fblink: f[:fblink], fbcover: f[:fbcover], mobile_verified: f.mobile? } }
       else
         userdata['friends'] = self.friends.select(:id, :name, :mobile).map { |f| {id: f[:id], uid: f[:id], name: f[:name], mobile_verified: f.mobile? } }
       end

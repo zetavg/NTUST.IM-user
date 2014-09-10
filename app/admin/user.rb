@@ -1,7 +1,7 @@
 ActiveAdmin.register User do
   menu priority: 10
 
-  permit_params :admin, :name, :email, :fbid, :gender, :identity, :student_id, :admission_year, :admission_department_id, :department_id, :mobile, :birthday, :address, :brief
+  permit_params :admin, :name, :email, :fbid, :gender, :identity, :student_id, :admission_year, :admission_department_code, :department_code, :mobile, :birthday, :address, :brief
 
   index do
     selectable_column
@@ -70,8 +70,8 @@ ActiveAdmin.register User do
       f.input :identity
       f.input :student_id
       f.input :admission_year
-      f.input :admission_department_id
-      f.input :department_id
+      f.input :admission_department_code
+      f.input :department_code
       f.input :mobile
       f.input :birthday
       f.input :address

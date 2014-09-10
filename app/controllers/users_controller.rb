@@ -45,14 +45,14 @@ class UsersController < ApplicationController
             identities = { b: 'bachelor', m: 'master', d: 'doctor' }
             @user.identity = identities[data[:identity_id].to_sym]
             @user.admission_year = data[:admission_year].to_i
-            @user.admission_department_id = data[:admission_department_id].to_i
-            @user.department_id = data[:admission_department_id].to_i
+            @user.admission_department_code = data[:admission_department_code].to_s
+            @user.department_code = data[:admission_department_code].to_s
             @user.student_id = data[:student_id]
           else
             @user.identity = 'other'
             @user.admission_year = nil
-            @user.admission_department_id = nil
-            @user.department_id = nil
+            @user.admission_department_code = nil
+            @user.department_code = nil
             @user.student_id = nil
           end
             @user.save

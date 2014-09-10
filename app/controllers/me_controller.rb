@@ -75,7 +75,7 @@ class MeController < ApplicationController
   end
 
   def my_params
-    params.require(:user).permit(:name, :gender, :department_id, :birthday, :address, :brief)
+    params.require(:user).permit(:name, :gender, :department_code, :birthday, :address, :brief)
   end
 
   def send_confirmation_sms

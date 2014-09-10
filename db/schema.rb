@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140909191236) do
+ActiveRecord::Schema.define(version: 20140910172823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20140909191236) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "college_id"
+    t.string   "college_code"
   end
 
   create_table "oauth_access_grants", force: true do |t|
@@ -184,8 +184,8 @@ ActiveRecord::Schema.define(version: 20140909191236) do
     t.string   "student_id"
     t.string   "identity"
     t.integer  "admission_year"
-    t.integer  "admission_department_id"
-    t.integer  "department_id"
+    t.string   "admission_department_code"
+    t.string   "department_code"
     t.string   "mobile"
     t.string   "unconfirmed_mobile"
     t.date     "birthday"
