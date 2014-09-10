@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140910172823) do
+ActiveRecord::Schema.define(version: 20140910195712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,16 +117,6 @@ ActiveRecord::Schema.define(version: 20140910172823) do
   add_index "oauth_applications", ["owner_id", "owner_type"], name: "index_oauth_applications_on_owner_id_and_owner_type", using: :btree
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
 
-  create_table "sessions", force: true do |t|
-    t.string   "session_id", null: false
-    t.text     "data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
-  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
-
   create_table "settings", force: true do |t|
     t.string   "var",                   null: false
     t.text     "value"
@@ -159,6 +149,16 @@ ActiveRecord::Schema.define(version: 20140910172823) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "user_rfid_data", force: true do |t|
+    t.string   "sid",            null: false
+    t.string   "encrypted_code", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_rfid_data", ["encrypted_code"], name: "index_user_rfid_data_on_encrypted_code", unique: true, using: :btree
+  add_index "user_rfid_data", ["sid"], name: "index_user_rfid_data_on_sid", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                       default: "",    null: false
