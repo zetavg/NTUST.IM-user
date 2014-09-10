@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   scope :confirmed, -> { where("confirmed_at IS NOT NULL") }
   scope :unconfirmed, -> { where("confirmed_at IS NULL") }
 
+  has_many :notifications
   has_many :friendships, class_name: "UserFriendship"
   has_many :friends, through: :friendships
 
@@ -34,6 +35,18 @@ class User < ActiveRecord::Base
 
   def department_name
     department && department.name
+  end
+
+  def send_notification(title, type=nil, content=nil, url=nil, image=nil, sender_application_id=nil, priority=3, importance=3, sender=nil, sender_url=nil, icon=nil, event_name=nil, datetime=nil, location=nil)
+
+    priority = 3 if priority.to_s == ''
+    importance = 3 if importance.to_s == ''
+    priority = priority.to_i
+    importance = importance.to_i
+    priority = 3 if !priority.between?(0, 3)
+    importance = 3 if !importance.between?(0, 3)
+
+    self.notifications.new({title: title, type: type, content: content, url: url, image: image, sender_application_id: sender_application_id, priority: priority, importance: importance, sender: sender, sender_url: sender_url, icon: icon, event_name: event_name, datetime: datetime, location: location}).save!
   end
 
   def self.from_facebook(auth)

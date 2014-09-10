@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :notifications
+
   devise_for :admins, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   use_doorkeeper do
@@ -32,9 +34,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/me' => "oauth_api#me"
       post '/me' => "oauth_api#me"
+      post '/me/send_notification' => "oauth_api#send_notification"
       post '/me/send_sms' => "oauth_api#send_sms"
       get '/user/:id' => "user_api#user_data"
       post '/user/:id' => "user_api#user_data"
+      post '/user/:id/send_notification' => "user_api#send_notification"
       post '/user/:id/send_sms' => "user_api#send_sms"
       get '/admission_year/:admission_year/department/:department_id/users' => "user_api#list_users"
       get '/find_user' => "user_api#find_user"

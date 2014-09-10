@@ -16,6 +16,42 @@ class Api::V1::OauthApiController < ApplicationController
     render json: User.find(doorkeeper_token.resource_owner_id).api_get_data(doorkeeper_token.scopes, is_admin?)
   end
 
+  swagger_api :send_notification do
+    summary "傳送通知"
+    notes "傳送通知給 access token 擁有者。需要 notification 權限。"
+    param :form, :access_token, :string, :required, "access token"
+    param :form, :title, :string, :required, "通知標題"
+    param :form, :type, :string, :optional, "通知類型"
+    param :form, :content, :string, :optional, "通知內文"
+    param :form, :url, :string, :optional, "通知連結網址"
+    param :form, :priority, :integer, :optional, "通知急迫性，1 緊急 ~ 3 不緊急，0 代表非常緊急，若使用者有設定將此類通知轉發簡訊，將會送出簡訊並扣除簡訊額度 (轉發簡訊功能未實作)"
+    param :form, :importance, :integer, :optional, "通知重要性，1 重要 ~ 3 不重要，0 將會置頂直到使用者進行動作"
+    param :form, :image, :string, :optional, "圖片"
+    # param :form, :sender, :string, :optional, "傳送者名稱，預設為應用程式名稱"
+    # param :form, :sender_url, :string, :optional, "傳送者網址，預設為應用程式網址"
+    param :form, :icon, :string, :optional, "圖示，預設為應用程式圖示"
+    param :form, :event_name, :string, :optional, "事件名稱，配合特殊類型使用"
+    param :form, :datetime, :string, :optional, "時間，配合特殊類型使用"
+    param :form, :location, :string, :optional, "地點，配合特殊類型使用"
+    response :unauthorized
+  end
+
+  def send_notification
+    if doorkeeper_token.scopes.include?('notification') || is_admin?  # 有發送權
+      respond = {:success => {:message => "Ok", :code => 200}, :status => 200}
+      begin
+        params[:sender] = nil
+        params[:sender_url] = nil
+        raise 'error' if !User.find(doorkeeper_token.resource_owner_id).send_notification(params[:title], params[:type], params[:content], params[:url], params[:image], doorkeeper_token.application_id, params[:priority], params[:importance], params[:sender], params[:sender_url], params[:icon], params[:event_name], params[:datetime], params[:location])
+      rescue
+        respond = {:success => {:message => "Error (Not found?)", :code => 404}, :status => 404}
+      end
+    else
+      respond = {:error => {:message => "Not authorized", :code => 401}, :status => 401}
+    end
+    render json: respond, status: respond[:status]
+  end
+
   swagger_api :send_sms do
     summary "傳送簡訊"
     notes "傳送簡訊到 access token 擁有者的手機號碼 (若已認證)。需要 sms 權限。"
