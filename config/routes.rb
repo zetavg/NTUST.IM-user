@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       get '/user/:id' => "user_api#user_data"
       post '/user/:id' => "user_api#user_data"
       post '/user/:id/send_sms' => "user_api#send_sms"
+      get '/rfid_scan/:id' => "user_api#rfid_scan"
       get '/admission_year/:admission_year/department/:department_code/users' => "user_api#list_users"
       get '/find_user' => "user_api#find_user"
       post '/find_user' => "user_api#find_user"
