@@ -77,7 +77,11 @@ class Api::V1::UserApiController < ApplicationController
       rfid_data = UserRfidData.find_by_code(params[:id])
       if !!rfid_data
         user = UserRfidData.find_by_code(params[:id]).user
-        render json: user.api_get_data(['public', 'school'], false)
+        if !!user
+          render json: user.api_get_data(['public', 'school'], false)
+        else
+          render json: { sid: rfid_data.sid, student_id: rfid_data.sid }
+        end
         # if @is_admin
         #   render json: user, status: 200
         # else

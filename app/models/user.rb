@@ -83,6 +83,7 @@ class User < ActiveRecord::Base
       userdata['mobile_verified'] = false
     end
     if scopes.include?('school') || admin
+      userdata['sid'] = self.student_id
       userdata['student_id'] = self.student_id
       userdata['identity'] = self.identity
       userdata['admission_year'] = self.admission_year
