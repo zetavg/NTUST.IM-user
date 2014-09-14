@@ -111,6 +111,7 @@ class Doorkeeper::Application < ActiveRecord::Base
   has_one :data, class_name: "OauthApplicationData", foreign_key: "application_id"
 
   def admin_app?
-    (!!owner && owner_type == 'User' && owner.admin?) || owner_type == 'Admin'
+    # (!!owner && owner_type == 'User' && owner.admin?) || owner_type == 'Admin'
+    owner_type == 'Admin'
   end
 end
